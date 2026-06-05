@@ -209,7 +209,7 @@ export default function Simulateur() {
 
       <div className="bg-[#f8f9fb] min-h-screen">
         {/* Tab bar */}
-        <div className="sticky top-[88px] z-30 bg-white border-b border-gray-100 shadow-sm">
+        <div className="sticky top-14 z-30 bg-white border-b border-gray-100 shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex overflow-x-auto">
               {TABS.map((t, i) => (
@@ -593,7 +593,7 @@ export default function Simulateur() {
 
             {/* Right panel — live summary */}
             <div className="hidden lg:block">
-              <div className="sticky top-[148px] space-y-4">
+              <div className="sticky top-[108px] space-y-4">
                 <div className="bg-white rounded-2xl border border-gray-100 p-5">
                   <h3 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4">Récapitulatif</h3>
                   <div className="space-y-2.5 text-sm">

@@ -114,19 +114,24 @@ export default function Home() {
       </section>
 
       {/* ── BANDEAU RÉASSURANCE ───────────────────────────────────── */}
-      <section className="bg-[#1E3A5F] py-5 border-b border-white/5">
+      <section className="bg-[#1E3A5F] py-0 border-b border-white/5 overflow-hidden">
         <div className="container mx-auto px-4">
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-sm text-white/70">
+          <div className="flex items-center justify-between overflow-x-auto scrollbar-none">
             {[
               { icon: "🔒", label: "100% sécurisé" },
-              { icon: "🏆", label: "+2 400 programmes référencés" },
-              { icon: "🌍", label: "Service bilingue FR / HE" },
-              { icon: "🤖", label: "Analyse IA incluse" },
+              { icon: "🏆", label: "+2 400 programmes" },
+              { icon: "🌍", label: "Bilingue FR / HE" },
+              { icon: "🤖", label: "Analyse IA" },
               { icon: "📞", label: "Accompagnement dédié" },
-            ].map((item) => (
-              <div key={item.label} className="flex items-center gap-2 whitespace-nowrap">
-                <span aria-hidden="true">{item.icon}</span>
-                <span>{item.label}</span>
+            ].map((item, i, arr) => (
+              <div key={item.label} className="flex items-center shrink-0">
+                <div className="flex items-center gap-1.5 text-[12px] text-white/65 whitespace-nowrap py-3.5 px-3 md:px-5">
+                  <span className="text-sm" aria-hidden="true">{item.icon}</span>
+                  <span className="font-medium">{item.label}</span>
+                </div>
+                {i < arr.length - 1 && (
+                  <span className="w-px h-4 bg-white/10 shrink-0" aria-hidden="true" />
+                )}
               </div>
             ))}
           </div>

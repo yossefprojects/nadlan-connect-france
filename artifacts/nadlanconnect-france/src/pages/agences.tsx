@@ -36,44 +36,45 @@ export default function Agences() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/85 via-[#0d1117]/75 to-[#0d1117]/92" />
 
-        <div className="relative z-10 container mx-auto px-4 py-24 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs font-medium tracking-wide mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            ESPACE AGENCES IMMOBILIÈRES — NADLANCONNECT FRANCE
+        <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-[10px] md:text-xs font-medium tracking-wide mb-6 md:mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="sm:hidden">ESPACE AGENCES</span>
+            <span className="hidden sm:inline">ESPACE AGENCES IMMOBILIÈRES — NADLANCONNECT FRANCE</span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mx-auto mb-4">
-            Agences, accédez aux<br />meilleurs programmes
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mx-auto mb-3 md:mb-4">
+            Agences, accédez aux<br className="hidden sm:block" /> meilleurs programmes
           </h1>
-          <h2 className="text-5xl md:text-6xl font-black leading-[1.05] mb-8">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] mb-6 md:mb-8">
             <span className="text-[#C9A84C]">neuf de France.</span>
           </h2>
 
-          <p className="text-white/60 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
             Élargissez votre offre immobilière avec les programmes neufs de nos promoteurs partenaires. Commissions attractives, formation incluse et outils IA pour vos clients.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto mx-auto">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
               Rejoindre le réseau <ArrowRight className="w-4 h-4" />
             </button>
-            <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold text-[15px] hover:bg-white/10 transition-colors">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm md:text-[15px] hover:bg-white/10 transition-colors">
               Découvrir les programmes
             </button>
           </div>
 
-          <div className="mt-20 grid grid-cols-3 gap-8 md:gap-20 border-t border-white/10 pt-8 max-w-2xl mx-auto">
-            <StatCard value="380+" label="Agences partenaires" />
-            <StatCard value="3–5%" label="Commissions moyennes" />
-            <StatCard value="48h" label="Délai de paiement" />
+          <div className="mt-10 md:mt-20 grid grid-cols-3 gap-3 md:gap-20 border-t border-white/10 pt-6 md:pt-8 w-full max-w-xs md:max-w-2xl mx-auto">
+            <StatCard value="380+" label="Agences" />
+            <StatCard value="3–5%" label="Commissions" />
+            <StatCard value="48h" label="Paiement" />
           </div>
         </div>
       </section>
 
       {/* Pourquoi rejoindre */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
               <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Votre avantage concurrentiel</p>
               <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F] mb-6">Pourquoi rejoindre le réseau NadlanConnect France ?</h2>
@@ -129,11 +130,11 @@ export default function Agences() {
       </section>
 
       {/* Comment ça marche */}
-      <section className="py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-[#f8f9fb]">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Processus simple</p>
-            <h2 className="text-3xl font-black text-[#1E3A5F]">Comment ça marche ?</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">Comment ça marche ?</h2>
           </div>
 
           <div className="space-y-4">
@@ -160,14 +161,14 @@ export default function Agences() {
       </section>
 
       {/* Outils */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Votre boîte à outils</p>
-            <h2 className="text-3xl font-black text-[#1E3A5F]">Des outils professionnels à votre disposition</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">Des outils professionnels à votre disposition</h2>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
             {[
               { icon: <BarChart3 className="w-5 h-5" />, title: "Simulateur IA avancé", desc: "Calculez rendement, cash-flow, gain fiscal Jeanbrun/LMNP en temps réel. Générez un rapport PDF personnalisé à l'image de votre agence." },
               { icon: <FileText className="w-5 h-5" />, title: "Analyse documentaire", desc: "Uploadez un contrat de réservation ou une brochure promoteur. Notre IA extrait automatiquement les informations clés pour votre client." },
@@ -187,13 +188,13 @@ export default function Agences() {
       </section>
 
       {/* Témoignages */}
-      <section className="py-24 bg-[#1E3A5F]">
+      <section className="py-14 md:py-24 bg-[#1E3A5F]">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Ils ont rejoint le réseau</p>
-            <h2 className="text-3xl font-black text-white">380+ agences nous font confiance</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-white">380+ agences nous font confiance</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { quote: "Grâce au simulateur IA, je convertis maintenant 1 client sur 3 en investisseur neuf. Avant c'était 1 sur 10. Les chiffres parlent d'eux-mêmes.", name: "Isabelle Fontaine", agency: "Fontaine Immobilier, Lyon" },
               { quote: "Les programmes sont de qualité, les commissions sont honnêtes et le paiement est rapide. C'est tout ce qu'on demande. Je recommande sans hésiter.", name: "Thomas Blanchard", agency: "TB Conseil Immobilier, Bordeaux" },

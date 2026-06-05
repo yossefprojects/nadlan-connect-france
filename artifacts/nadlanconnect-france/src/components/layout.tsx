@@ -248,8 +248,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Footer */}
       <footer className="bg-[#0d1117] text-white border-t border-white/5">
         <div className="container mx-auto px-4 py-14">
-          <div className="grid md:grid-cols-4 gap-10 pb-10 border-b border-white/8">
-            <div className="md:col-span-1">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 pb-10 border-b border-white/8">
+            <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 bg-[#1E3A5F] rounded flex items-center justify-center">
                   <span className="text-[#C9A84C] text-xs font-black">NC</span>

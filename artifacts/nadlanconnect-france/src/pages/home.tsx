@@ -17,40 +17,41 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/80 via-[#0d1117]/70 to-[#0d1117]/90" />
         </div>
 
-        <div className="relative z-10 container mx-auto px-4 py-24 flex flex-col items-center text-center">
+        <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 flex flex-col items-center text-center">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur text-white/80 text-xs font-medium tracking-wide mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            PLATEFORME IMMOBILIER NEUF — FRANCE
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 backdrop-blur text-white/70 text-[10px] md:text-xs font-medium tracking-wide mb-6 md:mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="sm:hidden">IMMOBILIER NEUF — FRANCE</span>
+            <span className="hidden sm:inline">PLATEFORME IMMOBILIER NEUF — FRANCE</span>
           </div>
 
           {/* Headline */}
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mb-3 md:mb-4">
             Investissez dans<br />
             l'immobilier neuf
           </h1>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] max-w-4xl mb-8">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] max-w-4xl mb-6 md:mb-8">
             <span className="text-[#C9A84C]">en France.</span>
           </h2>
 
-          <p className="text-white/60 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-            Simulez, défiscalisez et analysez vos projets grâce aux dispositifs Jeanbrun et LMNP — le tout assisté par IA.
+          <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mb-8 md:mb-10 leading-relaxed px-2">
+            Simulez, défiscalisez et analysez vos projets grâce aux dispositifs Jeanbrun et LMNP — assisté par IA.
           </p>
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link href="/simulateur"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg shadow-amber-900/30">
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg shadow-amber-900/30">
               Simuler mon investissement <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/defiscalisation"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold text-[15px] hover:bg-white/10 transition-colors backdrop-blur">
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm md:text-[15px] hover:bg-white/10 transition-colors backdrop-blur">
               Découvrir les dispositifs
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-3 gap-8 md:gap-16 border-t border-white/10 pt-8 w-full max-w-xl">
+          <div className="mt-10 md:mt-20 grid grid-cols-3 gap-4 md:gap-16 border-t border-white/10 pt-6 md:pt-8 w-full max-w-sm md:max-w-xl">
             {[
               { value: "2–3%", label: "Frais de notaire" },
               { value: "RE2020", label: "Norme environnementale" },
@@ -71,13 +72,13 @@ export default function Home() {
       </section>
 
       {/* ── 3 AVANTAGES ─────────────────────────────────────────────── */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Pourquoi le neuf ?</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F]">Trois avantages immédiats</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">Trois avantages immédiats</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               {
                 icon: <TrendingUp className="w-5 h-5" />,
@@ -114,13 +115,13 @@ export default function Home() {
       </section>
 
       {/* ── PAGES RAPIDES ───────────────────────────────────────────── */}
-      <section className="py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-[#f8f9fb]">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">La plateforme</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F]">Tout ce qu'il vous faut</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">Tout ce qu'il vous faut</h2>
           </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
             {[
               { href: "/marche-neuf", title: "Marché Neuf", desc: "VEFA, RE2020 et frais de notaire expliqués clairement.", emoji: "🏗️" },
               { href: "/defiscalisation", title: "Défiscalisation", desc: "Jeanbrun et LMNP : comparatif complet et guide PDF.", emoji: "📊" },
@@ -143,7 +144,7 @@ export default function Home() {
       </section>
 
       {/* ── ABOUT ───────────────────────────────────────────────────── */}
-      <section className="py-24 bg-[#1E3A5F]">
+      <section className="py-14 md:py-24 bg-[#1E3A5F]">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-4">Notre mission</p>

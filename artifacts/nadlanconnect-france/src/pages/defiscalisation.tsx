@@ -71,7 +71,7 @@ export default function Defiscalisation() {
       />
 
       {/* Dispositifs */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           {/* Tabs */}
           <div className="flex gap-1 p-1 bg-gray-100 rounded-xl w-fit mb-12">
@@ -208,7 +208,7 @@ export default function Defiscalisation() {
       </section>
 
       {/* Tableau comparatif */}
-      <section className="py-20 bg-[#f8f9fb] border-t border-gray-100">
+      <section className="py-12 md:py-20 bg-[#f8f9fb] border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Synthèse</p>

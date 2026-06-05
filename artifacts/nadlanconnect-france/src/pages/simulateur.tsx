@@ -4,11 +4,11 @@ import { Loader2, Download, TrendingUp, Euro, Shield, BarChart3, AlertTriangle, 
 
 type Tab = "bien" | "revenus" | "fiscalite" | "resultats";
 
-const TABS: { id: Tab; label: string; icon: string }[] = [
-  { id: "bien", label: "Bien & Financement", icon: "🏠" },
-  { id: "revenus", label: "Revenus & Charges", icon: "💰" },
-  { id: "fiscalite", label: "Fiscalité", icon: "📊" },
-  { id: "resultats", label: "Analyse IA", icon: "🤖" },
+const TABS: { id: Tab; label: string; short: string; icon: string }[] = [
+  { id: "bien", label: "Bien & Financement", short: "Bien", icon: "🏠" },
+  { id: "revenus", label: "Revenus & Charges", short: "Revenus", icon: "💰" },
+  { id: "fiscalite", label: "Fiscalité", short: "Fiscalité", icon: "📊" },
+  { id: "resultats", label: "Analyse IA", short: "Analyse", icon: "🤖" },
 ];
 
 const DISPOSITIFS = [
@@ -214,8 +214,10 @@ export default function Simulateur() {
             <div className="flex overflow-x-auto">
               {TABS.map((t, i) => (
                 <button key={t.id} onClick={() => setTab(t.id)}
-                  className={`flex items-center gap-2 px-5 py-4 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ${tab === t.id ? "border-[#C9A84C] text-[#1E3A5F]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
-                  <span>{t.icon}</span> {t.label}
+                  className={`flex items-center gap-1.5 px-3 sm:px-5 py-3.5 sm:py-4 text-xs sm:text-sm font-semibold whitespace-nowrap border-b-2 transition-colors flex-1 sm:flex-none justify-center sm:justify-start ${tab === t.id ? "border-[#C9A84C] text-[#1E3A5F]" : "border-transparent text-gray-400 hover:text-gray-600"}`}>
+                  <span>{t.icon}</span>
+                  <span className="hidden sm:inline">{t.label}</span>
+                  <span className="sm:hidden">{t.short}</span>
                   {i < 3 && <ChevronRight className="w-3.5 h-3.5 text-gray-200 ml-1 hidden sm:block" />}
                 </button>
               ))}
@@ -566,6 +568,27 @@ export default function Simulateur() {
                   )}
                 </div>
               )}
+            </div>
+
+            {/* Mobile mini-summary bar */}
+            <div className="lg:hidden bg-white rounded-2xl border border-gray-100 p-4">
+              <h3 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-3">Récapitulatif rapide</h3>
+              <div className="grid grid-cols-3 gap-2 mb-4">
+                {[
+                  { label: "Loyer/mois", value: Number(loyer) > 0 ? `${fmtNum(Number(loyer))}€` : "—" },
+                  { label: "Rdt brut", value: Number(prix) > 0 && Number(loyer) > 0 ? `${rendBrut}%` : "—" },
+                  { label: "Emprunt", value: montantEmprunte > 0 ? `${fmtNum(montantEmprunte)}€` : "—" },
+                ].map((row) => (
+                  <div key={row.label} className="text-center bg-gray-50 rounded-xl p-2.5">
+                    <div className="text-sm font-black text-[#1E3A5F]">{row.value}</div>
+                    <div className="text-[9px] text-gray-400 uppercase tracking-wide mt-0.5">{row.label}</div>
+                  </div>
+                ))}
+              </div>
+              <button onClick={simulate}
+                className="w-full py-3 rounded-xl bg-[#C9A84C] text-white font-bold text-sm hover:bg-[#b8963e] transition-colors flex items-center justify-center gap-2">
+                <BarChart3 className="w-4 h-4" /> Lancer l'analyse IA
+              </button>
             </div>
 
             {/* Right panel — live summary */}

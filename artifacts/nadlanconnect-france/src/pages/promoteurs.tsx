@@ -60,51 +60,52 @@ export default function Promoteurs() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/85 via-[#0d1117]/75 to-[#0d1117]/95" />
 
-        <div className="relative z-10 container mx-auto px-4 py-24 text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/80 text-xs font-medium tracking-wide mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
-            ESPACE PROMOTEURS — NADLANCONNECT FRANCE
+        <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-[10px] md:text-xs font-medium tracking-wide mb-6 md:mb-8">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] shrink-0" />
+            <span className="sm:hidden">ESPACE PROMOTEURS</span>
+            <span className="hidden sm:inline">ESPACE PROMOTEURS — NADLANCONNECT FRANCE</span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mx-auto mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mx-auto mb-3 md:mb-4">
             Promoteurs,<br />diffusez vos
           </h1>
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-8">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] mb-6 md:mb-8">
             <span className="text-[#C9A84C]">programmes neuf.</span>
           </h2>
 
-          <p className="text-white/60 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+          <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
             Rejoignez la plateforme qui connecte promoteurs immobiliers et investisseurs qualifiés. Diffusez vos projets, gérez vos mandats et accédez à des leads chauds.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto mx-auto">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
               Devenir partenaire <ArrowRight className="w-4 h-4" />
             </button>
-            <button className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/20 text-white font-semibold text-[15px] hover:bg-white/10 transition-colors">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm md:text-[15px] hover:bg-white/10 transition-colors">
               Voir une démo
             </button>
           </div>
 
           {/* Stats */}
-          <div className="mt-20 grid grid-cols-3 gap-8 md:gap-20 border-t border-white/10 pt-8 max-w-2xl mx-auto">
-            <StatCard value="120+" label="Promoteurs partenaires" />
-            <StatCard value="2 400" label="Programmes diffusés" />
-            <StatCard value="15 000" label="Leads générés / mois" />
+          <div className="mt-10 md:mt-20 grid grid-cols-3 gap-3 md:gap-20 border-t border-white/10 pt-6 md:pt-8 w-full max-w-xs md:max-w-2xl mx-auto">
+            <StatCard value="120+" label="Partenaires" />
+            <StatCard value="2 400" label="Programmes" />
+            <StatCard value="15 000" label="Leads / mois" />
           </div>
         </div>
       </section>
 
       {/* Fonctionnalités */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Plateforme complète</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F]">Tout ce dont vous avez besoin</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">Tout ce dont vous avez besoin</h2>
             <p className="text-gray-400 mt-3 max-w-xl mx-auto text-sm">De la publication de vos programmes à la gestion des leads et des ventes.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
             <FeatureCard
               icon={<Building2 className="w-6 h-6" />}
               title="Publication de programmes"
@@ -140,11 +141,11 @@ export default function Promoteurs() {
       </section>
 
       {/* Comment ça marche */}
-      <section className="py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-[#f8f9fb]">
         <div className="container mx-auto px-4 max-w-4xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Démarrage rapide</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F]">Comment ça fonctionne ?</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">Comment ça fonctionne ?</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
@@ -164,14 +165,14 @@ export default function Promoteurs() {
       </section>
 
       {/* Tarifs */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Tarification</p>
-            <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F]">Formules promoteurs</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">Formules promoteurs</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             <PricingCard
               plan="Essentiel"
               price="299€/mois"
@@ -219,14 +220,14 @@ export default function Promoteurs() {
       </section>
 
       {/* Témoignages */}
-      <section className="py-24 bg-[#1E3A5F]">
+      <section className="py-14 md:py-24 bg-[#1E3A5F]">
         <div className="container mx-auto px-4 max-w-5xl">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10 md:mb-14">
             <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Ils nous font confiance</p>
-            <h2 className="text-3xl font-black text-white">Ce que disent nos partenaires</h2>
+            <h2 className="text-2xl md:text-3xl font-black text-white">Ce que disent nos partenaires</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {[
               { quote: "NadlanConnect France nous a permis de trouver 45 investisseurs qualifiés en 3 mois. Le retour sur investissement est exceptionnel.", name: "Marc Delacroix", role: "Directeur commercial, Groupe Horizon" },
               { quote: "La qualité des leads est incomparable. Les prospects ont déjà simulé leur rendement — ils arrivent à la réunion avec leur décision presque prise.", name: "Sophie Moreau", role: "Responsable ventes, Bâtisseur 21" },

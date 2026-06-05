@@ -55,7 +55,7 @@ export default function Acteurs() {
       <PageHero />
 
       {/* Promoteurs */}
-      <section className="py-20 bg-white">
+      <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-11 h-11 bg-[#1E3A5F] rounded-xl flex items-center justify-center shrink-0">
@@ -77,7 +77,7 @@ export default function Acteurs() {
       </section>
 
       {/* Gestionnaires LMNP */}
-      <section className="py-20 bg-[#f8f9fb] border-t border-gray-100">
+      <section className="py-12 md:py-20 bg-[#f8f9fb] border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-11 h-11 bg-[#C9A84C] rounded-xl flex items-center justify-center shrink-0">
@@ -126,7 +126,7 @@ export default function Acteurs() {
       </section>
 
       {/* Conseillers */}
-      <section className="py-20 bg-white border-t border-gray-100">
+      <section className="py-12 md:py-20 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-11 h-11 bg-[#1E3A5F]/15 rounded-xl flex items-center justify-center shrink-0">

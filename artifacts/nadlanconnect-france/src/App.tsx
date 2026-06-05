@@ -8,6 +8,8 @@ import MarcheNeuf from "@/pages/marche-neuf";
 import Defiscalisation from "@/pages/defiscalisation";
 import Simulateur from "@/pages/simulateur";
 import Acteurs from "@/pages/acteurs";
+import Promoteurs from "@/pages/promoteurs";
+import Agences from "@/pages/agences";
 
 const queryClient = new QueryClient();
 
@@ -19,6 +21,8 @@ function Router() {
       <Route path="/defiscalisation" component={Defiscalisation} />
       <Route path="/simulateur" component={Simulateur} />
       <Route path="/acteurs" component={Acteurs} />
+      <Route path="/promoteurs" component={Promoteurs} />
+      <Route path="/agences" component={Agences} />
       <Route component={NotFound} />
     </Switch>
   );

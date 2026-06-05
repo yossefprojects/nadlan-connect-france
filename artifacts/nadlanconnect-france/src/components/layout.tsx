@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { FileUp, Upload, CheckCircle2, ShieldAlert, FileText, Loader2, Globe, X, Menu } from "lucide-react";
+import { FileUp, Upload, CheckCircle2, ShieldAlert, FileText, Loader2, Globe, X, Menu, ChevronDown, Building2, Handshake } from "lucide-react";
 
 export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [isDragging, setIsDragging] = useState(false);
@@ -102,12 +102,17 @@ export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenCh
   );
 }
 
-const navItems = [
+const mainNavItems = [
   { href: "/", label: "Accueil" },
   { href: "/marche-neuf", label: "Marché Neuf" },
   { href: "/defiscalisation", label: "Défiscalisation" },
   { href: "/simulateur", label: "Simulateur IA" },
   { href: "/acteurs", label: "Acteurs" },
+];
+
+const proNavItems = [
+  { href: "/promoteurs", label: "Promoteurs", icon: Building2, desc: "Diffusez vos programmes neuf" },
+  { href: "/agences", label: "Agences immobilières", icon: Handshake, desc: "Accédez aux programmes partenaires" },
 ];
 
 const tickerItems = [
@@ -121,10 +126,24 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [location] = useLocation();
   const [modalOpen, setModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [proDropdown, setProDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const isProActive = proNavItems.some((i) => i.href === location);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setProDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   return (
     <div className="min-h-[100dvh] flex flex-col font-sans">
-      {/* Market ticker */}
+      {/* Ticker */}
       <div className="bg-[#0d1117] text-white/60 text-xs border-b border-white/5 overflow-hidden">
         <div className="container mx-auto px-4 h-8 flex items-center gap-6 overflow-x-auto whitespace-nowrap">
           <span className="text-white/30 shrink-0">
@@ -155,16 +174,43 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-0.5">
-            {navItems.map((item) => {
+            {mainNavItems.map((item) => {
               const isActive = location === item.href;
               return (
                 <Link key={item.href} href={item.href}
-                  className={`px-3.5 py-2 text-[13px] font-medium rounded-lg transition-colors ${isActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}
-                >
+                  className={`px-3 py-2 text-[13px] font-medium rounded-lg transition-colors ${isActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}>
                   {item.label}
                 </Link>
               );
             })}
+
+            {/* Professionnels dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setProDropdown(!proDropdown)}
+                className={`flex items-center gap-1 px-3 py-2 text-[13px] font-medium rounded-lg transition-colors ${isProActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}>
+                Professionnels
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${proDropdown ? "rotate-180" : ""}`} />
+              </button>
+
+              {proDropdown && (
+                <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-2xl shadow-xl border border-gray-100 py-2 z-50">
+                  {proNavItems.map((item) => (
+                    <Link key={item.href} href={item.href}
+                      onClick={() => setProDropdown(false)}
+                      className="flex items-start gap-3 px-4 py-3 hover:bg-gray-50 transition-colors">
+                      <div className="w-8 h-8 bg-[#1E3A5F]/8 rounded-lg flex items-center justify-center shrink-0 mt-0.5">
+                        <item.icon className="w-4 h-4 text-[#1E3A5F]" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-[#1E3A5F] text-sm">{item.label}</p>
+                        <p className="text-xs text-gray-400">{item.desc}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           <div className="flex items-center gap-3">
@@ -172,10 +218,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
               className="hidden lg:flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-gray-500 transition-colors border-r border-gray-100 pr-4">
               <Globe className="w-3 h-3" /> nadlanconnect.com
             </a>
-            <button
-              onClick={() => setModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A84C] text-white text-[13px] font-semibold hover:bg-[#b8963e] transition-colors"
-            >
+            <button onClick={() => setModalOpen(true)}
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A84C] text-white text-[13px] font-semibold hover:bg-[#b8963e] transition-colors">
               <FileUp className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Analyser un document</span>
               <span className="sm:hidden">Analyser</span>
@@ -188,11 +232,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
         {mobileOpen && (
           <div className="md:hidden border-t border-gray-100 bg-white px-4 py-2 flex flex-col">
-            {navItems.map((item) => (
+            {[...mainNavItems, ...proNavItems].map((item) => (
               <Link key={item.href} href={item.href}
                 className="px-3 py-3 text-sm text-gray-600 hover:text-[#1E3A5F] border-b border-gray-50 last:border-0"
-                onClick={() => setMobileOpen(false)}
-              >
+                onClick={() => setMobileOpen(false)}>
                 {item.label}
               </Link>
             ))}
@@ -205,8 +248,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
       {/* Footer */}
       <footer className="bg-[#0d1117] text-white border-t border-white/5">
         <div className="container mx-auto px-4 py-14">
-          <div className="grid md:grid-cols-3 gap-10 pb-10 border-b border-white/8">
-            <div>
+          <div className="grid md:grid-cols-4 gap-10 pb-10 border-b border-white/8">
+            <div className="md:col-span-1">
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-8 h-8 bg-[#1E3A5F] rounded flex items-center justify-center">
                   <span className="text-[#C9A84C] text-xs font-black">NC</span>
@@ -214,28 +257,29 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <span className="font-bold">Nadlan<span className="text-[#C9A84C]">Connect</span> <span className="text-white/40 font-normal text-sm">France</span></span>
               </div>
               <p className="text-white/40 text-sm leading-relaxed">
-                Plateforme française d'investissement immobilier neuf. Simulateurs, défiscalisation et analyse IA pour investir intelligemment.
+                Plateforme française d'investissement immobilier neuf. Simulateurs, défiscalisation et analyse IA.
               </p>
             </div>
             <div>
-              <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">Navigation</h3>
+              <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">Particuliers</h3>
               <ul className="space-y-2.5">
-                {navItems.map((item) => (
-                  <li key={item.href}>
-                    <Link href={item.href} className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors">{item.label}</Link>
-                  </li>
+                {mainNavItems.slice(1).map((item) => (
+                  <li key={item.href}><Link href={item.href} className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors">{item.label}</Link></li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">Professionnels</h3>
+              <ul className="space-y-2.5">
+                {proNavItems.map((item) => (
+                  <li key={item.href}><Link href={item.href} className="text-sm text-white/50 hover:text-[#C9A84C] transition-colors">{item.label}</Link></li>
                 ))}
               </ul>
             </div>
             <div>
               <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">À propos</h3>
-              <p className="text-sm text-white/40 leading-relaxed mb-4">
-                Extension française de NadlanConnect.com, référence internationale en accompagnement immobilier.
-              </p>
-              <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer"
-                className="text-sm text-[#C9A84C] hover:underline">
-                → Visiter NadlanConnect.com
-              </a>
+              <p className="text-sm text-white/40 leading-relaxed mb-4">Extension française de NadlanConnect.com, référence internationale en accompagnement immobilier.</p>
+              <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[#C9A84C] hover:underline">→ Visiter NadlanConnect.com</a>
             </div>
           </div>
           <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/25">

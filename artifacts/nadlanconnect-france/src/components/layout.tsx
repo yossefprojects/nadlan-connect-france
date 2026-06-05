@@ -213,42 +213,51 @@ export function Layout({ children }: { children: React.ReactNode }) {
         </div>
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100/80 shadow-sm">
+      {/* Header — calqué sur NadlanConnect.com */}
+      <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
         {/* Scroll progress bar */}
         <div
-          className="absolute bottom-0 left-0 h-[2px] bg-gradient-to-r from-[#C9A84C] to-[#e8c96a] transition-all duration-100"
+          className="absolute bottom-0 left-0 h-[2px] bg-[#C9A84C] transition-all duration-100"
           style={{ width: `${scrollProgress}%` }}
           aria-hidden="true"
         />
-        <div className="container mx-auto px-5 h-[60px] flex items-center justify-between gap-6">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 shrink-0 group" aria-label="NadlanConnect France — Accueil">
-            <div className="w-9 h-9 bg-[#1E3A5F] rounded-xl flex items-center justify-center shadow-sm group-hover:bg-[#162d4a] transition-colors">
-              <span className="text-[#C9A84C] text-[11px] font-black leading-none tracking-tight">NC</span>
-            </div>
-            <div className="leading-tight">
-              <span className="font-black text-[#1E3A5F] text-[15px] tracking-tight">
-                Nadlan<span className="text-[#C9A84C]">Connect</span>
-              </span>
-              <span className="block text-[10px] text-gray-300 font-medium tracking-widest uppercase -mt-0.5">France</span>
-            </div>
+        <div className="container mx-auto px-6 h-[52px] flex items-center justify-between gap-8">
+
+          {/* Logo — identique NC.com */}
+          <Link href="/" className="flex items-center gap-2 shrink-0" aria-label="NadlanConnect France — Accueil">
+            {/* Icône bâtiment */}
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="14" width="7" height="8" rx="1" fill="#1E3A5F"/>
+              <rect x="2" y="10" width="7" height="3" rx="0.5" fill="#1E3A5F" opacity="0.6"/>
+              <rect x="10" y="8" width="7" height="14" rx="1" fill="#C9A84C"/>
+              <rect x="10" y="4" width="7" height="3" rx="0.5" fill="#C9A84C" opacity="0.6"/>
+              <rect x="18" y="11" width="4" height="11" rx="0.5" fill="#1E3A5F" opacity="0.4"/>
+              <rect x="4" y="16" width="3" height="2" rx="0.3" fill="white" opacity="0.5"/>
+              <rect x="12" y="10" width="3" height="2" rx="0.3" fill="white" opacity="0.5"/>
+              <rect x="12" y="14" width="3" height="2" rx="0.3" fill="white" opacity="0.5"/>
+            </svg>
+            {/* Wordmark */}
+            <span className="text-[15px] font-bold tracking-tight">
+              <span className="text-[#1E3A5F]">Nadlan</span><span className="text-[#C9A84C]">Connect</span>
+            </span>
+            {/* Badge France */}
+            <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold tracking-widest uppercase bg-[#1E3A5F]/8 text-[#1E3A5F]/50 border border-[#1E3A5F]/10">
+              France
+            </span>
           </Link>
 
-          {/* Desktop nav — centré */}
-          <nav className="hidden md:flex items-center gap-1" aria-label="Navigation principale">
+          {/* Desktop nav */}
+          <nav className="hidden md:flex items-center gap-0" aria-label="Navigation principale">
             {mainNavItems.map((item) => {
               const isActive = location === item.href;
               return (
                 <Link key={item.href} href={item.href}
-                  className={`relative px-3.5 py-2 text-[13px] font-medium transition-all duration-200 ${
-                    isActive
-                      ? "text-[#1E3A5F] font-semibold"
-                      : "text-gray-400 hover:text-[#1E3A5F]"
+                  className={`relative px-3 py-[6px] text-[13px] transition-colors duration-150 ${
+                    isActive ? "text-[#1E3A5F] font-semibold" : "text-gray-500 hover:text-[#1E3A5F]"
                   }`}>
                   {item.label}
                   {isActive && (
-                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-[#C9A84C] rounded-full" />
+                    <span className="absolute -bottom-[1px] left-3 right-3 h-[2px] bg-[#C9A84C] rounded-full" />
                   )}
                 </Link>
               );
@@ -260,16 +269,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 onClick={() => setProDropdown(!proDropdown)}
                 aria-haspopup="true"
                 aria-expanded={proDropdown}
-                className={`relative flex items-center gap-1 px-3.5 py-2 text-[13px] font-medium transition-all duration-200 min-h-[44px] ${
-                  isProActive ? "text-[#1E3A5F] font-semibold" : "text-gray-400 hover:text-[#1E3A5F]"
+                className={`relative flex items-center gap-1 px-3 py-[6px] text-[13px] transition-colors duration-150 min-h-[44px] ${
+                  isProActive ? "text-[#1E3A5F] font-semibold" : "text-gray-500 hover:text-[#1E3A5F]"
                 }`}>
                 Professionnels
-                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${proDropdown ? "rotate-180" : ""}`} />
-                {isProActive && <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-[2px] bg-[#C9A84C] rounded-full" />}
+                <ChevronDown className={`w-3 h-3 opacity-50 transition-transform duration-200 ${proDropdown ? "rotate-180" : ""}`} />
+                {isProActive && <span className="absolute -bottom-[1px] left-3 right-3 h-[2px] bg-[#C9A84C] rounded-full" />}
               </button>
 
               {proDropdown && (
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100/80 py-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="absolute top-full left-0 mt-1.5 w-64 bg-white rounded-2xl shadow-2xl border border-gray-100 py-2 z-50 animate-in fade-in slide-in-from-top-1 duration-150">
                   {proNavItems.map((item) => (
                     <Link key={item.href} href={item.href}
                       onClick={() => setProDropdown(false)}
@@ -288,16 +297,17 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </nav>
 
-          {/* Right side */}
-          <div className="flex items-center gap-2.5">
+          {/* Right — style boutons NC.com */}
+          <div className="flex items-center gap-2">
             <button onClick={() => setModalOpen(true)}
               aria-label="Analyser un document PDF"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full bg-[#1E3A5F] text-white text-[13px] font-semibold hover:bg-[#162d4a] transition-all duration-200 whitespace-nowrap">
+              className="hidden lg:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-gray-200 text-gray-600 text-[13px] font-medium hover:border-gray-300 hover:text-[#1E3A5F] transition-all duration-150 whitespace-nowrap">
               <FileUp className="w-3.5 h-3.5 shrink-0" />
               Analyser un PDF
             </button>
+            {/* CTA principal — fond ambre + texte sombre, comme "Sign in" sur NC.com */}
             <Link href="/simulateur"
-              className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-[#C9A84C] text-white text-[13px] font-bold hover:bg-[#b8963e] transition-all duration-200 whitespace-nowrap shadow-sm shadow-amber-200">
+              className="flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#C9A84C] text-[#1a1a1a] text-[13px] font-semibold hover:bg-[#d4b05a] transition-all duration-150 whitespace-nowrap border border-[#b8963e]/30">
               Simulateur IA
             </Link>
             <button className="md:hidden p-2 text-gray-400 hover:text-gray-600 min-h-[44px] min-w-[44px] flex items-center justify-center"

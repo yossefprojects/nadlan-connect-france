@@ -1,0 +1,133 @@
+Optimise ce site sur TOUS les aspects listés ci-dessous. 
+Applique chaque modification sans casser les fonctionnalités existantes.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔍 1. SEO — PRIORITÉ ABSOLUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Remplace les meta tags Replit par défaut par :
+
+<title>NadlanConnect France | Investissement Immobilier en France pour Israéliens</title>
+<meta name="description" content="NadlanConnect France – La plateforme de référence pour les investisseurs israéliens souhaitant acheter de l'immobilier en France. Accompagnement juridique, fiscal et patrimonial franco-israélien.">
+<meta property="og:title" content="NadlanConnect France | Immobilier Franco-Israélien">
+<meta property="og:description" content="Investissez dans l'immobilier français depuis Israël. Sélection de biens, accompagnement complet, expertise bilingue hébreu-français.">
+<meta property="og:image" content="/og-image.jpg"> ← créer une image 1200x630px avec le logo
+<meta property="og:url" content="https://nadlan-connect-france.replit.app/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:locale:alternate" content="he_IL">
+<link rel="canonical" href="https://nadlan-connect-france.replit.app/">
+
+Ajoute du Schema.org JSON-LD dans le <head> :
+- Type Organization avec name, url, logo, contactPoint
+- Type RealEstateAgent avec areaServed France, availableLanguage français+hébreu
+- Type FAQPage si la page contient des questions fréquentes
+
+Ajoute un sitemap.xml et un robots.txt propres.
+
+Ajoute les balises hreflang pour le bilinguisme :
+<link rel="alternate" hreflang="fr" href=".../?lang=fr">
+<link rel="alternate" hreflang="he" href=".../?lang=he">
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚡ 2. PERFORMANCE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Toutes les images : ajoute loading="lazy" + attributs width/height explicites
+- Convertis les images PNG/JPG en WebP quand possible
+- Ajoute <link rel="preconnect"> pour Google Fonts et APIs externes
+- Minifie le CSS et JS en production (vérifie que le build est en mode production)
+- Ajoute des headers HTTP de cache : Cache-Control, ETag
+- Ajoute une balise <link rel="preload"> pour la police principale et l'image hero
+- Si tu utilises React : active le code splitting avec React.lazy() + Suspense pour les pages secondaires
+- Supprime les imports inutilisés et les dépendances npm non utilisées
+- Ajoute un skeleton loader sur les listes de biens pour améliorer le LCP perçu
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎨 3. UX / DESIGN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Ajoute un bouton "Retour en haut" fixe qui apparaît après 400px de scroll
+- Ajoute une barre de progression de lecture sur les pages longues
+- Les liens de navigation actifs doivent être clairement mis en évidence
+- Améliore les états hover sur tous les boutons et cartes (transition: all 0.2s ease)
+- Ajoute un message d'état vide (empty state) avec une illustration si aucun bien ne correspond aux filtres
+- Assure-toi que tous les éléments cliquables font au moins 44x44px (norme WCAG)
+- Ajoute des tooltips sur les icônes sans label
+- Ajoute des animations d'entrée subtiles sur les cartes de biens (fadeInUp avec staggered delay)
+- Le footer doit contenir : liens légaux, mentions RGPD, numéro de téléphone, adresse, liens réseaux sociaux
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📝 4. CONTENU & COPYWRITING
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- La hero section doit avoir : titre H1 percutant + sous-titre clair + CTA principal + CTA secondaire
+  Exemple : H1 = "Investissez dans l'immobilier français, depuis Israël"
+  Sous-titre = "Sélection de biens rentables, accompagnement juridique bilingue, zéro stress à distance"
+- Ajoute une section "Pourquoi nous choisir" avec 3-4 arguments différenciants (icônes + texte court)
+- Ajoute une section "Comment ça marche" avec 3 étapes numérotées
+- Ajoute une section témoignages clients (même fictifs en attendant les vrais)
+- Ajoute une section FAQ avec les 5 questions les plus fréquentes des investisseurs israéliens
+- Chaque fiche bien doit avoir : prix, surface, rendement locatif estimé, ville, type de bien, statut (disponible/vendu)
+- Ajoute un bandeau de réassurance sous le hero : "🔒 Sécurisé" | "🏆 +X biens vendus" | "🌍 Service bilingue FR/HE" | "📞 Accompagnement dédié"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 5. CONVERSION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Le CTA principal "Nous contacter" ou "Voir les biens" doit être visible SANS scroller (above the fold)
+- Ajoute un formulaire de contact flottant ou un bouton WhatsApp fixe en bas à droite avec le numéro
+- Sur chaque fiche bien : bouton "Demander plus d'infos" qui ouvre un modal avec formulaire (nom, email, téléphone, message)
+- Ajoute un pop-up de capture email après 30 secondes ou au moment de quitter la page (exit intent) : 
+  "Recevez nos nouvelles opportunités en avant-première" + champ email + bouton
+- Ajoute un compteur "X personnes consultent ce bien en ce moment" sur les fiches (même simulé)
+- Le formulaire de contact doit avoir une confirmation visuelle après envoi
+- Ajoute Google Analytics 4 (GA4) ou Plausible Analytics pour tracker les conversions
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚙️ 6. TECHNIQUE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Ajoute une page 404 personnalisée avec le logo, un message friendly et un lien vers l'accueil
+- Ajoute une page de politique de confidentialité (obligatoire RGPD)
+- Ajoute une page de mentions légales
+- Ajoute un bandeau cookies RGPD conforme (avec accepter/refuser/personnaliser)
+- Toutes les erreurs réseau doivent afficher un message d'erreur lisible à l'utilisateur (pas de console.error silencieux)
+- Ajoute les security headers dans la config serveur :
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Content-Security-Policy de base
+- Vérifie que le site fonctionne sans JavaScript activé (fallback ou message d'avertissement)
+- Tous les liens externes doivent avoir rel="noopener noreferrer"
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📱 7. MOBILE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Le menu de navigation mobile doit être un hamburger avec animation d'ouverture fluide
+- Les cartes de biens doivent s'afficher en 1 colonne sur mobile, 2 sur tablette, 3 sur desktop
+- Les images hero doivent avoir une version mobile recadrée (art direction avec <picture>)
+- Les tableaux de données doivent être scrollables horizontalement sur mobile
+- Le formulaire de contact doit être optimisé mobile : grands champs, type="tel" pour téléphone, type="email" pour email, autocomplete activé
+- Supprime le maximum-scale=1 du viewport si présent (bloque le zoom utilisateur, mauvaise pratique accessibilité)
+- Teste et corrige l'affichage sur iPhone SE (375px) et Galaxy S8 (360px)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔒 8. ACCESSIBILITÉ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+- Toutes les images doivent avoir un attribut alt descriptif
+- Le ratio de contraste texte/fond doit être ≥ 4.5:1 (WCAG AA)
+- Tous les formulaires doivent avoir des <label> associés à leurs <input>
+- Ajoute aria-label sur les boutons icônes
+- La navigation au clavier doit être fonctionnelle (focus visible sur tous les éléments interactifs)
+- Ajoute un lien "Aller au contenu principal" invisible au clic clavier en tout début de page
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+✅ APRÈS CHAQUE MODIFICATION :
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. Vérifie que le site charge sans erreur console
+2. Vérifie l'affichage sur mobile (375px) et desktop (1440px)
+3. Vérifie que les liens de navigation fonctionnent tous
+4. Montre-moi un résumé de ce qui a été modifié

@@ -1,21 +1,125 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>NadlanConnect France</title>
-    <meta name="description" content="NadlanConnect France — built on Replit. Update this description to reflect the app." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- SEO Primary -->
+    <title>NadlanConnect France | Investissement Immobilier Neuf en France</title>
+    <meta name="description" content="NadlanConnect France – Plateforme de référence pour investir dans l'immobilier neuf en France. Simulateurs IA, défiscalisation Jeanbrun/LMNP, accompagnement complet franco-israélien." />
     <meta name="robots" content="index, follow" />
-    <meta property="og:title" content="NadlanConnect France" />
-    <meta property="og:description" content="NadlanConnect France — built on Replit. Update this description to reflect the app." />
+    <link rel="canonical" href="https://nadlan-connect-france.replit.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="NadlanConnect France | Immobilier Neuf & Défiscalisation" />
+    <meta property="og:description" content="Investissez dans l'immobilier neuf français. Simulateur IA, Jeanbrun, LMNP — expertise bilingue français-hébreu, accompagnement complet à distance." />
+    <meta property="og:image" content="https://nadlan-connect-france.replit.app/opengraph.jpg" />
+    <meta property="og:url" content="https://nadlan-connect-france.replit.app/" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:locale:alternate" content="he_IL" />
+    <meta property="og:site_name" content="NadlanConnect France" />
+
+    <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="NadlanConnect France" />
-    <meta name="twitter:description" content="NadlanConnect France — built on Replit. Update this description to reflect the app." />
+    <meta name="twitter:title" content="NadlanConnect France | Immobilier Neuf & Défiscalisation" />
+    <meta name="twitter:description" content="Investissez dans l'immobilier neuf français. Simulateur IA, Jeanbrun, LMNP — accompagnement complet." />
+    <meta name="twitter:image" content="https://nadlan-connect-france.replit.app/opengraph.jpg" />
+
+    <!-- hreflang -->
+    <link rel="alternate" hreflang="fr" href="https://nadlan-connect-france.replit.app/" />
+    <link rel="alternate" hreflang="he" href="https://nadlan-connect-france.replit.app/?lang=he" />
+    <link rel="alternate" hreflang="x-default" href="https://nadlan-connect-france.replit.app/" />
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Preload hero image for LCP -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1499856871958-5b9627545d1a?w=1920&q=85&auto=format&fit=crop" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- JSON-LD Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://nadlan-connect-france.replit.app/#organization",
+          "name": "NadlanConnect France",
+          "url": "https://nadlan-connect-france.replit.app/",
+          "logo": "https://nadlan-connect-france.replit.app/opengraph.jpg",
+          "description": "Plateforme d'investissement immobilier neuf en France. Simulateurs IA, défiscalisation, accompagnement bilingue.",
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "availableLanguage": ["French", "Hebrew"]
+          },
+          "sameAs": ["https://nadlanconnect.com"]
+        },
+        {
+          "@type": "RealEstateAgent",
+          "@id": "https://nadlan-connect-france.replit.app/#agent",
+          "name": "NadlanConnect France",
+          "url": "https://nadlan-connect-france.replit.app/",
+          "areaServed": {
+            "@type": "Country",
+            "name": "France"
+          },
+          "availableLanguage": [
+            { "@type": "Language", "name": "French" },
+            { "@type": "Language", "name": "Hebrew" }
+          ],
+          "knowsAbout": ["Immobilier neuf", "Défiscalisation Jeanbrun", "LMNP", "Investissement immobilier"]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Comment investir dans l'immobilier neuf en France depuis Israël ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "NadlanConnect France vous accompagne de A à Z : sélection du bien, financement, aspects juridiques et fiscaux, gestion locative. Notre équipe bilingue simplifie chaque étape depuis Israël."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Qu'est-ce que le dispositif Jeanbrun ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Le dispositif Jeanbrun permet aux investisseurs en immobilier neuf de déduire un déficit foncier de leur revenu global, jusqu'à 10 700€ par an, tout en bénéficiant d'une réduction d'impôt sur 9 ans."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Quels sont les frais de notaire dans le neuf ?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Dans l'immobilier neuf, les frais de notaire sont réduits à 2-3% du prix d'achat, contre 7-8% dans l'ancien. Sur un bien à 250 000€, l'économie est de 10 000 à 12 500€."
+              }
+            }
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "url": "https://nadlan-connect-france.replit.app/",
+          "name": "NadlanConnect France",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://nadlan-connect-france.replit.app/simulateur"
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>

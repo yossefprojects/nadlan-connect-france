@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+
+Sitemap: https://nadlan-connect-france.replit.app/sitemap.xml

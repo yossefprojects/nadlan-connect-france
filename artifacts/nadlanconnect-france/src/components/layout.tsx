@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Link, useLocation } from "wouter";
-import { FileUp, Upload, CheckCircle2, ShieldAlert, FileText, Loader2, Globe, X, Menu, ChevronDown, Building2, Handshake } from "lucide-react";
+import {
+  FileUp, Upload, CheckCircle2, ShieldAlert, FileText, Loader2, Globe, X, Menu,
+  ChevronDown, Building2, Handshake, ArrowUp, Phone, MapPin, Mail
+} from "lucide-react";
 
 export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenChange: (open: boolean) => void }) {
   const [isDragging, setIsDragging] = useState(false);
@@ -19,10 +22,11 @@ export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenCh
       formData.append("file", file);
       const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
       const res = await fetch(`${baseUrl}/api/pdf/analyze`, { method: "POST", body: formData });
-      if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error("Erreur lors de l'analyse. Veuillez réessayer.");
       setResult(await res.json());
-    } catch { setError("Une erreur est survenue lors de l'analyse."); }
-    finally { setIsAnalyzing(false); }
+    } catch (err: any) {
+      setError(err.message || "Une erreur est survenue lors de l'analyse.");
+    } finally { setIsAnalyzing(false); }
   };
 
   const handleDrop = async (e: React.DragEvent) => { e.preventDefault(); setIsDragging(false); if (e.dataTransfer.files[0]) await processFile(e.dataTransfer.files[0]); };
@@ -31,7 +35,7 @@ export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenCh
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Analyser un document PDF">
       <div className="absolute inset-0 bg-black/75 backdrop-blur-sm" onClick={() => onOpenChange(false)} />
       <div className="relative z-10 bg-white rounded-2xl shadow-2xl w-full max-w-xl overflow-hidden">
         <div className="bg-[#1E3A5F] px-6 py-4 flex items-center justify-between">
@@ -42,7 +46,7 @@ export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenCh
               <p className="text-white/50 text-xs">Contrat VEFA, bail ou brochure promoteur</p>
             </div>
           </div>
-          <button onClick={() => onOpenChange(false)} className="text-white/50 hover:text-white transition-colors">
+          <button onClick={() => onOpenChange(false)} className="text-white/50 hover:text-white transition-colors p-1" aria-label="Fermer">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -57,8 +61,8 @@ export function PdfUploadModal({ open, onOpenChange }: { open: boolean; onOpenCh
               </div>
               <p className="font-semibold text-[#1E3A5F] mb-1">Glissez-déposez votre PDF ici</p>
               <p className="text-sm text-gray-400 mb-5">ou cliquez pour parcourir</p>
-              <input type="file" id="file-upload" accept=".pdf" className="hidden" onChange={handleFileChange} />
-              <label htmlFor="file-upload" className="px-6 py-2.5 rounded-full bg-[#1E3A5F] text-white text-sm font-semibold cursor-pointer hover:bg-[#152d4a] transition-colors">
+              <input type="file" id="file-upload" accept=".pdf" className="hidden" onChange={handleFileChange} aria-label="Sélectionner un fichier PDF" />
+              <label htmlFor="file-upload" className="px-6 py-2.5 rounded-full bg-[#1E3A5F] text-white text-sm font-semibold cursor-pointer hover:bg-[#152d4a] transition-colors min-h-[44px] flex items-center">
                 Sélectionner un fichier
               </label>
               {error && <p className="mt-4 text-sm text-red-500 flex items-center gap-1.5"><ShieldAlert className="w-4 h-4" />{error}</p>}
@@ -127,22 +131,68 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [proDropdown, setProDropdown] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+  const [showBackToTop, setShowBackToTop] = useState(false);
+  const [cookieConsented, setCookieConsented] = useState<boolean | null>(null);
+  const [showEmailPopup, setShowEmailPopup] = useState(false);
+  const [emailCapture, setEmailCapture] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const isProActive = proNavItems.some((i) => i.href === location);
 
   useEffect(() => {
+    const stored = localStorage.getItem("nc-cookie-consent");
+    if (stored !== null) setCookieConsented(stored === "true");
+  }, []);
+
+  useEffect(() => {
+    const popupShown = localStorage.getItem("nc-popup-shown");
+    if (popupShown) return;
+    const timer = setTimeout(() => setShowEmailPopup(true), 30000);
+    const onMouseLeave = (e: MouseEvent) => {
+      if (e.clientY < 5 && !localStorage.getItem("nc-popup-shown")) setShowEmailPopup(true);
+    };
+    document.addEventListener("mouseleave", onMouseLeave);
+    return () => { clearTimeout(timer); document.removeEventListener("mouseleave", onMouseLeave); };
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrollY(window.scrollY);
+      setShowBackToTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
-        setProDropdown(false);
-      }
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) setProDropdown(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  const handleCookieAccept = () => { localStorage.setItem("nc-cookie-consent", "true"); setCookieConsented(true); };
+  const handleCookieRefuse = () => { localStorage.setItem("nc-cookie-consent", "false"); setCookieConsented(false); };
+  const handleEmailSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmailSent(true);
+    localStorage.setItem("nc-popup-shown", "true");
+    setTimeout(() => setShowEmailPopup(false), 3000);
+  };
+  const closeEmailPopup = () => { setShowEmailPopup(false); localStorage.setItem("nc-popup-shown", "true"); };
+
+  const scrollProgress = Math.min((scrollY / (document.documentElement.scrollHeight - window.innerHeight || 1)) * 100, 100);
+
   return (
     <div className="min-h-[100dvh] flex flex-col font-sans">
+      {/* Skip to main content (accessibility) */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[200] focus:px-4 focus:py-2 focus:bg-[#C9A84C] focus:text-white focus:rounded-lg focus:text-sm focus:font-semibold">
+        Aller au contenu principal
+      </a>
+
       {/* Ticker */}
       <div className="bg-[#0d1117] text-white/60 text-xs border-b border-white/5 overflow-hidden">
         <div className="container mx-auto px-4 h-8 flex items-center gap-6 overflow-x-auto whitespace-nowrap">
@@ -160,9 +210,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 bg-white border-b border-gray-100">
+        {/* Scroll progress bar */}
+        <div
+          className="absolute bottom-0 left-0 h-[2px] bg-[#C9A84C] transition-all duration-100"
+          style={{ width: `${scrollProgress}%` }}
+          aria-hidden="true"
+        />
         <div className="container mx-auto px-4 h-14 flex items-center justify-between gap-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2.5 shrink-0">
+          <Link href="/" className="flex items-center gap-2.5 shrink-0" aria-label="NadlanConnect France — Accueil">
             <div className="w-7 h-7 bg-[#1E3A5F] rounded flex items-center justify-center">
               <span className="text-[#C9A84C] text-[10px] font-black leading-none">NC</span>
             </div>
@@ -173,12 +229,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-0.5">
+          <nav className="hidden md:flex items-center gap-0.5" aria-label="Navigation principale">
             {mainNavItems.map((item) => {
               const isActive = location === item.href;
               return (
                 <Link key={item.href} href={item.href}
-                  className={`px-3 py-2 text-[13px] font-medium rounded-lg transition-colors ${isActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}>
+                  className={`px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 ${isActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}>
                   {item.label}
                 </Link>
               );
@@ -188,9 +244,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
             <div className="relative" ref={dropdownRef}>
               <button
                 onClick={() => setProDropdown(!proDropdown)}
-                className={`flex items-center gap-1 px-3 py-2 text-[13px] font-medium rounded-lg transition-colors ${isProActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}>
+                aria-haspopup="true"
+                aria-expanded={proDropdown}
+                className={`flex items-center gap-1 px-3 py-2 text-[13px] font-medium rounded-lg transition-all duration-200 min-h-[44px] ${isProActive ? "text-[#C9A84C] bg-amber-50" : "text-gray-500 hover:text-[#1E3A5F] hover:bg-gray-50"}`}>
                 Professionnels
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${proDropdown ? "rotate-180" : ""}`} />
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${proDropdown ? "rotate-180" : ""}`} />
               </button>
 
               {proDropdown && (
@@ -215,26 +273,32 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           <div className="flex items-center gap-3">
             <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer"
-              className="hidden lg:flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-gray-500 transition-colors border-r border-gray-100 pr-4">
+              className="hidden lg:flex items-center gap-1.5 text-[11px] text-gray-300 hover:text-gray-500 transition-colors border-r border-gray-100 pr-4"
+              aria-label="Visiter NadlanConnect.com (ouvre dans un nouvel onglet)">
               <Globe className="w-3 h-3" /> nadlanconnect.com
             </a>
             <button onClick={() => setModalOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A84C] text-white text-[13px] font-semibold hover:bg-[#b8963e] transition-colors">
+              aria-label="Analyser un document PDF"
+              className="flex items-center gap-2 px-4 py-2 rounded-full bg-[#C9A84C] text-white text-[13px] font-semibold hover:bg-[#b8963e] transition-all duration-200 shadow-sm min-h-[40px]">
               <FileUp className="w-3.5 h-3.5" />
               <span className="hidden sm:inline">Analyser un document</span>
               <span className="sm:hidden">Analyser</span>
             </button>
-            <button className="md:hidden p-1.5 text-gray-400 hover:text-gray-600" onClick={() => setMobileOpen(!mobileOpen)}>
+            <button className="md:hidden p-1.5 text-gray-400 hover:text-gray-600 min-h-[44px] min-w-[44px] flex items-center justify-center"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label={mobileOpen ? "Fermer le menu" : "Ouvrir le menu"}
+              aria-expanded={mobileOpen}>
               <Menu className="w-5 h-5" />
             </button>
           </div>
         </div>
 
+        {/* Mobile nav */}
         {mobileOpen && (
-          <div className="md:hidden border-t border-gray-100 bg-white px-4 py-2 flex flex-col">
+          <div className="md:hidden border-t border-gray-100 bg-white px-4 py-2 flex flex-col animate-in slide-in-from-top-2 duration-200">
             {[...mainNavItems, ...proNavItems].map((item) => (
               <Link key={item.href} href={item.href}
-                className="px-3 py-3 text-sm text-gray-600 hover:text-[#1E3A5F] border-b border-gray-50 last:border-0"
+                className="px-3 py-3.5 text-sm text-gray-600 hover:text-[#1E3A5F] border-b border-gray-50 last:border-0 transition-colors min-h-[44px] flex items-center"
                 onClick={() => setMobileOpen(false)}>
                 {item.label}
               </Link>
@@ -243,11 +307,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         )}
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main id="main-content" className="flex-1">{children}</main>
 
       {/* Footer */}
       <footer className="bg-[#0d1117] text-white border-t border-white/5">
-        <div className="container mx-auto px-4 py-14">
+        <div className="container mx-auto px-4 py-12 md:py-14">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 pb-10 border-b border-white/8">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2.5 mb-4">
@@ -256,10 +320,41 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <span className="font-bold">Nadlan<span className="text-[#C9A84C]">Connect</span> <span className="text-white/40 font-normal text-sm">France</span></span>
               </div>
-              <p className="text-white/40 text-sm leading-relaxed">
+              <p className="text-white/40 text-sm leading-relaxed mb-4">
                 Plateforme française d'investissement immobilier neuf. Simulateurs, défiscalisation et analyse IA.
               </p>
+              <div className="space-y-2 text-xs text-white/35">
+                <div className="flex items-center gap-2">
+                  <Phone className="w-3 h-3 shrink-0" />
+                  <span>+33 1 00 00 00 00</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-3 h-3 shrink-0" />
+                  <span>Paris, France</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3 h-3 shrink-0" />
+                  <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#C9A84C] transition-colors">
+                    Contact via NadlanConnect.com
+                  </a>
+                </div>
+              </div>
+              {/* Social links */}
+              <div className="flex items-center gap-3 mt-5">
+                {[
+                  { label: "LinkedIn", href: "https://linkedin.com", icon: "in" },
+                  { label: "Instagram", href: "https://instagram.com", icon: "ig" },
+                  { label: "Facebook", href: "https://facebook.com", icon: "f" },
+                ].map((s) => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                    aria-label={`Suivre NadlanConnect France sur ${s.label}`}
+                    className="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 flex items-center justify-center text-[10px] font-bold text-white/40 hover:text-white transition-all duration-200">
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
             </div>
+
             <div>
               <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">Particuliers</h3>
               <ul className="space-y-2.5">
@@ -268,6 +363,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 ))}
               </ul>
             </div>
+
             <div>
               <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">Professionnels</h3>
               <ul className="space-y-2.5">
@@ -276,18 +372,132 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 ))}
               </ul>
             </div>
+
             <div>
               <h3 className="text-xs font-semibold text-white/40 uppercase tracking-widest mb-4">À propos</h3>
               <p className="text-sm text-white/40 leading-relaxed mb-4">Extension française de NadlanConnect.com, référence internationale en accompagnement immobilier.</p>
-              <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[#C9A84C] hover:underline">→ Visiter NadlanConnect.com</a>
+              <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-sm text-[#C9A84C] hover:underline">
+                → Visiter NadlanConnect.com
+              </a>
+              <div className="mt-6 space-y-2">
+                <h4 className="text-xs font-semibold text-white/30 uppercase tracking-widest">Légal</h4>
+                <ul className="space-y-1.5">
+                  <li><Link href="/politique-confidentialite" className="text-xs text-white/35 hover:text-white/60 transition-colors">Politique de confidentialité</Link></li>
+                  <li><Link href="/mentions-legales" className="text-xs text-white/35 hover:text-white/60 transition-colors">Mentions légales</Link></li>
+                  <li>
+                    <button
+                      onClick={() => { localStorage.removeItem("nc-cookie-consent"); setCookieConsented(null); }}
+                      className="text-xs text-white/35 hover:text-white/60 transition-colors text-left">
+                      Gérer les cookies
+                    </button>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
+
           <div className="pt-8 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/25">
             <span>© {new Date().getFullYear()} NadlanConnect France. Tous droits réservés.</span>
-            <span>Une extension de NadlanConnect.com</span>
+            <span className="text-white/15">Simulateurs fournis à titre indicatif — pas de conseil financier ou fiscal.</span>
           </div>
         </div>
       </footer>
+
+      {/* WhatsApp floating button */}
+      <a
+        href="https://wa.me/33100000000?text=Bonjour%2C%20je%20souhaite%20des%20informations%20sur%20l'immobilier%20neuf%20en%20France."
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Nous contacter sur WhatsApp"
+        className="fixed bottom-6 right-6 z-40 w-14 h-14 bg-[#25D366] hover:bg-[#1da851] rounded-full flex items-center justify-center shadow-xl shadow-green-900/30 transition-all duration-300 hover:scale-110"
+      >
+        <svg viewBox="0 0 24 24" className="w-7 h-7 fill-white" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+      </a>
+
+      {/* Back to top */}
+      {showBackToTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="Retour en haut de page"
+          className="fixed bottom-24 right-6 z-40 w-11 h-11 bg-[#1E3A5F] hover:bg-[#152d4a] rounded-full flex items-center justify-center shadow-lg transition-all duration-300 hover:scale-110 animate-in fade-in slide-in-from-bottom-2"
+        >
+          <ArrowUp className="w-4 h-4 text-white" />
+        </button>
+      )}
+
+      {/* Cookie banner */}
+      {cookieConsented === null && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-[#0d1117] border-t border-white/10 px-4 py-4 animate-in slide-in-from-bottom-2" role="region" aria-label="Consentement cookies">
+          <div className="container mx-auto flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <p className="text-sm text-white/60 flex-1 leading-relaxed">
+              🍪 Nous utilisons des cookies pour améliorer votre expérience et analyser notre trafic.
+              Consultez notre <Link href="/politique-confidentialite" className="text-[#C9A84C] hover:underline">politique de confidentialité</Link>.
+            </p>
+            <div className="flex items-center gap-2 shrink-0">
+              <button onClick={handleCookieRefuse}
+                className="px-4 py-2 rounded-full border border-white/15 text-white/50 text-sm hover:bg-white/5 transition-colors min-h-[40px]">
+                Refuser
+              </button>
+              <button onClick={handleCookieAccept}
+                className="px-4 py-2 rounded-full bg-[#C9A84C] text-white text-sm font-semibold hover:bg-[#b8963e] transition-colors min-h-[40px]">
+                Accepter
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Email capture popup */}
+      {showEmailPopup && (
+        <div className="fixed inset-0 z-[90] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-label="Inscription aux alertes immobilières">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={closeEmailPopup} />
+          <div className="relative z-10 bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden animate-in zoom-in-95 duration-300">
+            <button onClick={closeEmailPopup} className="absolute top-3 right-3 text-gray-300 hover:text-gray-500 p-1" aria-label="Fermer">
+              <X className="w-4 h-4" />
+            </button>
+            <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0d1117] p-6 pb-4">
+              <div className="text-2xl mb-2">🏡</div>
+              <h3 className="text-lg font-black text-white leading-snug">Recevez nos opportunités en avant-première</h3>
+              <p className="text-white/50 text-xs mt-1">Programmes neufs, défiscalisation, guides exclusifs</p>
+            </div>
+            <div className="p-5">
+              {!emailSent ? (
+                <form onSubmit={handleEmailSubmit} className="space-y-3">
+                  <div>
+                    <label htmlFor="popup-email" className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1 block">Votre adresse email</label>
+                    <input
+                      id="popup-email"
+                      type="email"
+                      required
+                      value={emailCapture}
+                      onChange={(e) => setEmailCapture(e.target.value)}
+                      placeholder="prenom@email.com"
+                      autoComplete="email"
+                      className="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-[#C9A84C] focus:border-transparent"
+                    />
+                  </div>
+                  <button type="submit"
+                    className="w-full py-3 rounded-xl bg-[#C9A84C] text-white font-bold text-sm hover:bg-[#b8963e] transition-colors">
+                    Recevoir les alertes →
+                  </button>
+                  <p className="text-[10px] text-gray-300 text-center">
+                    Sans spam, désinscription en 1 clic. Voir notre{" "}
+                    <Link href="/politique-confidentialite" className="text-[#C9A84C]" onClick={closeEmailPopup}>politique de confidentialité</Link>.
+                  </p>
+                </form>
+              ) : (
+                <div className="text-center py-4">
+                  <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-3" />
+                  <p className="font-bold text-[#1E3A5F]">Inscription confirmée !</p>
+                  <p className="text-sm text-gray-400 mt-1">Vous recevrez nos prochaines opportunités.</p>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
 
       <PdfUploadModal open={modalOpen} onOpenChange={setModalOpen} />
     </div>

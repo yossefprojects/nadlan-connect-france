@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "NadlanConnect France"
+version = "1.0.0"
+id = "artifacts/nadlanconnect-france"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23891
+
+[services.development]
+run = "pnpm --filter @workspace/nadlanconnect-france run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/nadlanconnect-france", "run", "build" ]
+publicDir = "artifacts/nadlanconnect-france/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23891"
+BASE_PATH = "/"

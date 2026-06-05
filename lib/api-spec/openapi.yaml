@@ -1,15 +1,20 @@
 openapi: 3.1.0
 info:
-  # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: NadlanConnect France API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: simulate
+    description: Simulation d'investissement immobilier
+  - name: pdf
+    description: Génération et analyse de documents PDF
+  - name: anthropic
+    description: Anthropic AI chat operations
 paths:
   /healthz:
     get:
@@ -24,6 +29,185 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+
+  /simulate:
+    post:
+      operationId: simulate
+      tags: [simulate]
+      summary: Simulation IA d'investissement immobilier
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SimulationInput"
+      responses:
+        "200":
+          description: Résultat de la simulation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SimulationResult"
+        "400":
+          description: Données invalides
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "500":
+          description: Erreur serveur
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+  /pdf/analyze:
+    post:
+      operationId: analyzePdf
+      tags: [pdf]
+      summary: Analyse d'un document PDF par IA
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/PdfAnalyzeInput"
+      responses:
+        "200":
+          description: Résultat de l'analyse PDF
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PdfAnalysisResult"
+        "400":
+          description: Fichier invalide
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+        "500":
+          description: Erreur serveur
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ApiError"
+
+  /anthropic/conversations:
+    get:
+      operationId: listAnthropicConversations
+      tags: [anthropic]
+      summary: List all conversations
+      responses:
+        "200":
+          description: List of conversations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnthropicConversation"
+    post:
+      operationId: createAnthropicConversation
+      tags: [anthropic]
+      summary: Create a new conversation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnthropicConversationInput"
+      responses:
+        "201":
+          description: Created conversation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnthropicConversation"
+  /anthropic/conversations/{id}:
+    get:
+      operationId: getAnthropicConversation
+      tags: [anthropic]
+      summary: Get conversation with messages
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Conversation with messages
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnthropicConversationWithMessages"
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnthropicError"
+    delete:
+      operationId: deleteAnthropicConversation
+      tags: [anthropic]
+      summary: Delete a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Deleted
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AnthropicError"
+  /anthropic/conversations/{id}/messages:
+    get:
+      operationId: listAnthropicMessages
+      tags: [anthropic]
+      summary: List messages in a conversation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: List of messages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/AnthropicMessage"
+    post:
+      operationId: sendAnthropicMessage
+      tags: [anthropic]
+      summary: Send a message and receive an AI response (SSE stream)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AnthropicMessageInput"
+      responses:
+        "200":
+          description: SSE stream of assistant response chunks
+          content:
+            text/event-stream: {}
+
 components:
   schemas:
     HealthStatus:
@@ -34,3 +218,184 @@ components:
       required:
         - status
 
+    SimulationInput:
+      type: object
+      required:
+        - prix
+        - loyer
+        - tmi
+        - type
+        - charges
+        - duree
+      properties:
+        prix:
+          type: number
+          description: Prix du bien en euros
+        loyer:
+          type: number
+          description: Loyer mensuel estimé en euros
+        tmi:
+          type: number
+          description: Tranche marginale d'imposition (11, 30, 41, 45)
+        type:
+          type: string
+          enum: [nu, meuble]
+          description: Type de location (nu = Jeanbrun, meuble = LMNP)
+        charges:
+          type: number
+          description: Charges annuelles en euros
+        duree:
+          type: number
+          description: Durée de détention souhaitée en années
+
+    SimulationResult:
+      type: object
+      required:
+        - rendement_brut
+        - rendement_net
+        - gain_fiscal_annuel
+        - economies_totales
+        - resultat_fiscal
+        - recommandation
+        - score_investissement
+        - points_vigilance
+      properties:
+        rendement_brut:
+          type: string
+        rendement_net:
+          type: string
+        gain_fiscal_annuel:
+          type: number
+        economies_totales:
+          type: number
+        resultat_fiscal:
+          type: number
+        recommandation:
+          type: string
+        score_investissement:
+          type: number
+        points_vigilance:
+          type: array
+          items:
+            type: string
+
+    PdfAnalyzeInput:
+      type: object
+      required:
+        - filename
+      properties:
+        filename:
+          type: string
+          description: Nom du fichier PDF uploadé
+
+    PdfAnalysisResult:
+      type: object
+      required:
+        - prix
+        - surface
+        - clauses
+        - risques
+        - resume
+      properties:
+        prix:
+          type: ["string", "null"]
+        surface:
+          type: ["string", "null"]
+        clauses:
+          type: array
+          items:
+            type: string
+        risques:
+          type: array
+          items:
+            type: string
+        resume:
+          type: string
+
+    ApiError:
+      type: object
+      required:
+        - error
+      properties:
+        error:
+          type: string
+
+    AnthropicConversation:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - title
+        - createdAt
+
+    AnthropicMessage:
+      type: object
+      properties:
+        id:
+          type: integer
+        conversationId:
+          type: integer
+        role:
+          type: string
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - conversationId
+        - role
+        - content
+        - createdAt
+
+    AnthropicConversationInput:
+      type: object
+      properties:
+        title:
+          type: string
+      required:
+        - title
+
+    AnthropicMessageInput:
+      type: object
+      properties:
+        content:
+          type: string
+      required:
+        - content
+
+    AnthropicConversationWithMessages:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        messages:
+          type: array
+          items:
+            $ref: "#/components/schemas/AnthropicMessage"
+      required:
+        - id
+        - title
+        - createdAt
+        - messages
+
+    AnthropicError:
+      type: object
+      properties:
+        error:
+          type: string
+      required:
+        - error

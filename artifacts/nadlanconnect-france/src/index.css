@@ -171,6 +171,11 @@
   --ring: 214 52% 40%;
 }
 
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 @layer base {
   * {
     @apply border-border;

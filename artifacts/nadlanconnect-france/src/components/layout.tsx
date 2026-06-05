@@ -193,17 +193,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
         Aller au contenu principal
       </a>
 
-      {/* Ticker */}
-      <div className="bg-[#0d1117] text-white/60 text-xs border-b border-white/5 overflow-hidden">
-        <div className="container mx-auto px-4 h-8 flex items-center gap-6 overflow-x-auto whitespace-nowrap">
-          <span className="text-white/30 shrink-0">
-            📅 Marché au {new Date().toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })}
-          </span>
-          {tickerItems.map((t) => (
-            <span key={t.label} className="shrink-0 flex items-center gap-1.5">
-              <span className="text-white/30">{t.label}</span>
-              <span className={t.highlight ? "text-emerald-400 font-semibold" : "text-white/80 font-semibold"}>{t.value}</span>
-            </span>
+      {/* Ticker — marquee en boucle infinie */}
+      <div className="bg-[#0d1117] text-white/60 text-xs border-b border-white/5 overflow-hidden h-8 flex items-center">
+        <div className="flex animate-[ticker_28s_linear_infinite] whitespace-nowrap will-change-transform">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex items-center gap-0 shrink-0" aria-hidden={copy === 1}>
+              <span className="text-white/30 px-6 shrink-0">
+                📅 {new Date().toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" })}
+              </span>
+              {tickerItems.map((t) => (
+                <span key={t.label} className="shrink-0 flex items-center gap-1.5 px-6 border-l border-white/5">
+                  <span className="text-white/30">{t.label}</span>
+                  <span className={t.highlight ? "text-emerald-400 font-semibold" : "text-white/80 font-semibold"}>{t.value}</span>
+                </span>
+              ))}
+              <span className="px-6 shrink-0 text-white/10">◆</span>
+            </div>
           ))}
         </div>
       </div>

@@ -6,6 +6,7 @@ import {
   Linkedin, Instagram, Calculator, ArrowUpRight
 } from "lucide-react";
 import { useLang, type Lang } from "@/lib/i18n";
+import { FranceFlag } from "./france-flag";
 
 /* ─── PDF Modal content ─── */
 const modalContent = {
@@ -404,29 +405,27 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 : "bg-[#0A1628] border-b border-white/10"
           }`}
         >
-          <div className="container flex h-16 items-center justify-between">
-            <div className="flex items-center gap-10">
-              <Link href="/" className="flex items-center space-x-2.5 group" aria-label={t.logoAria}>
+          <div className="container flex h-16 items-center justify-between gap-4">
+            <div className="flex items-center gap-6">
+              <Link href="/" className="flex items-center space-x-2.5 group shrink-0" aria-label={t.logoAria}>
                 <div className="h-8 w-8 rounded overflow-hidden relative">
                   <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <span className="font-serif text-xl tracking-tight text-white transition-opacity group-hover:opacity-90">
+                <span className="relative inline-block font-serif text-xl tracking-tight text-white transition-opacity group-hover:opacity-90">
                   Nadlan<span className="text-[#C9A84C]">Connect</span>
-                </span>
-                <span className="hidden sm:inline-flex items-center px-1.5 py-0.5 rounded text-[9px] font-semibold tracking-widest uppercase bg-white/10 text-white/50 border border-white/10">
-                  France
+                  <FranceFlag className="absolute -bottom-1 -right-3.5 h-3 w-[18px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
                 </span>
               </Link>
 
               {/* Desktop nav */}
-              <nav className="hidden md:flex gap-8" aria-label={t.navAria}>
-                {navConfig.map((item) => {
+              <nav className="hidden lg:flex gap-5" aria-label={t.navAria}>
+                {navConfig.filter((item) => item.key !== "simu").map((item) => {
                   const isActive = location === item.href;
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
-                      className={`relative text-sm font-medium transition-colors hover:text-white px-1 py-2 ${
+                      className={`relative text-[13px] font-medium whitespace-nowrap transition-colors hover:text-white px-1 py-2 ${
                         isActive ? "text-white" : (scrolled || !isHome ? "text-white/70" : "text-white/80")
                       }`}
                     >
@@ -444,7 +443,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                     onClick={() => setProDropdown(!proDropdown)}
                     aria-haspopup="true"
                     aria-expanded={proDropdown}
-                    className={`relative flex items-center gap-1 text-sm font-medium transition-colors hover:text-white px-1 py-2 ${
+                    className={`relative flex items-center gap-1 text-[13px] font-medium whitespace-nowrap transition-colors hover:text-white px-1 py-2 ${
                       isProActive ? "text-white" : (scrolled || !isHome ? "text-white/70" : "text-white/80")
                     }`}
                   >
@@ -474,7 +473,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </nav>
             </div>
 
-            <div className="flex items-center gap-2 sm:gap-4">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               {/* Language toggle */}
               <div className="flex items-center rounded-full border border-white/20 overflow-hidden text-[11px] font-bold">
                 {(["fr", "en"] as const).map((l) => (
@@ -494,19 +493,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
               {/* PDF analyzer */}
               <button onClick={() => setModalOpen(true)}
                 aria-label={t.analysePdfAria}
-                className="hidden lg:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/20 text-white/70 text-[13px] font-medium hover:border-white/40 hover:text-white transition-all duration-150 whitespace-nowrap">
+                className="hidden xl:flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-white/20 text-white/70 text-[13px] font-medium hover:border-white/40 hover:text-white transition-all duration-150 whitespace-nowrap">
                 <FileUp className="w-3.5 h-3.5 shrink-0" />
                 {t.analysePdf}
               </button>
 
               {/* CTA */}
               <Link href="/simulateur"
-                className="hidden sm:flex items-center gap-1.5 h-9 px-6 rounded-full bg-[#C9A84C] hover:bg-[#E8C96A] text-[#0A1628] font-bold text-sm shadow-[0_4px_14px_rgba(201,168,76,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(201,168,76,0.4)] border-0">
+                className="hidden sm:flex items-center gap-1.5 h-9 px-5 rounded-full bg-[#C9A84C] hover:bg-[#E8C96A] text-[#0A1628] font-bold text-[13px] whitespace-nowrap shrink-0 shadow-[0_4px_14px_rgba(201,168,76,0.3)] transition-all hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(201,168,76,0.4)] border-0">
                 {t.simuCta}
               </Link>
 
               {/* Mobile menu toggle */}
-              <button className="md:hidden text-white/80 hover:text-white hover:bg-white/10 rounded-full h-9 w-9 flex items-center justify-center"
+              <button className="lg:hidden text-white/80 hover:text-white hover:bg-white/10 rounded-full h-9 w-9 flex items-center justify-center shrink-0"
                 onClick={() => setMobileOpen(!mobileOpen)}
                 aria-label={mobileOpen ? t.closeMenu : t.openMenu}
                 aria-expanded={mobileOpen}>
@@ -517,7 +516,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Mobile nav */}
           {mobileOpen && (
-            <div className="md:hidden border-t border-white/10 bg-[#0A1628]/95 backdrop-blur-xl px-6 py-8 flex flex-col gap-6">
+            <div className="lg:hidden border-t border-white/10 bg-[#0A1628]/95 backdrop-blur-xl px-6 py-8 flex flex-col gap-6">
               {navConfig.map((item) => (
                 <Link key={item.href} href={item.href}
                   className={`text-lg font-medium transition-colors ${
@@ -559,9 +558,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <div className="mb-4 flex items-center gap-2.5">
               <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-8 w-8 rounded-lg" />
-              <span className="font-serif text-xl text-white">
+              <span className="relative inline-block font-serif text-xl text-white">
                 Nadlan<span className="text-[#C9A84C]">Connect</span>
-                <span className="text-white/40 font-sans text-sm ml-2 font-normal">France</span>
+                <FranceFlag className="absolute -bottom-1 -right-3.5 h-3 w-[18px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
               </span>
             </div>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/40">

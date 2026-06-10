@@ -413,7 +413,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 </div>
                 <span className="relative inline-block font-serif text-xl tracking-tight text-white transition-opacity group-hover:opacity-90">
                   Nadlan<span className="text-[#C9A84C]">Connect</span>
-                  <FranceFlag className="absolute -bottom-1 -right-3.5 h-3 w-[18px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
+                  <FranceFlag className="absolute -bottom-1 -right-5 h-[15px] w-[22px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
                 </span>
               </Link>
 
@@ -560,7 +560,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
               <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-8 w-8 rounded-lg" />
               <span className="relative inline-block font-serif text-xl text-white">
                 Nadlan<span className="text-[#C9A84C]">Connect</span>
-                <FranceFlag className="absolute -bottom-1 -right-3.5 h-3 w-[18px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
+                <FranceFlag className="absolute -bottom-1 -right-5 h-[15px] w-[22px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
               </span>
             </div>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-white/40">

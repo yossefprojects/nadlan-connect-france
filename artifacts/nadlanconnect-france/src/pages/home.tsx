@@ -25,7 +25,7 @@ const content = {
     reassurance: [
       { icon: "🔒", label: "100% sécurisé" },
       { icon: "🏆", label: "+2 400 programmes" },
-      { icon: "🌍", label: "Bilingue FR / HE" },
+      { icon: "🌍", label: "Bilingue FR / EN" },
       { icon: "🤖", label: "Analyse IA" },
       { icon: "📞", label: "Accompagnement dédié" },
     ],
@@ -122,7 +122,7 @@ const content = {
     reassurance: [
       { icon: "🔒", label: "100% secure" },
       { icon: "🏆", label: "+2 400 programs" },
-      { icon: "🌍", label: "Bilingual FR / HE" },
+      { icon: "🌍", label: "Bilingual FR / EN" },
       { icon: "🤖", label: "AI analysis" },
       { icon: "📞", label: "Dedicated support" },
     ],

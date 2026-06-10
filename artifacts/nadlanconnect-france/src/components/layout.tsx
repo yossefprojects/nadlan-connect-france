@@ -422,17 +422,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           {/* Logo — identique NC.com */}
           <Link href="/" className="flex items-center gap-2 shrink-0" aria-label={t.logoAria}>
-            {/* Icône bâtiment */}
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="2" y="14" width="7" height="8" rx="1" fill="#1E3A5F"/>
-              <rect x="2" y="10" width="7" height="3" rx="0.5" fill="#1E3A5F" opacity="0.6"/>
-              <rect x="10" y="8" width="7" height="14" rx="1" fill="#C9A84C"/>
-              <rect x="10" y="4" width="7" height="3" rx="0.5" fill="#C9A84C" opacity="0.6"/>
-              <rect x="18" y="11" width="4" height="11" rx="0.5" fill="#1E3A5F" opacity="0.4"/>
-              <rect x="4" y="16" width="3" height="2" rx="0.3" fill="white" opacity="0.5"/>
-              <rect x="12" y="10" width="3" height="2" rx="0.3" fill="white" opacity="0.5"/>
-              <rect x="12" y="14" width="3" height="2" rx="0.3" fill="white" opacity="0.5"/>
-            </svg>
+            {/* Logo NadlanConnect France */}
+            <img src={`${import.meta.env.BASE_URL}logo.png`} alt="" className="w-7 h-7 rounded-[6px]" />
             {/* Wordmark */}
             <span className="text-[15px] font-bold tracking-tight">
               <span className="text-[#1E3A5F]">Nadlan</span><span className="text-[#C9A84C]">Connect</span>
@@ -553,9 +544,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 pb-10 border-b border-white/8">
             <div className="col-span-2 md:col-span-1">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-8 h-8 bg-[#1E3A5F] rounded flex items-center justify-center">
-                  <span className="text-[#C9A84C] text-xs font-black">NC</span>
-                </div>
+                <img src={`${import.meta.env.BASE_URL}logo.png`} alt="" className="w-8 h-8 rounded" />
                 <span className="font-bold">Nadlan<span className="text-[#C9A84C]">Connect</span> <span className="text-white/40 font-normal text-sm">France</span></span>
               </div>
               <p className="text-white/40 text-sm leading-relaxed mb-4">

@@ -1,7 +1,137 @@
 import { Layout } from "@/components/layout";
 import { Building2, GraduationCap, Briefcase } from "lucide-react";
+import { useLang } from "@/lib/i18n";
 
-function PageHero() {
+const content = {
+  fr: {
+    hero: {
+      badge: "Les Acteurs",
+      title: "Cartographie du marché immobilier neuf",
+      subtitle: "Promoteurs, gestionnaires LMNP et conseillers — tous les acteurs clés pour identifier les bons partenaires.",
+    },
+    promoteurs: {
+      eyebrow: "Construction neuve en France",
+      title: "Promoteurs Immobiliers",
+      cards: [
+        { name: "Nexity", desc: "Leader national multi-métiers : promotion résidentielle, gestion et services immobiliers. Présent sur tout le territoire avec une offre diversifiée.", badge: "Leader national" },
+        { name: "Altarea Cogedim", desc: "Développeur urbain spécialisé dans les projets mixtes alliant logements, commerces et bureaux au cœur des villes.", badge: "Développement urbain" },
+        { name: "Bouygues Immobilier", desc: "Filiale du groupe Bouygues, reconnu pour la qualité de construction et son engagement en matière de développement durable.", badge: "Qualité constructeur" },
+        { name: "Kaufman & Broad", desc: "Promoteur indépendant coté en bourse, spécialisé dans le résidentiel et le tertiaire avec plus de 50 ans d'expérience.", badge: "Coté en bourse" },
+        { name: "Icade", desc: "Foncière et promoteur à capitaux publics (CDC), acteur incontournable des quartiers de santé et des grands projets institutionnels.", badge: "Acteur institutionnel" },
+      ],
+    },
+    lmnp: {
+      eyebrow: "Résidences services",
+      title: "Gestionnaires LMNP par secteur",
+      students: {
+        heading: "Résidences étudiantes",
+        cards: [
+          { name: "Nexity Studéa", sector: "Résidences étudiantes", icon: "🎓" },
+          { name: "Réside Études", sector: "Résidences étudiantes", icon: "🎓" },
+          { name: "Nemea Student", sector: "Résidences étudiantes", icon: "🎓" },
+        ],
+      },
+      seniors: {
+        heading: "Résidences seniors",
+        cards: [
+          { name: "Domitys", sector: "Résidences seniors", icon: "🏡" },
+          { name: "Les Girandières", sector: "Résidences seniors", icon: "🏡" },
+          { name: "Ovelia", sector: "Résidences seniors", icon: "🏡" },
+        ],
+      },
+      tourism: {
+        heading: "Tourisme & affaires",
+        cards: [
+          { name: "Pierre & Vacances", sector: "Tourisme & loisirs", icon: "🌊" },
+          { name: "Adagio", sector: "Appart'hôtels d'affaires", icon: "🏢" },
+        ],
+      },
+    },
+    conseillers: {
+      eyebrow: "Accompagnement personnalisé",
+      title: "Conseillers & Intermédiaires",
+      cgp: {
+        title: "CGP — Cabinets de Gestion de Patrimoine",
+        desc: "Les CGP indépendants sont des professionnels réglementés (CIF, ORIAS) qui analysent votre situation patrimoniale globale pour recommander les meilleures solutions, y compris la défiscalisation immobilière.",
+        tags: ["Conseil personnalisé", "Indépendant", "Tous produits"],
+      },
+      platforms: {
+        title: "Courtiers & Plateformes digitales",
+        desc: "Les plateformes digitales spécialisées en immobilier neuf offrent une comparaison rapide des programmes et une mise en relation directe avec les promoteurs.",
+        items: [
+          { name: "Gridky", desc: "Plateforme d'investissement locatif neuf" },
+          { name: "Stellium", desc: "Conseil en investissement immobilier" },
+          { name: "Primonial", desc: "Gestion de patrimoine et pierre papier" },
+        ],
+      },
+    },
+  },
+  en: {
+    hero: {
+      badge: "Key Players",
+      title: "Mapping the new-build property market",
+      subtitle: "Developers, LMNP operators and advisors — all the key players to help you find the right partners.",
+    },
+    promoteurs: {
+      eyebrow: "New-build construction in France",
+      title: "Property Developers",
+      cards: [
+        { name: "Nexity", desc: "Nationwide multi-disciplinary leader: residential development, property management and real-estate services. Active across the country with a diversified offering.", badge: "National leader" },
+        { name: "Altarea Cogedim", desc: "Urban developer specializing in mixed-use projects that combine housing, retail and offices in the heart of cities.", badge: "Urban development" },
+        { name: "Bouygues Immobilier", desc: "A subsidiary of the Bouygues group, recognized for its build quality and its commitment to sustainable development.", badge: "Build quality" },
+        { name: "Kaufman & Broad", desc: "An independent, publicly listed developer specializing in residential and commercial property, with over 50 years of experience.", badge: "Publicly listed" },
+        { name: "Icade", desc: "A REIT and developer backed by public capital (CDC), a key player in healthcare districts and major institutional projects.", badge: "Institutional player" },
+      ],
+    },
+    lmnp: {
+      eyebrow: "Serviced residences",
+      title: "LMNP operators by sector",
+      students: {
+        heading: "Student residences",
+        cards: [
+          { name: "Nexity Studéa", sector: "Student residences", icon: "🎓" },
+          { name: "Réside Études", sector: "Student residences", icon: "🎓" },
+          { name: "Nemea Student", sector: "Student residences", icon: "🎓" },
+        ],
+      },
+      seniors: {
+        heading: "Senior residences",
+        cards: [
+          { name: "Domitys", sector: "Senior residences", icon: "🏡" },
+          { name: "Les Girandières", sector: "Senior residences", icon: "🏡" },
+          { name: "Ovelia", sector: "Senior residences", icon: "🏡" },
+        ],
+      },
+      tourism: {
+        heading: "Tourism & business",
+        cards: [
+          { name: "Pierre & Vacances", sector: "Tourism & leisure", icon: "🌊" },
+          { name: "Adagio", sector: "Business aparthotels", icon: "🏢" },
+        ],
+      },
+    },
+    conseillers: {
+      eyebrow: "Personalized guidance",
+      title: "Advisors & Intermediaries",
+      cgp: {
+        title: "CGP — Wealth Management Firms",
+        desc: "Independent CGPs (wealth managers) are regulated professionals (CIF, ORIAS) who assess your overall financial situation to recommend the best solutions, including property tax optimization.",
+        tags: ["Personalized advice", "Independent", "All products"],
+      },
+      platforms: {
+        title: "Brokers & Digital platforms",
+        desc: "Digital platforms specializing in new-build property offer quick comparison of projects and direct connection with developers.",
+        items: [
+          { name: "Gridky", desc: "New-build buy-to-let investment platform" },
+          { name: "Stellium", desc: "Real-estate investment advisory" },
+          { name: "Primonial", desc: "Wealth management and paper property (SCPI)" },
+        ],
+      },
+    },
+  },
+} as const;
+
+function PageHero({ badge, title, subtitle }: { badge: string; title: string; subtitle: string }) {
   return (
     <section className="relative h-[38vh] min-h-[260px] flex items-end overflow-hidden">
       <img
@@ -13,10 +143,10 @@ function PageHero() {
       <div className="relative z-10 container mx-auto px-4 pb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/70 text-xs font-medium tracking-wide mb-4">
           <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
-          Les Acteurs
+          {badge}
         </div>
-        <h1 className="text-3xl md:text-4xl font-black text-white mb-2">Cartographie du marché immobilier neuf</h1>
-        <p className="text-white/55 max-w-xl">Promoteurs, gestionnaires LMNP et conseillers — tous les acteurs clés pour identifier les bons partenaires.</p>
+        <h1 className="text-3xl md:text-4xl font-black text-white mb-2">{title}</h1>
+        <p className="text-white/55 max-w-xl">{subtitle}</p>
       </div>
     </section>
   );
@@ -50,9 +180,12 @@ function LmnpCard({ name, sector, icon }: { name: string; sector: string; icon: 
 }
 
 export default function Acteurs() {
+  const { lang } = useLang();
+  const t = content[lang];
+
   return (
     <Layout>
-      <PageHero />
+      <PageHero badge={t.hero.badge} title={t.hero.title} subtitle={t.hero.subtitle} />
 
       {/* Promoteurs */}
       <section className="py-12 md:py-20 bg-white">
@@ -62,16 +195,14 @@ export default function Acteurs() {
               <Building2 className="w-5 h-5 text-[#C9A84C]" />
             </div>
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">Construction neuve en France</p>
-              <h2 className="text-2xl font-black text-[#1E3A5F]">Promoteurs Immobiliers</h2>
+              <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">{t.promoteurs.eyebrow}</p>
+              <h2 className="text-2xl font-black text-[#1E3A5F]">{t.promoteurs.title}</h2>
             </div>
           </div>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            <ActorCard name="Nexity" desc="Leader national multi-métiers : promotion résidentielle, gestion et services immobiliers. Présent sur tout le territoire avec une offre diversifiée." badge="Leader national" />
-            <ActorCard name="Altarea Cogedim" desc="Développeur urbain spécialisé dans les projets mixtes alliant logements, commerces et bureaux au cœur des villes." badge="Développement urbain" />
-            <ActorCard name="Bouygues Immobilier" desc="Filiale du groupe Bouygues, reconnu pour la qualité de construction et son engagement en matière de développement durable." badge="Qualité constructeur" />
-            <ActorCard name="Kaufman & Broad" desc="Promoteur indépendant coté en bourse, spécialisé dans le résidentiel et le tertiaire avec plus de 50 ans d'expérience." badge="Coté en bourse" />
-            <ActorCard name="Icade" desc="Foncière et promoteur à capitaux publics (CDC), acteur incontournable des quartiers de santé et des grands projets institutionnels." badge="Acteur institutionnel" />
+            {t.promoteurs.cards.map((card) => (
+              <ActorCard key={card.name} name={card.name} desc={card.desc} badge={card.badge} />
+            ))}
           </div>
         </div>
       </section>
@@ -84,41 +215,42 @@ export default function Acteurs() {
               <GraduationCap className="w-5 h-5 text-white" />
             </div>
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">Résidences services</p>
-              <h2 className="text-2xl font-black text-[#1E3A5F]">Gestionnaires LMNP par secteur</h2>
+              <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">{t.lmnp.eyebrow}</p>
+              <h2 className="text-2xl font-black text-[#1E3A5F]">{t.lmnp.title}</h2>
             </div>
           </div>
 
           <div className="space-y-8">
             <div>
               <h3 className="text-sm font-bold text-[#1E3A5F] flex items-center gap-2 mb-4">
-                <span className="text-lg">🎓</span> Résidences étudiantes
+                <span className="text-lg">🎓</span> {t.lmnp.students.heading}
               </h3>
               <div className="grid sm:grid-cols-3 gap-3">
-                <LmnpCard name="Nexity Studéa" sector="Résidences étudiantes" icon="🎓" />
-                <LmnpCard name="Réside Études" sector="Résidences étudiantes" icon="🎓" />
-                <LmnpCard name="Nemea Student" sector="Résidences étudiantes" icon="🎓" />
+                {t.lmnp.students.cards.map((card) => (
+                  <LmnpCard key={card.name} name={card.name} sector={card.sector} icon={card.icon} />
+                ))}
               </div>
             </div>
 
             <div>
               <h3 className="text-sm font-bold text-[#1E3A5F] flex items-center gap-2 mb-4">
-                <span className="text-lg">🏡</span> Résidences seniors
+                <span className="text-lg">🏡</span> {t.lmnp.seniors.heading}
               </h3>
               <div className="grid sm:grid-cols-3 gap-3">
-                <LmnpCard name="Domitys" sector="Résidences seniors" icon="🏡" />
-                <LmnpCard name="Les Girandières" sector="Résidences seniors" icon="🏡" />
-                <LmnpCard name="Ovelia" sector="Résidences seniors" icon="🏡" />
+                {t.lmnp.seniors.cards.map((card) => (
+                  <LmnpCard key={card.name} name={card.name} sector={card.sector} icon={card.icon} />
+                ))}
               </div>
             </div>
 
             <div>
               <h3 className="text-sm font-bold text-[#1E3A5F] flex items-center gap-2 mb-4">
-                <span className="text-lg">🌊</span> Tourisme & affaires
+                <span className="text-lg">🌊</span> {t.lmnp.tourism.heading}
               </h3>
               <div className="grid sm:grid-cols-2 gap-3">
-                <LmnpCard name="Pierre & Vacances" sector="Tourisme & loisirs" icon="🌊" />
-                <LmnpCard name="Adagio" sector="Appart'hôtels d'affaires" icon="🏢" />
+                {t.lmnp.tourism.cards.map((card) => (
+                  <LmnpCard key={card.name} name={card.name} sector={card.sector} icon={card.icon} />
+                ))}
               </div>
             </div>
           </div>
@@ -133,35 +265,31 @@ export default function Acteurs() {
               <Briefcase className="w-5 h-5 text-[#1E3A5F]" />
             </div>
             <div>
-              <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">Accompagnement personnalisé</p>
-              <h2 className="text-2xl font-black text-[#1E3A5F]">Conseillers & Intermédiaires</h2>
+              <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">{t.conseillers.eyebrow}</p>
+              <h2 className="text-2xl font-black text-[#1E3A5F]">{t.conseillers.title}</h2>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-[#1E3A5F] rounded-2xl p-8 text-white">
-              <h3 className="font-bold text-white mb-3">CGP — Cabinets de Gestion de Patrimoine</h3>
+              <h3 className="font-bold text-white mb-3">{t.conseillers.cgp.title}</h3>
               <p className="text-white/60 text-sm leading-relaxed mb-5">
-                Les CGP indépendants sont des professionnels réglementés (CIF, ORIAS) qui analysent votre situation patrimoniale globale pour recommander les meilleures solutions, y compris la défiscalisation immobilière.
+                {t.conseillers.cgp.desc}
               </p>
               <div className="flex flex-wrap gap-2">
-                {["Conseil personnalisé", "Indépendant", "Tous produits"].map((tag) => (
+                {t.conseillers.cgp.tags.map((tag) => (
                   <span key={tag} className="px-3 py-1 rounded-full border border-white/20 text-white/70 text-xs">{tag}</span>
                 ))}
               </div>
             </div>
 
             <div className="bg-[#f8f9fb] rounded-2xl p-8 border border-gray-100">
-              <h3 className="font-bold text-[#1E3A5F] mb-3">Courtiers & Plateformes digitales</h3>
+              <h3 className="font-bold text-[#1E3A5F] mb-3">{t.conseillers.platforms.title}</h3>
               <p className="text-gray-400 text-sm leading-relaxed mb-5">
-                Les plateformes digitales spécialisées en immobilier neuf offrent une comparaison rapide des programmes et une mise en relation directe avec les promoteurs.
+                {t.conseillers.platforms.desc}
               </p>
               <div className="space-y-3">
-                {[
-                  { name: "Gridky", desc: "Plateforme d'investissement locatif neuf" },
-                  { name: "Stellium", desc: "Conseil en investissement immobilier" },
-                  { name: "Primonial", desc: "Gestion de patrimoine et pierre papier" },
-                ].map((item) => (
+                {t.conseillers.platforms.items.map((item) => (
                   <div key={item.name} className="flex items-center justify-between py-2.5 border-b border-gray-100 last:border-0">
                     <span className="text-sm font-bold text-[#1E3A5F]">{item.name}</span>
                     <span className="text-xs text-gray-400">{item.desc}</span>

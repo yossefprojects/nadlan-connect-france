@@ -1,0 +1,1 @@
+- [Bilingual FR/EN convention](nadlanconnect-i18n.md) — how to add/translate UI strings and keep AI output language in sync with the UI.

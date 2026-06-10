@@ -31,17 +31,20 @@ router.post("/pdf/analyze", upload.single("file"), async (req, res) => {
   try {
     const extractedText = await extractTextFromPdf(req.file.buffer);
     const filename = req.file.originalname;
+    const lang = req.body?.lang === "en" ? "en" : "fr";
+    const outLang = lang === "en" ? "English" : "French";
 
     const prompt = `Tu es un expert immobilier français. Analyse ce document PDF : "${filename}".
 Informations extraites : ${extractedText}
 
+All textual values (clauses, risques, resume) MUST be written in ${outLang}. Keep French regulatory proper nouns (VEFA, LMNP, notaire) as-is.
 Basé sur le type de document (contrat VEFA, notice descriptive promoteur, bail commercial LMNP, etc.), retourne UNIQUEMENT un JSON strict :
 {
   "prix": "montant en € ou null si non trouvé",
   "surface": "surface en m² ou null si non trouvée",
-  "clauses": ["clause importante 1", "clause importante 2", "clause importante 3"],
-  "risques": ["risque identifié 1", "risque identifié 2"],
-  "resume": "Résumé professionnel du document en 2-3 phrases"
+  "clauses": ["important clause 1", "important clause 2", "important clause 3"],
+  "risques": ["identified risk 1", "identified risk 2"],
+  "resume": "professional summary of the document in 2-3 sentences in ${outLang}"
 }`;
 
     const message = await anthropic.messages.create({

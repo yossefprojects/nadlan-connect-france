@@ -1,5 +1,157 @@
 import { Layout } from "@/components/layout";
+import { useLang } from "@/lib/i18n";
 import { ArrowRight, CheckCircle2, Users, Building2, Euro, Handshake, FileText, BarChart3, Shield, Star, ChevronRight } from "lucide-react";
+
+const content = {
+  fr: {
+    hero: {
+      badgeShort: "ESPACE AGENCES",
+      badgeFull: "ESPACE AGENCES IMMOBILIÈRES — NADLANCONNECT FRANCE",
+      titleLine1: "Agences, accédez aux",
+      titleLine2: "meilleurs programmes",
+      titleGold: "neuf de France.",
+      subtitle: "Élargissez votre offre immobilière avec les programmes neufs de nos promoteurs partenaires. Commissions attractives, formation incluse et outils IA pour vos clients.",
+      ctaPrimary: "Rejoindre le réseau",
+      ctaSecondary: "Découvrir les programmes",
+      stats: [
+        { value: "380+", label: "Agences" },
+        { value: "3–5%", label: "Commissions" },
+        { value: "48h", label: "Paiement" },
+      ],
+    },
+    why: {
+      eyebrow: "Votre avantage concurrentiel",
+      title: "Pourquoi rejoindre le réseau NadlanConnect France ?",
+      intro: "Le marché de l'immobilier neuf représente une opportunité considérable pour les agences. Avec NadlanConnect France, accédez à un catalogue complet de programmes et des outils pour convaincre vos clients investisseurs.",
+      benefits: [
+        { title: "Commissions transparentes de 3 à 5%", desc: "Commissions versées sous 48h après signature de l'acte authentique. Aucune surprise, aucune retenue." },
+        { title: "Accès à 2 400+ programmes exclusifs", desc: "Catalogue complet des résidences neuves de nos promoteurs partenaires en France. Recherche par ville, dispositif, prix." },
+        { title: "Simulateur IA pour vos clients", desc: "Proposez à vos clients une simulation personnalisée Jeanbrun/LMNP en temps réel. Argument de vente décisif." },
+        { title: "Formation certifiante loi Alur", desc: "Formation gratuite à l'immobilier neuf, aux dispositifs fiscaux et à nos outils. Heures validées pour votre obligation de formation continue." },
+      ],
+    },
+    commission: {
+      title: "Exemple de commission",
+      subtitle: "Pour un bien à 250 000€",
+      rows: [
+        { label: "Prix du bien", value: "250 000€", accent: false },
+        { label: "Taux de commission", value: "4%", accent: false },
+        { label: "Commission brute", value: "10 000€", accent: true },
+        { label: "Délai de versement", value: "48h après acte", accent: false },
+      ],
+      note: "Aucun investissement de stock requis. Vous touchez votre commission sans acheter de biens.",
+    },
+    how: {
+      eyebrow: "Processus simple",
+      title: "Comment ça marche ?",
+      steps: [
+        { n: "01", title: "Inscription & vérification", desc: "Créez votre compte agence avec votre numéro de carte professionnelle. Vérification en moins de 24h par notre équipe.", badge: "Gratuit" },
+        { n: "02", title: "Accès au catalogue", desc: "Parcourez les 2 400+ programmes disponibles. Filtres par ville, type (VEFA, résidence services, LMNP), dispositif fiscal, prix/lot.", badge: "" },
+        { n: "03", title: "Présentez à vos clients", desc: "Utilisez notre simulateur IA pour calculer le rendement et le gain fiscal du programme sous les yeux du client. Envoyez le rapport personnalisé.", badge: "" },
+        { n: "04", title: "Réservation & commission", desc: "Le client signe le contrat de réservation. Vous percevez votre commission sous 48h après l'acte authentique. Suivi en temps réel dans votre espace.", badge: "" },
+      ],
+    },
+    tools: {
+      eyebrow: "Votre boîte à outils",
+      title: "Des outils professionnels à votre disposition",
+      items: [
+        { title: "Simulateur IA avancé", desc: "Calculez rendement, cash-flow, gain fiscal Jeanbrun/LMNP en temps réel. Générez un rapport PDF personnalisé à l'image de votre agence." },
+        { title: "Analyse documentaire", desc: "Uploadez un contrat de réservation ou une brochure promoteur. Notre IA extrait automatiquement les informations clés pour votre client." },
+        { title: "CRM Clients", desc: "Gérez vos contacts acheteurs, suivez l'avancement des dossiers, recevez des alertes sur les programmes correspondant à leurs critères." },
+        { title: "Formation continue", desc: "Accédez à notre bibliothèque de formations : VEFA, RE2020, Jeanbrun, LMNP, gestion des copropriétés neuves. Certifiées loi Alur." },
+      ],
+    },
+    testimonials: {
+      eyebrow: "Ils ont rejoint le réseau",
+      title: "380+ agences nous font confiance",
+      items: [
+        { quote: "Grâce au simulateur IA, je convertis maintenant 1 client sur 3 en investisseur neuf. Avant c'était 1 sur 10. Les chiffres parlent d'eux-mêmes.", name: "Isabelle Fontaine", agency: "Fontaine Immobilier, Lyon" },
+        { quote: "Les programmes sont de qualité, les commissions sont honnêtes et le paiement est rapide. C'est tout ce qu'on demande. Je recommande sans hésiter.", name: "Thomas Blanchard", agency: "TB Conseil Immobilier, Bordeaux" },
+        { quote: "La formation LMNP que NadlanConnect France nous a dispensée a transformé notre façon de conseiller les clients. C'est un vrai avantage concurrentiel.", name: "Marie-Claire Dupont", agency: "Agence du Patrimoine, Nantes" },
+      ],
+    },
+    cta: {
+      title: "Prêt à développer votre activité ?",
+      text: "Rejoignez 380+ agences qui diversifient leurs revenus avec l'immobilier neuf. Inscription gratuite, formation offerte, commissions dès la première vente.",
+      primary: "Créer mon compte agence",
+      secondary: "Parler à un conseiller",
+    },
+  },
+  en: {
+    hero: {
+      badgeShort: "AGENCIES HUB",
+      badgeFull: "REAL-ESTATE AGENCIES HUB — NADLANCONNECT FRANCE",
+      titleLine1: "Agencies, access the",
+      titleLine2: "best new-build projects",
+      titleGold: "across France.",
+      subtitle: "Expand your property offering with new-build projects from our partner developers. Attractive commissions, training included and AI tools for your clients.",
+      ctaPrimary: "Join the network",
+      ctaSecondary: "Explore the projects",
+      stats: [
+        { value: "380+", label: "Agencies" },
+        { value: "3–5%", label: "Commission" },
+        { value: "48h", label: "Payout" },
+      ],
+    },
+    why: {
+      eyebrow: "Your competitive edge",
+      title: "Why join the NadlanConnect France network?",
+      intro: "The new-build property market is a major opportunity for agencies. With NadlanConnect France, you gain access to a complete catalogue of projects and the tools to win over your investor clients.",
+      benefits: [
+        { title: "Transparent commissions of 3 to 5%", desc: "Commissions paid within 48h of signing the deed of sale (acte authentique). No surprises, no deductions." },
+        { title: "Access to 2 400+ exclusive projects", desc: "A complete catalogue of new-build residences from our partner developers across France. Search by city, scheme and price." },
+        { title: "AI simulator for your clients", desc: "Offer your clients a personalised Jeanbrun/LMNP simulation in real time. A decisive selling point." },
+        { title: "Certified loi Alur training", desc: "Free training on new-build property, tax schemes and our tools. Hours validated towards your continuing-education requirement." },
+      ],
+    },
+    commission: {
+      title: "Commission example",
+      subtitle: "For a property at 250 000€",
+      rows: [
+        { label: "Property price", value: "250 000€", accent: false },
+        { label: "Commission rate", value: "4%", accent: false },
+        { label: "Gross commission", value: "10 000€", accent: true },
+        { label: "Payout time", value: "48h after deed", accent: false },
+      ],
+      note: "No stock investment required. You earn your commission without ever buying a property.",
+    },
+    how: {
+      eyebrow: "A simple process",
+      title: "How does it work?",
+      steps: [
+        { n: "01", title: "Sign-up & verification", desc: "Create your agency account with your professional licence number (carte professionnelle). Verified in under 24h by our team.", badge: "Free" },
+        { n: "02", title: "Access the catalogue", desc: "Browse the 2 400+ available projects. Filter by city, type (VEFA, serviced residence, LMNP), tax scheme and price per unit.", badge: "" },
+        { n: "03", title: "Present to your clients", desc: "Use our AI simulator to calculate a project's yield and tax savings right in front of your client. Send the personalised report.", badge: "" },
+        { n: "04", title: "Reservation & commission", desc: "The client signs the reservation contract. You receive your commission within 48h of the deed of sale. Real-time tracking in your dashboard.", badge: "" },
+      ],
+    },
+    tools: {
+      eyebrow: "Your toolkit",
+      title: "Professional tools at your fingertips",
+      items: [
+        { title: "Advanced AI simulator", desc: "Calculate yield, cash flow and Jeanbrun/LMNP tax savings in real time. Generate a personalised PDF report branded with your agency." },
+        { title: "Document analysis", desc: "Upload a reservation contract or a developer brochure. Our AI automatically extracts the key information for your client." },
+        { title: "Client CRM", desc: "Manage your buyer contacts, track the progress of each file and get alerts on projects matching their criteria." },
+        { title: "Continuing education", desc: "Access our training library: VEFA, RE2020, Jeanbrun, LMNP, managing new-build co-ownerships. Certified under loi Alur." },
+      ],
+    },
+    testimonials: {
+      eyebrow: "They've joined the network",
+      title: "380+ agencies trust us",
+      items: [
+        { quote: "Thanks to the AI simulator, I now convert 1 in 3 clients into new-build investors. It used to be 1 in 10. The numbers speak for themselves.", name: "Isabelle Fontaine", agency: "Fontaine Immobilier, Lyon" },
+        { quote: "The projects are high quality, the commissions are fair and payment is fast. That's all we ask for. I recommend them without hesitation.", name: "Thomas Blanchard", agency: "TB Conseil Immobilier, Bordeaux" },
+        { quote: "The LMNP training NadlanConnect France gave us transformed the way we advise our clients. It's a genuine competitive edge.", name: "Marie-Claire Dupont", agency: "Agence du Patrimoine, Nantes" },
+      ],
+    },
+    cta: {
+      title: "Ready to grow your business?",
+      text: "Join 380+ agencies diversifying their income with new-build property. Free sign-up, training included, commissions from your very first sale.",
+      primary: "Create my agency account",
+      secondary: "Talk to an advisor",
+    },
+  },
+} as const;
 
 function StatCard({ value, label }: { value: string; label: string }) {
   return (
@@ -25,6 +177,8 @@ function BenefitRow({ icon, title, desc }: { icon: React.ReactNode; title: strin
 }
 
 export default function Agences() {
+  const { lang } = useLang();
+  const t = content[lang];
   return (
     <Layout>
       {/* Hero */}
@@ -39,34 +193,34 @@ export default function Agences() {
         <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-[10px] md:text-xs font-medium tracking-wide mb-6 md:mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <span className="sm:hidden">ESPACE AGENCES</span>
-            <span className="hidden sm:inline">ESPACE AGENCES IMMOBILIÈRES — NADLANCONNECT FRANCE</span>
+            <span className="sm:hidden">{t.hero.badgeShort}</span>
+            <span className="hidden sm:inline">{t.hero.badgeFull}</span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mx-auto mb-3 md:mb-4">
-            Agences, accédez aux<br className="hidden sm:block" /> meilleurs programmes
+            {t.hero.titleLine1}<br className="hidden sm:block" /> {t.hero.titleLine2}
           </h1>
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] mb-6 md:mb-8">
-            <span className="text-[#C9A84C]">neuf de France.</span>
+            <span className="text-[#C9A84C]">{t.hero.titleGold}</span>
           </h2>
 
           <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
-            Élargissez votre offre immobilière avec les programmes neufs de nos promoteurs partenaires. Commissions attractives, formation incluse et outils IA pour vos clients.
+            {t.hero.subtitle}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto mx-auto">
             <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
-              Rejoindre le réseau <ArrowRight className="w-4 h-4" />
+              {t.hero.ctaPrimary} <ArrowRight className="w-4 h-4" />
             </button>
             <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm md:text-[15px] hover:bg-white/10 transition-colors">
-              Découvrir les programmes
+              {t.hero.ctaSecondary}
             </button>
           </div>
 
           <div className="mt-10 md:mt-20 grid grid-cols-3 gap-3 md:gap-20 border-t border-white/10 pt-6 md:pt-8 w-full max-w-xs md:max-w-2xl mx-auto">
-            <StatCard value="380+" label="Agences" />
-            <StatCard value="3–5%" label="Commissions" />
-            <StatCard value="48h" label="Paiement" />
+            <StatCard value={t.hero.stats[0].value} label={t.hero.stats[0].label} />
+            <StatCard value={t.hero.stats[1].value} label={t.hero.stats[1].label} />
+            <StatCard value={t.hero.stats[2].value} label={t.hero.stats[2].label} />
           </div>
         </div>
       </section>
@@ -76,45 +230,40 @@ export default function Agences() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Votre avantage concurrentiel</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F] mb-6">Pourquoi rejoindre le réseau NadlanConnect France ?</h2>
+              <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.why.eyebrow}</p>
+              <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F] mb-6">{t.why.title}</h2>
               <p className="text-gray-400 text-sm leading-relaxed mb-8">
-                Le marché de l'immobilier neuf représente une opportunité considérable pour les agences. Avec NadlanConnect France, accédez à un catalogue complet de programmes et des outils pour convaincre vos clients investisseurs.
+                {t.why.intro}
               </p>
               <div className="space-y-0">
                 <BenefitRow
                   icon={<Euro className="w-4 h-4" />}
-                  title="Commissions transparentes de 3 à 5%"
-                  desc="Commissions versées sous 48h après signature de l'acte authentique. Aucune surprise, aucune retenue."
+                  title={t.why.benefits[0].title}
+                  desc={t.why.benefits[0].desc}
                 />
                 <BenefitRow
                   icon={<Building2 className="w-4 h-4" />}
-                  title="Accès à 2 400+ programmes exclusifs"
-                  desc="Catalogue complet des résidences neuves de nos promoteurs partenaires en France. Recherche par ville, dispositif, prix."
+                  title={t.why.benefits[1].title}
+                  desc={t.why.benefits[1].desc}
                 />
                 <BenefitRow
                   icon={<BarChart3 className="w-4 h-4" />}
-                  title="Simulateur IA pour vos clients"
-                  desc="Proposez à vos clients une simulation personnalisée Jeanbrun/LMNP en temps réel. Argument de vente décisif."
+                  title={t.why.benefits[2].title}
+                  desc={t.why.benefits[2].desc}
                 />
                 <BenefitRow
                   icon={<Shield className="w-4 h-4" />}
-                  title="Formation certifiante loi Alur"
-                  desc="Formation gratuite à l'immobilier neuf, aux dispositifs fiscaux et à nos outils. Heures validées pour votre obligation de formation continue."
+                  title={t.why.benefits[3].title}
+                  desc={t.why.benefits[3].desc}
                 />
               </div>
             </div>
 
             <div className="bg-[#1E3A5F] rounded-2xl p-8 text-white">
-              <h3 className="font-bold text-lg mb-2">Exemple de commission</h3>
-              <p className="text-white/50 text-sm mb-6">Pour un bien à 250 000€</p>
+              <h3 className="font-bold text-lg mb-2">{t.commission.title}</h3>
+              <p className="text-white/50 text-sm mb-6">{t.commission.subtitle}</p>
               <div className="space-y-4 mb-6">
-                {[
-                  { label: "Prix du bien", value: "250 000€" },
-                  { label: "Taux de commission", value: "4%" },
-                  { label: "Commission brute", value: "10 000€", accent: true },
-                  { label: "Délai de versement", value: "48h après acte" },
-                ].map((row) => (
+                {t.commission.rows.map((row) => (
                   <div key={row.label} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
                     <span className="text-sm text-white/60">{row.label}</span>
                     <span className={`font-bold text-sm ${row.accent ? "text-[#C9A84C] text-xl" : "text-white"}`}>{row.value}</span>
@@ -122,7 +271,7 @@ export default function Agences() {
                 ))}
               </div>
               <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-sm text-white/60">
-                <span className="text-[#C9A84C] font-semibold">✓</span> Aucun investissement de stock requis. Vous touchez votre commission sans acheter de biens.
+                <span className="text-[#C9A84C] font-semibold">✓</span> {t.commission.note}
               </div>
             </div>
           </div>
@@ -133,17 +282,12 @@ export default function Agences() {
       <section className="py-14 md:py-24 bg-[#f8f9fb]">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Processus simple</p>
-            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">Comment ça marche ?</h2>
+            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.how.eyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">{t.how.title}</h2>
           </div>
 
           <div className="space-y-4">
-            {[
-              { n: "01", title: "Inscription & vérification", desc: "Créez votre compte agence avec votre numéro de carte professionnelle. Vérification en moins de 24h par notre équipe.", badge: "Gratuit" },
-              { n: "02", title: "Accès au catalogue", desc: "Parcourez les 2 400+ programmes disponibles. Filtres par ville, type (VEFA, résidence services, LMNP), dispositif fiscal, prix/lot." },
-              { n: "03", title: "Présentez à vos clients", desc: "Utilisez notre simulateur IA pour calculer le rendement et le gain fiscal du programme sous les yeux du client. Envoyez le rapport personnalisé." },
-              { n: "04", title: "Réservation & commission", desc: "Le client signe le contrat de réservation. Vous percevez votre commission sous 48h après l'acte authentique. Suivi en temps réel dans votre espace." },
-            ].map((step, i) => (
+            {t.how.steps.map((step, i) => (
               <div key={step.n} className="flex items-start gap-5 bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="w-12 h-12 bg-[#1E3A5F] rounded-xl flex items-center justify-center text-[#C9A84C] font-black text-sm shrink-0">{step.n}</div>
                 <div className="flex-1">
@@ -164,22 +308,22 @@ export default function Agences() {
       <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Votre boîte à outils</p>
-            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">Des outils professionnels à votre disposition</h2>
+            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.tools.eyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">{t.tools.title}</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
             {[
-              { icon: <BarChart3 className="w-5 h-5" />, title: "Simulateur IA avancé", desc: "Calculez rendement, cash-flow, gain fiscal Jeanbrun/LMNP en temps réel. Générez un rapport PDF personnalisé à l'image de votre agence." },
-              { icon: <FileText className="w-5 h-5" />, title: "Analyse documentaire", desc: "Uploadez un contrat de réservation ou une brochure promoteur. Notre IA extrait automatiquement les informations clés pour votre client." },
-              { icon: <Users className="w-5 h-5" />, title: "CRM Clients", desc: "Gérez vos contacts acheteurs, suivez l'avancement des dossiers, recevez des alertes sur les programmes correspondant à leurs critères." },
-              { icon: <Handshake className="w-5 h-5" />, title: "Formation continue", desc: "Accédez à notre bibliothèque de formations : VEFA, RE2020, Jeanbrun, LMNP, gestion des copropriétés neuves. Certifiées loi Alur." },
-            ].map((t) => (
-              <div key={t.title} className="flex items-start gap-4 p-6 bg-[#f8f9fb] rounded-2xl border border-gray-100 hover:border-[#C9A84C]/30 hover:shadow-md transition-all">
-                <div className="w-10 h-10 bg-[#1E3A5F] rounded-xl flex items-center justify-center text-[#C9A84C] shrink-0">{t.icon}</div>
+              { icon: <BarChart3 className="w-5 h-5" />, ...t.tools.items[0] },
+              { icon: <FileText className="w-5 h-5" />, ...t.tools.items[1] },
+              { icon: <Users className="w-5 h-5" />, ...t.tools.items[2] },
+              { icon: <Handshake className="w-5 h-5" />, ...t.tools.items[3] },
+            ].map((tool) => (
+              <div key={tool.title} className="flex items-start gap-4 p-6 bg-[#f8f9fb] rounded-2xl border border-gray-100 hover:border-[#C9A84C]/30 hover:shadow-md transition-all">
+                <div className="w-10 h-10 bg-[#1E3A5F] rounded-xl flex items-center justify-center text-[#C9A84C] shrink-0">{tool.icon}</div>
                 <div>
-                  <h3 className="font-bold text-[#1E3A5F] mb-1 text-sm">{t.title}</h3>
-                  <p className="text-xs text-gray-400 leading-relaxed">{t.desc}</p>
+                  <h3 className="font-bold text-[#1E3A5F] mb-1 text-sm">{tool.title}</h3>
+                  <p className="text-xs text-gray-400 leading-relaxed">{tool.desc}</p>
                 </div>
               </div>
             ))}
@@ -191,21 +335,17 @@ export default function Agences() {
       <section className="py-14 md:py-24 bg-[#1E3A5F]">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Ils ont rejoint le réseau</p>
-            <h2 className="text-2xl md:text-3xl font-black text-white">380+ agences nous font confiance</h2>
+            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.testimonials.eyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-black text-white">{t.testimonials.title}</h2>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-            {[
-              { quote: "Grâce au simulateur IA, je convertis maintenant 1 client sur 3 en investisseur neuf. Avant c'était 1 sur 10. Les chiffres parlent d'eux-mêmes.", name: "Isabelle Fontaine", agency: "Fontaine Immobilier, Lyon" },
-              { quote: "Les programmes sont de qualité, les commissions sont honnêtes et le paiement est rapide. C'est tout ce qu'on demande. Je recommande sans hésiter.", name: "Thomas Blanchard", agency: "TB Conseil Immobilier, Bordeaux" },
-              { quote: "La formation LMNP que NadlanConnect France nous a dispensée a transformé notre façon de conseiller les clients. C'est un vrai avantage concurrentiel.", name: "Marie-Claire Dupont", agency: "Agence du Patrimoine, Nantes" },
-            ].map((t) => (
-              <div key={t.name} className="bg-white/5 border border-white/10 rounded-2xl p-6">
+            {t.testimonials.items.map((item) => (
+              <div key={item.name} className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <div className="flex gap-0.5 mb-4">{[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 text-[#C9A84C] fill-[#C9A84C]" />)}</div>
-                <p className="text-white/70 text-sm leading-relaxed mb-5 italic">"{t.quote}"</p>
+                <p className="text-white/70 text-sm leading-relaxed mb-5 italic">"{item.quote}"</p>
                 <div>
-                  <div className="font-semibold text-white text-sm">{t.name}</div>
-                  <div className="text-white/40 text-xs">{t.agency}</div>
+                  <div className="font-semibold text-white text-sm">{item.name}</div>
+                  <div className="text-white/40 text-xs">{item.agency}</div>
                 </div>
               </div>
             ))}
@@ -219,16 +359,16 @@ export default function Agences() {
           <div className="w-14 h-14 bg-[#C9A84C]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-[#C9A84C]/20">
             <Handshake className="w-7 h-7 text-[#C9A84C]" />
           </div>
-          <h2 className="text-3xl font-black text-[#1E3A5F] mb-4">Prêt à développer votre activité ?</h2>
+          <h2 className="text-3xl font-black text-[#1E3A5F] mb-4">{t.cta.title}</h2>
           <p className="text-gray-400 mb-8 text-sm leading-relaxed">
-            Rejoignez 380+ agences qui diversifient leurs revenus avec l'immobilier neuf. Inscription gratuite, formation offerte, commissions dès la première vente.
+            {t.cta.text}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <button className="px-8 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold hover:bg-[#b8963e] transition-colors">
-              Créer mon compte agence <ArrowRight className="inline w-4 h-4 ml-1" />
+              {t.cta.primary} <ArrowRight className="inline w-4 h-4 ml-1" />
             </button>
             <button className="px-8 py-3.5 rounded-full border-2 border-[#1E3A5F] text-[#1E3A5F] font-semibold hover:bg-[#1E3A5F] hover:text-white transition-colors">
-              Parler à un conseiller
+              {t.cta.secondary}
             </button>
           </div>
         </div>

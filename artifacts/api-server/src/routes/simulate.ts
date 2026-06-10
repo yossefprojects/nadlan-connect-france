@@ -12,6 +12,8 @@ router.post("/simulate", async (req, res) => {
   }
 
   const { prix, loyer, tmi, type, charges, duree } = parsed.data;
+  const lang = req.body?.lang === "en" ? "en" : "fr";
+  const outLang = lang === "en" ? "English" : "French";
 
   const prompt = `Tu es un expert en fiscalité immobilière française.
 Voici les données d'un investissement :
@@ -22,6 +24,7 @@ Voici les données d'un investissement :
 - Charges annuelles : ${charges}€
 - Durée : ${duree} ans
 
+All textual values (recommandation, points_vigilance) MUST be written in ${outLang}. Keep French regulatory proper nouns (Jeanbrun, LMNP, TMI) as-is.
 Calcule et retourne UNIQUEMENT un JSON strict (pas de markdown, pas de texte autour) :
 {
   "rendement_brut": "X.X%",
@@ -29,7 +32,7 @@ Calcule et retourne UNIQUEMENT un JSON strict (pas de markdown, pas de texte aut
   "gain_fiscal_annuel": XXXX,
   "economies_totales": XXXX,
   "resultat_fiscal": XXXX,
-  "recommandation": "texte court en français",
+  "recommandation": "short text in ${outLang}",
   "score_investissement": XX,
   "points_vigilance": ["point1", "point2", "point3"]
 }`;
@@ -89,6 +92,9 @@ router.post("/simulate-advanced", async (req, res) => {
     duree_detention = 10,
   } = body;
 
+  const lang = body?.lang === "en" ? "en" : "fr";
+  const outLang = lang === "en" ? "English" : "French";
+
   const montant_emprunte = prix - apport;
   const loyer_annuel = loyer_mensuel * 12;
   const prix_m2 = surface > 0 ? Math.round(prix / surface) : 0;
@@ -137,6 +143,7 @@ Analyse cet investissement immobilier locatif neuf en France avec précision max
 === HORIZON ===
 - Durée de détention prévue : ${duree_detention} ans
 
+All textual values (recommandation, synthese_fiscale, points_vigilance, optimisations) MUST be written in ${outLang}. Keep French regulatory proper nouns (Jeanbrun, LMNP, TMI, PNO, micro-foncier, micro-BIC, notaire) as-is.
 Calcule avec précision et retourne UNIQUEMENT ce JSON strict (sans markdown, sans texte autour) :
 {
   "mensualite_credit": XXXX,
@@ -160,8 +167,8 @@ Calcule avec précision et retourne UNIQUEMENT ce JSON strict (sans markdown, sa
   "score_rendement": XX,
   "score_fiscalite": XX,
   "score_financement": XX,
-  "recommandation": "analyse détaillée de 3-4 phrases en français sur la qualité de cet investissement, le dispositif recommandé, les optimisations possibles",
-  "synthese_fiscale": "explication de 2-3 phrases sur le traitement fiscal précis de ce bien",
+  "recommandation": "detailed 3-4 sentence analysis in ${outLang} on the quality of this investment, the recommended scheme and possible optimizations",
+  "synthese_fiscale": "2-3 sentence explanation in ${outLang} of the precise tax treatment of this property",
   "points_vigilance": ["point1", "point2", "point3", "point4"],
   "optimisations": ["optimisation1", "optimisation2", "optimisation3"]
 }

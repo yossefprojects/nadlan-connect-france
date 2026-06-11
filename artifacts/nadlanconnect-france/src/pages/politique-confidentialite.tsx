@@ -7,7 +7,7 @@ const content = {
     hero: {
       badge: "RGPD & Confidentialité",
       title: "Politique de Confidentialité",
-      updated: "Dernière mise à jour : juin 2025",
+      updated: "Dernière mise à jour : juin 2026",
     },
     s1: {
       title: "1. Responsable du traitement",
@@ -82,15 +82,15 @@ const content = {
       p: "Nous mettons en œuvre des mesures techniques et organisationnelles appropriées pour protéger vos données contre tout accès non autorisé, perte ou divulgation. Le site utilise HTTPS, des en-têtes de sécurité (X-Frame-Options, Content-Security-Policy) et des connexions chiffrées.",
     },
     s9: {
-      title: "9. Transferts internationaux",
-      p: "Les simulations IA utilisent l'API Anthropic Claude, hébergée aux États-Unis. Les données transmises sont limitées aux informations strictement nécessaires à la simulation et ne permettent pas d'identifier personnellement un utilisateur.",
+      title: "9. Analyse de documents et transferts internationaux (IA)",
+      p: "Les outils d'analyse et de simulation par IA, y compris l'analyse des documents PDF téléversés, reposent sur l'API d'Anthropic (Claude), notre sous-traitant, hébergée aux États-Unis : leur utilisation peut impliquer un transfert de données hors de l'Union européenne. Ce transfert est encadré par les garanties appropriées prévues par le RGPD (clauses contractuelles types / accord de traitement des données). Les contenus transmis ne sont pas utilisés pour entraîner les modèles et ne sont pas conservés au-delà de ce qui est nécessaire au traitement. Il est recommandé de ne pas téléverser de données personnelles de tiers sans base légale ; l'utilisateur demeure responsable des contenus qu'il transmet.",
     },
   },
   en: {
     hero: {
       badge: "GDPR & Privacy",
       title: "Privacy Policy",
-      updated: "Last updated: June 2025",
+      updated: "Last updated: June 2026",
     },
     s1: {
       title: "1. Data controller",
@@ -165,8 +165,8 @@ const content = {
       p: "We implement appropriate technical and organizational measures to protect your data against any unauthorized access, loss or disclosure. The site uses HTTPS, security headers (X-Frame-Options, Content-Security-Policy) and encrypted connections.",
     },
     s9: {
-      title: "9. International transfers",
-      p: "AI simulations use the Anthropic Claude API, which is hosted in the United States. The data transmitted is limited to the information strictly necessary for the simulation and does not allow a user to be personally identified.",
+      title: "9. Document analysis and international transfers (AI)",
+      p: "The AI analysis and simulation tools, including the analysis of uploaded PDF documents, rely on the Anthropic (Claude) API, our processor, hosted in the United States: using them may involve a transfer of data outside the European Union. This transfer is framed by the appropriate safeguards required under the GDPR (standard contractual clauses / data processing agreement). The content transmitted is not used to train the models and is not retained beyond what is necessary for processing. You are advised not to upload third parties' personal data without a legal basis; you remain responsible for the content you submit.",
     },
   },
 } as const;

@@ -197,10 +197,10 @@ export default function Agences() {
             <span className="hidden sm:inline">{t.hero.badgeFull}</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mx-auto mb-3 md:mb-4">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] sm:leading-[1.05] max-w-4xl mx-auto mb-3 md:mb-4">
             {t.hero.titleLine1}<br className="hidden sm:block" /> {t.hero.titleLine2}
           </h1>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-black leading-[1.05] mb-6 md:mb-8">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black leading-[1.1] sm:leading-[1.05] mb-6 md:mb-8">
             <span className="text-[#C9A84C]">{t.hero.titleGold}</span>
           </h2>
 

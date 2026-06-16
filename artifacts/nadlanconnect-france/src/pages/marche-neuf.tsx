@@ -206,11 +206,11 @@ export default function MarcheNeuf() {
           </div>
 
           {/* Timeline visuelle */}
-          <div className="bg-[#1E3A5F] rounded-2xl p-8">
+          <div className="bg-[#1E3A5F] rounded-2xl p-5 md:p-8">
             <h3 className="font-bold text-white text-center mb-8 text-sm uppercase tracking-widest">{t.vefa.timelineTitle}</h3>
             <div className="flex items-start gap-0 overflow-x-auto pb-2">
               {t.vefa.timeline.map((step, i, arr) => (
-                <div key={step.n} className="flex items-center flex-1 min-w-[100px]">
+                <div key={step.n} className="flex items-center flex-1 min-w-[68px] sm:min-w-[100px]">
                   <div className="flex flex-col items-center flex-1 gap-2 text-center">
                     <div className={`w-12 h-12 rounded-full ${step.color} flex items-center justify-center text-white font-black text-lg border-2 border-white/20`}>{step.n}</div>
                     <div className="text-white/70 text-[10px] font-medium">{step.label}</div>
@@ -251,8 +251,8 @@ export default function MarcheNeuf() {
             ))}
           </div>
 
-          <div className="bg-emerald-700 rounded-2xl p-6 flex items-center gap-6">
-            <div className="text-6xl font-black text-emerald-200 shrink-0">A</div>
+          <div className="bg-emerald-700 rounded-2xl p-6 flex items-center gap-4 sm:gap-6">
+            <div className="text-5xl sm:text-6xl font-black text-emerald-200 shrink-0">A</div>
             <div>
               <span className="inline-block px-3 py-1 rounded-full border border-emerald-300/30 bg-emerald-300/10 text-emerald-200 text-xs font-semibold mb-2">{t.re2020.greenBadge}</span>
               <p className="text-sm text-emerald-100 leading-relaxed">
@@ -277,19 +277,19 @@ export default function MarcheNeuf() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-[#1E3A5F] rounded-2xl p-10 text-center">
+            <div className="bg-[#1E3A5F] rounded-2xl p-8 md:p-10 text-center">
               <div className="text-xs text-white/40 uppercase tracking-widest mb-2">{t.notaire.neufLabel}</div>
-              <div className="text-8xl font-black text-[#C9A84C] leading-none mb-2">2–3<span className="text-4xl">%</span></div>
+              <div className="text-6xl md:text-8xl font-black text-[#C9A84C] leading-none mb-2">2–3<span className="text-3xl md:text-4xl">%</span></div>
               <div className="text-white/50 text-sm">{t.notaire.neufSub}</div>
             </div>
-            <div className="bg-gray-50 rounded-2xl p-10 text-center border border-gray-100">
+            <div className="bg-gray-50 rounded-2xl p-8 md:p-10 text-center border border-gray-100">
               <div className="text-xs text-gray-400 uppercase tracking-widest mb-2">{t.notaire.ancienLabel}</div>
-              <div className="text-8xl font-black text-gray-300 leading-none mb-2">7–8<span className="text-4xl">%</span></div>
+              <div className="text-6xl md:text-8xl font-black text-gray-300 leading-none mb-2">7–8<span className="text-3xl md:text-4xl">%</span></div>
               <div className="text-gray-400 text-sm">{t.notaire.ancienSub}</div>
             </div>
           </div>
 
-          <div className="bg-amber-50 border border-amber-200/50 rounded-2xl p-8">
+          <div className="bg-amber-50 border border-amber-200/50 rounded-2xl p-5 md:p-8">
             <h3 className="font-bold text-[#1E3A5F] mb-5">{t.notaire.exampleTitle}</h3>
             <div className="grid md:grid-cols-3 gap-6 mb-5">
               <div className="text-center">

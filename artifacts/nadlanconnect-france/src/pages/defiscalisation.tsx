@@ -343,18 +343,22 @@ export default function Defiscalisation() {
             <h2 className="text-2xl font-black text-[#1E3A5F]">{t.table.title}</h2>
           </div>
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
-            <div className="grid grid-cols-3 bg-[#1E3A5F]">
-              <div className="p-4 text-xs font-semibold text-white/60 uppercase tracking-widest">{t.table.headers.critere}</div>
-              <div className="p-4 text-xs font-semibold text-white text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.jeanbrun}</div>
-              <div className="p-4 text-xs font-semibold text-[#C9A84C] text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.lmnp}</div>
-            </div>
-            {t.table.rows.map((row, i) => (
-              <div key={row.critere} className={`grid grid-cols-3 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
-                <div className="p-4 text-sm font-medium text-[#1E3A5F] border-r border-gray-100">{row.critere}</div>
-                <div className="p-4 text-sm text-center text-gray-600 border-r border-gray-100">{row.jeanbrun}</div>
-                <div className="p-4 text-sm text-center font-semibold text-[#C9A84C]">{row.lmnp}</div>
+            <div className="overflow-x-auto">
+              <div className="min-w-[460px]">
+                <div className="grid grid-cols-3 bg-[#1E3A5F]">
+                  <div className="p-3 sm:p-4 text-xs font-semibold text-white/60 uppercase tracking-widest">{t.table.headers.critere}</div>
+                  <div className="p-3 sm:p-4 text-xs font-semibold text-white text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.jeanbrun}</div>
+                  <div className="p-3 sm:p-4 text-xs font-semibold text-[#C9A84C] text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.lmnp}</div>
+                </div>
+                {t.table.rows.map((row, i) => (
+                  <div key={row.critere} className={`grid grid-cols-3 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+                    <div className="p-3 sm:p-4 text-sm font-medium text-[#1E3A5F] border-r border-gray-100">{row.critere}</div>
+                    <div className="p-3 sm:p-4 text-sm text-center text-gray-600 border-r border-gray-100">{row.jeanbrun}</div>
+                    <div className="p-3 sm:p-4 text-sm text-center font-semibold text-[#C9A84C]">{row.lmnp}</div>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
 
           <div className="mt-6 bg-[#1E3A5F]/5 border border-[#1E3A5F]/10 rounded-2xl p-6">

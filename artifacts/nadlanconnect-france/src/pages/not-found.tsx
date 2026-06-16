@@ -42,7 +42,7 @@ export default function NotFound() {
       </div>
 
       <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-widest mb-4">{t.eyebrow}</p>
-      <h1 className="text-5xl md:text-7xl font-black text-white mb-4">{t.title}</h1>
+      <h1 className="text-4xl md:text-7xl font-black text-white mb-4">{t.title}</h1>
       <p className="text-white/40 text-lg max-w-md mb-10 leading-relaxed">
         {t.description}
       </p>

@@ -38,7 +38,7 @@ const frContent = {
   hero: {
     badge: "Simulateur IA — Droits français",
     title: "Simulez votre investissement immobilier neuf",
-    subtitle: "Analyse complète : financement, rendement, cash-flow, fiscalité Jeanbrun/LMNP, TRI. Inspiré de simmoisrael.com.",
+    subtitle: "Analyse complète : financement, rendement, cash-flow, fiscalité Jeanbrun/LMNP, TRI.",
   },
   bien: {
     heading: "🏠 Caractéristiques du bien",
@@ -204,7 +204,7 @@ const enContent: SimContent = {
   hero: {
     badge: "AI Simulator — French law",
     title: "Simulate your new-build property investment",
-    subtitle: "Complete analysis: financing, yield, cash flow, Jeanbrun/LMNP taxation, IRR. Inspired by simmoisrael.com.",
+    subtitle: "Complete analysis: financing, yield, cash flow, Jeanbrun/LMNP taxation, IRR.",
   },
   bien: {
     heading: "🏠 Property details",
@@ -532,7 +532,7 @@ export default function Simulateur() {
 
       <div className="bg-[#f8f9fb] min-h-screen">
         {/* Tab bar */}
-        <div className="sticky top-14 z-30 bg-white border-b border-gray-100 shadow-sm">
+        <div className="sticky top-24 z-30 bg-white border-b border-gray-100 shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex overflow-x-auto">
               {t.tabs.map((tabItem, i) => (
@@ -669,7 +669,7 @@ export default function Simulateur() {
                       ))}
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <FieldLabel>{t.fiscalite.tmiFieldLabel}</FieldLabel>
                         <div className="grid grid-cols-5 gap-1.5">

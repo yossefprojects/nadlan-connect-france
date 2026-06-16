@@ -255,11 +255,11 @@ export default function Home() {
             <span className="hidden sm:inline">{t.hero.badgeDesktop}</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] max-w-4xl mb-3 md:mb-4">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] sm:leading-[1.05] max-w-4xl mb-3 md:mb-4">
             {t.hero.titleLine1}<br />
             {t.hero.titleLine2}
           </h1>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] max-w-4xl mb-4 md:mb-6">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] sm:leading-[1.05] max-w-4xl mb-4 md:mb-6">
             <span className="text-[#C9A84C]">{t.hero.titleAccent}</span>
           </h2>
 

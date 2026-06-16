@@ -15,6 +15,7 @@ const Promoteurs = lazy(() => import("@/pages/promoteurs"));
 const Agences = lazy(() => import("@/pages/agences"));
 const PolitiqueConfidentialite = lazy(() => import("@/pages/politique-confidentialite"));
 const MentionsLegales = lazy(() => import("@/pages/mentions-legales"));
+const Tarifs = lazy(() => import("@/pages/tarifs"));
 
 const queryClient = new QueryClient();
 
@@ -41,6 +42,7 @@ function Router() {
         <Route path="/acteurs" component={Acteurs} />
         <Route path="/promoteurs" component={Promoteurs} />
         <Route path="/agences" component={Agences} />
+        <Route path="/tarifs" component={Tarifs} />
         <Route path="/politique-confidentialite" component={PolitiqueConfidentialite} />
         <Route path="/mentions-legales" component={MentionsLegales} />
         <Route component={NotFound} />

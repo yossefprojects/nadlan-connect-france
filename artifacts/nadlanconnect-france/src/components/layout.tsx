@@ -163,6 +163,7 @@ const navConfig = [
   { href: "/defiscalisation", key: "defisc" as const },
   { href: "/simulateur", key: "simu" as const },
   { href: "/acteurs", key: "acteurs" as const },
+  { href: "/tarifs", key: "tarifs" as const },
 ];
 
 const proConfig = [
@@ -173,7 +174,7 @@ const proConfig = [
 const uiContent = {
   fr: {
     skip: "Aller au contenu principal",
-    nav: { home: "Accueil", marche: "Marché Neuf", defisc: "Défiscalisation", simu: "Simulateur IA", acteurs: "Acteurs" },
+    nav: { home: "Accueil", marche: "Marché Neuf", defisc: "Défiscalisation", simu: "Simulateur IA", acteurs: "Acteurs", tarifs: "Tarifs" },
     logoAria: "NadlanConnect France — Accueil",
     navAria: "Navigation principale",
     pros: "Professionnels",
@@ -230,7 +231,7 @@ const uiContent = {
   },
   en: {
     skip: "Skip to main content",
-    nav: { home: "Home", marche: "New-Build Market", defisc: "Tax Optimization", simu: "AI Simulator", acteurs: "Key Players" },
+    nav: { home: "Home", marche: "New-Build Market", defisc: "Tax Optimization", simu: "AI Simulator", acteurs: "Key Players", tarifs: "Pricing" },
     logoAria: "NadlanConnect France — Home",
     navAria: "Main navigation",
     pros: "Professionals",

@@ -423,9 +423,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 <div className="h-8 w-8 rounded-lg overflow-hidden relative">
                   <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
                 </div>
-                <span className="relative inline-block font-serif text-xl tracking-tight text-foreground transition-opacity group-hover:opacity-90">
-                  Nadlan<span className="text-sea">Connect</span>
-                  <FranceFlag className="absolute -bottom-1 -right-5 h-[15px] w-[22px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
+                <span className="inline-flex items-center gap-2 font-serif text-xl tracking-tight text-foreground transition-opacity group-hover:opacity-90">
+                  <span>Nadlan<span className="text-sea">Connect</span></span>
+                  <FranceFlag className="h-[15px] w-[22px] shrink-0 rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.25)] ring-1 ring-black/10" />
                 </span>
               </Link>
 
@@ -569,9 +569,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div>
             <div className="mb-4 flex items-center gap-2.5">
               <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-8 w-8 rounded-lg" />
-              <span className="relative inline-block font-serif text-xl text-foreground">
-                Nadlan<span className="text-sea">Connect</span>
-                <FranceFlag className="absolute -bottom-1 -right-5 h-[15px] w-[22px] rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.35)] ring-1 ring-black/10" />
+              <span className="inline-flex items-center gap-2 font-serif text-xl text-foreground">
+                <span>Nadlan<span className="text-sea">Connect</span></span>
+                <FranceFlag className="h-[15px] w-[22px] shrink-0 rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.25)] ring-1 ring-black/10" />
               </span>
             </div>
             <p className="mb-6 max-w-xs text-sm leading-relaxed text-muted-foreground">

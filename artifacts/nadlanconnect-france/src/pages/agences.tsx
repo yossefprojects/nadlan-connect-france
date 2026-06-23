@@ -165,11 +165,11 @@ function StatCard({ value, label }: { value: string; label: string }) {
 function BenefitRow({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
     <div className="flex items-start gap-4 py-5 border-b border-gray-100 last:border-0">
-      <div className="w-10 h-10 bg-[#1E3A5F]/8 rounded-xl flex items-center justify-center text-[#C9A84C] shrink-0">
+      <div className="w-10 h-10 bg-foreground/8 rounded-xl flex items-center justify-center text-sea shrink-0">
         {icon}
       </div>
       <div>
-        <h3 className="font-bold text-[#1E3A5F] mb-1 text-sm">{title}</h3>
+        <h3 className="font-bold text-foreground mb-1 text-sm">{title}</h3>
         <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>
       </div>
     </div>
@@ -188,7 +188,7 @@ export default function Agences() {
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/85 via-[#0d1117]/75 to-[#0d1117]/92" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1B2A]/85 via-[#0E1B2A]/75 to-[#0E1B2A]/92" />
 
         <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-[10px] md:text-xs font-medium tracking-wide mb-6 md:mb-8">
@@ -201,7 +201,7 @@ export default function Agences() {
             {t.hero.titleLine1}<br className="hidden sm:block" /> {t.hero.titleLine2}
           </h1>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-black leading-[1.1] sm:leading-[1.05] mb-6 md:mb-8">
-            <span className="text-[#C9A84C]">{t.hero.titleGold}</span>
+            <span className="text-sea">{t.hero.titleGold}</span>
           </h2>
 
           <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
@@ -209,7 +209,7 @@ export default function Agences() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto mx-auto">
-            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-sea text-white font-bold text-sm md:text-[15px] hover:bg-sea transition-colors shadow-lg">
               {t.hero.ctaPrimary} <ArrowRight className="w-4 h-4" />
             </button>
             <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm md:text-[15px] hover:bg-white/10 transition-colors">
@@ -230,8 +230,8 @@ export default function Agences() {
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
             <div>
-              <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.why.eyebrow}</p>
-              <h2 className="text-3xl md:text-4xl font-black text-[#1E3A5F] mb-6">{t.why.title}</h2>
+              <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.why.eyebrow}</p>
+              <h2 className="text-3xl md:text-4xl font-black text-foreground mb-6">{t.why.title}</h2>
               <p className="text-gray-400 text-sm leading-relaxed mb-8">
                 {t.why.intro}
               </p>
@@ -259,19 +259,19 @@ export default function Agences() {
               </div>
             </div>
 
-            <div className="bg-[#1E3A5F] rounded-2xl p-8 text-white">
+            <div className="bg-foreground rounded-2xl p-8 text-white">
               <h3 className="font-bold text-lg mb-2">{t.commission.title}</h3>
               <p className="text-white/50 text-sm mb-6">{t.commission.subtitle}</p>
               <div className="space-y-4 mb-6">
                 {t.commission.rows.map((row) => (
                   <div key={row.label} className="flex justify-between items-center py-2 border-b border-white/10 last:border-0">
                     <span className="text-sm text-white/60">{row.label}</span>
-                    <span className={`font-bold text-sm ${row.accent ? "text-[#C9A84C] text-xl" : "text-white"}`}>{row.value}</span>
+                    <span className={`font-bold text-sm ${row.accent ? "text-sea text-xl" : "text-white"}`}>{row.value}</span>
                   </div>
                 ))}
               </div>
               <div className="bg-white/5 rounded-xl p-4 border border-white/10 text-sm text-white/60">
-                <span className="text-[#C9A84C] font-semibold">✓</span> {t.commission.note}
+                <span className="text-sea font-semibold">✓</span> {t.commission.note}
               </div>
             </div>
           </div>
@@ -279,20 +279,20 @@ export default function Agences() {
       </section>
 
       {/* Comment ça marche */}
-      <section className="py-14 md:py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-muted">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.how.eyebrow}</p>
-            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">{t.how.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.how.eyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-black text-foreground">{t.how.title}</h2>
           </div>
 
           <div className="space-y-4">
             {t.how.steps.map((step, i) => (
               <div key={step.n} className="flex items-start gap-5 bg-white rounded-2xl p-6 border border-gray-100">
-                <div className="w-12 h-12 bg-[#1E3A5F] rounded-xl flex items-center justify-center text-[#C9A84C] font-black text-sm shrink-0">{step.n}</div>
+                <div className="w-12 h-12 bg-foreground rounded-xl flex items-center justify-center text-sea font-black text-sm shrink-0">{step.n}</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-1.5">
-                    <h3 className="font-bold text-[#1E3A5F]">{step.title}</h3>
+                    <h3 className="font-bold text-foreground">{step.title}</h3>
                     {step.badge && <span className="px-2.5 py-0.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-[10px] font-semibold">{step.badge}</span>}
                   </div>
                   <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
@@ -308,8 +308,8 @@ export default function Agences() {
       <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.tools.eyebrow}</p>
-            <h2 className="text-2xl md:text-3xl font-black text-[#1E3A5F]">{t.tools.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.tools.eyebrow}</p>
+            <h2 className="text-2xl md:text-3xl font-black text-foreground">{t.tools.title}</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
@@ -319,10 +319,10 @@ export default function Agences() {
               { icon: <Users className="w-5 h-5" />, ...t.tools.items[2] },
               { icon: <Handshake className="w-5 h-5" />, ...t.tools.items[3] },
             ].map((tool) => (
-              <div key={tool.title} className="flex items-start gap-4 p-6 bg-[#f8f9fb] rounded-2xl border border-gray-100 hover:border-[#C9A84C]/30 hover:shadow-md transition-all">
-                <div className="w-10 h-10 bg-[#1E3A5F] rounded-xl flex items-center justify-center text-[#C9A84C] shrink-0">{tool.icon}</div>
+              <div key={tool.title} className="flex items-start gap-4 p-6 bg-muted rounded-2xl border border-gray-100 hover:border-sea/30 hover:shadow-md transition-all">
+                <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center text-sea shrink-0">{tool.icon}</div>
                 <div>
-                  <h3 className="font-bold text-[#1E3A5F] mb-1 text-sm">{tool.title}</h3>
+                  <h3 className="font-bold text-foreground mb-1 text-sm">{tool.title}</h3>
                   <p className="text-xs text-gray-400 leading-relaxed">{tool.desc}</p>
                 </div>
               </div>
@@ -332,16 +332,16 @@ export default function Agences() {
       </section>
 
       {/* Témoignages */}
-      <section className="py-14 md:py-24 bg-[#1E3A5F]">
+      <section className="py-14 md:py-24 bg-foreground">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.testimonials.eyebrow}</p>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.testimonials.eyebrow}</p>
             <h2 className="text-2xl md:text-3xl font-black text-white">{t.testimonials.title}</h2>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {t.testimonials.items.map((item) => (
               <div key={item.name} className="bg-white/5 border border-white/10 rounded-2xl p-6">
-                <div className="flex gap-0.5 mb-4">{[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 text-[#C9A84C] fill-[#C9A84C]" />)}</div>
+                <div className="flex gap-0.5 mb-4">{[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 text-sea fill-sea" />)}</div>
                 <p className="text-white/70 text-sm leading-relaxed mb-5 italic">"{item.quote}"</p>
                 <div>
                   <div className="font-semibold text-white text-sm">{item.name}</div>
@@ -356,18 +356,18 @@ export default function Agences() {
       {/* CTA */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center max-w-2xl">
-          <div className="w-14 h-14 bg-[#C9A84C]/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-[#C9A84C]/20">
-            <Handshake className="w-7 h-7 text-[#C9A84C]" />
+          <div className="w-14 h-14 bg-sea/10 rounded-2xl flex items-center justify-center mx-auto mb-6 border border-sea/20">
+            <Handshake className="w-7 h-7 text-sea" />
           </div>
-          <h2 className="text-3xl font-black text-[#1E3A5F] mb-4">{t.cta.title}</h2>
+          <h2 className="text-3xl font-black text-foreground mb-4">{t.cta.title}</h2>
           <p className="text-gray-400 mb-8 text-sm leading-relaxed">
             {t.cta.text}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-8 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold hover:bg-[#b8963e] transition-colors">
+            <button className="px-8 py-3.5 rounded-full bg-sea text-white font-bold hover:bg-sea transition-colors">
               {t.cta.primary} <ArrowRight className="inline w-4 h-4 ml-1" />
             </button>
-            <button className="px-8 py-3.5 rounded-full border-2 border-[#1E3A5F] text-[#1E3A5F] font-semibold hover:bg-[#1E3A5F] hover:text-white transition-colors">
+            <button className="px-8 py-3.5 rounded-full border-2 border-foreground text-foreground font-semibold hover:bg-foreground hover:text-white transition-colors">
               {t.cta.secondary}
             </button>
           </div>

@@ -8,10 +8,10 @@ function PageHero({ badge, title, sub, img, actions }: { badge: string; title: s
   return (
     <section className="relative h-[42vh] min-h-[280px] flex items-end overflow-hidden">
       <img src={img} alt="" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/70 to-[#0d1117]/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B2A] via-[#0E1B2A]/70 to-[#0E1B2A]/30" />
       <div className="relative z-10 container mx-auto px-4 pb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/70 text-xs font-medium tracking-wide mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-sea" />
           {badge}
         </div>
         <h1 className="text-3xl md:text-4xl font-black text-white mb-2">{title}</h1>
@@ -200,7 +200,7 @@ export default function Defiscalisation() {
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => downloadPdf("/api/pdf/generate-guide", "Guide-Investissement-Neuf-2026.pdf")}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#C9A84C] text-white text-sm font-semibold hover:bg-[#b8963e] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-sea text-white text-sm font-semibold hover:bg-sea transition-colors"
             >
               <Download className="w-4 h-4" /> {t.hero.guidePdf}
             </button>
@@ -221,7 +221,7 @@ export default function Defiscalisation() {
           <div className="flex gap-1 p-1 bg-gray-100 rounded-xl w-fit mb-12">
             {(["jeanbrun", "lmnp"] as const).map((tab) => (
               <button key={tab} onClick={() => setActiveTab(tab)}
-                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${activeTab === tab ? "bg-[#1E3A5F] text-white shadow-sm" : "text-gray-500 hover:text-[#1E3A5F]"}`}>
+                className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all ${activeTab === tab ? "bg-foreground text-white shadow-sm" : "text-gray-500 hover:text-foreground"}`}>
                 {tab === "jeanbrun" ? t.tabs.jeanbrun : t.tabs.lmnp}
               </button>
             ))}
@@ -231,33 +231,33 @@ export default function Defiscalisation() {
             <div className="grid md:grid-cols-2 gap-10">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-[#1E3A5F] rounded-xl flex items-center justify-center">
-                    <TrendingUp className="w-5 h-5 text-[#C9A84C]" />
+                  <div className="w-10 h-10 bg-foreground rounded-xl flex items-center justify-center">
+                    <TrendingUp className="w-5 h-5 text-sea" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-black text-[#1E3A5F]">{t.jeanbrun.title}</h2>
+                    <h2 className="text-xl font-black text-foreground">{t.jeanbrun.title}</h2>
                     <p className="text-xs text-gray-400">{t.jeanbrun.subtitle}</p>
                   </div>
                 </div>
                 <div className="space-y-3 mb-6">
                   {t.jeanbrun.items.map((item) => (
                     <div key={item.label} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-[#C9A84C] shrink-0 mt-0.5" />
-                      <div className="text-sm"><span className="font-semibold text-[#1E3A5F]">{item.label} : </span><span className="text-gray-500">{item.value}</span></div>
+                      <CheckCircle2 className="w-4 h-4 text-sea shrink-0 mt-0.5" />
+                      <div className="text-sm"><span className="font-semibold text-foreground">{item.label} : </span><span className="text-gray-500">{item.value}</span></div>
                     </div>
                   ))}
                 </div>
-                <div className="bg-[#1E3A5F]/5 border border-[#1E3A5F]/10 rounded-xl p-4 flex items-start gap-3">
-                  <Users className="w-4 h-4 text-[#1E3A5F] shrink-0 mt-0.5" />
+                <div className="bg-foreground/5 border border-foreground/10 rounded-xl p-4 flex items-start gap-3">
+                  <Users className="w-4 h-4 text-foreground shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-sm font-semibold text-[#1E3A5F] mb-1">{t.jeanbrun.idealLabel}</div>
+                    <div className="text-sm font-semibold text-foreground mb-1">{t.jeanbrun.idealLabel}</div>
                     <p className="text-sm text-gray-500">{t.jeanbrun.idealText}</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-[#f8f9fb] rounded-2xl p-7 border border-gray-100">
-                <h3 className="font-bold text-[#1E3A5F] mb-5 flex items-center gap-2 text-sm">
-                  <Info className="w-4 h-4 text-[#C9A84C]" /> {t.jeanbrun.calcTitle}
+              <div className="bg-muted rounded-2xl p-7 border border-gray-100">
+                <h3 className="font-bold text-foreground mb-5 flex items-center gap-2 text-sm">
+                  <Info className="w-4 h-4 text-sea" /> {t.jeanbrun.calcTitle}
                 </h3>
                 <div className="space-y-0 font-mono text-sm mb-5">
                   {t.jeanbrun.rows.map((row, i, arr) => (
@@ -266,14 +266,14 @@ export default function Defiscalisation() {
                       <span className={`font-bold ${row.color}`}>{row.value}</span>
                     </div>
                   ))}
-                  <div className="flex justify-between py-3 bg-[#1E3A5F]/5 rounded-lg px-3 mt-2 font-bold">
-                    <span className="text-[#1E3A5F]">{t.jeanbrun.resultLabel}</span>
-                    <span className="text-[#1E3A5F]">{t.jeanbrun.resultValue}</span>
+                  <div className="flex justify-between py-3 bg-foreground/5 rounded-lg px-3 mt-2 font-bold">
+                    <span className="text-foreground">{t.jeanbrun.resultLabel}</span>
+                    <span className="text-foreground">{t.jeanbrun.resultValue}</span>
                   </div>
                 </div>
                 <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-5 text-center">
                   <div className="text-xs text-gray-400 mb-1">{t.jeanbrun.gainLabel}</div>
-                  <div className="text-4xl font-black text-[#C9A84C]">{t.jeanbrun.gainValue}<span className="text-lg font-semibold">{t.jeanbrun.perYear}</span></div>
+                  <div className="text-4xl font-black text-sea">{t.jeanbrun.gainValue}<span className="text-lg font-semibold">{t.jeanbrun.perYear}</span></div>
                   <div className="text-xs text-gray-400 mt-1">{t.jeanbrun.gainFormula}</div>
                 </div>
               </div>
@@ -284,33 +284,33 @@ export default function Defiscalisation() {
             <div className="grid md:grid-cols-2 gap-10">
               <div>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="w-10 h-10 bg-[#C9A84C] rounded-xl flex items-center justify-center">
+                  <div className="w-10 h-10 bg-sea rounded-xl flex items-center justify-center">
                     <TrendingUp className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-black text-[#1E3A5F]">{t.lmnp.title}</h2>
+                    <h2 className="text-xl font-black text-foreground">{t.lmnp.title}</h2>
                     <p className="text-xs text-gray-400">{t.lmnp.subtitle}</p>
                   </div>
                 </div>
                 <div className="space-y-3 mb-6">
                   {t.lmnp.items.map((item) => (
                     <div key={item.label} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-4 h-4 text-[#C9A84C] shrink-0 mt-0.5" />
-                      <div className="text-sm"><span className="font-semibold text-[#1E3A5F]">{item.label} : </span><span className="text-gray-500">{item.value}</span></div>
+                      <CheckCircle2 className="w-4 h-4 text-sea shrink-0 mt-0.5" />
+                      <div className="text-sm"><span className="font-semibold text-foreground">{item.label} : </span><span className="text-gray-500">{item.value}</span></div>
                     </div>
                   ))}
                 </div>
                 <div className="bg-amber-50 border border-amber-200/50 rounded-xl p-4 flex items-start gap-3">
-                  <Users className="w-4 h-4 text-[#C9A84C] shrink-0 mt-0.5" />
+                  <Users className="w-4 h-4 text-sea shrink-0 mt-0.5" />
                   <div>
-                    <div className="text-sm font-semibold text-[#1E3A5F] mb-1">{t.lmnp.idealLabel}</div>
+                    <div className="text-sm font-semibold text-foreground mb-1">{t.lmnp.idealLabel}</div>
                     <p className="text-sm text-gray-500">{t.lmnp.idealText}</p>
                   </div>
                 </div>
               </div>
-              <div className="bg-[#f8f9fb] rounded-2xl p-7 border border-gray-100">
-                <h3 className="font-bold text-[#1E3A5F] mb-5 flex items-center gap-2 text-sm">
-                  <Info className="w-4 h-4 text-[#C9A84C]" /> {t.lmnp.calcTitle}
+              <div className="bg-muted rounded-2xl p-7 border border-gray-100">
+                <h3 className="font-bold text-foreground mb-5 flex items-center gap-2 text-sm">
+                  <Info className="w-4 h-4 text-sea" /> {t.lmnp.calcTitle}
                 </h3>
                 <div className="space-y-0 font-mono text-sm mb-5">
                   {t.lmnp.rows.map((row, i, arr) => (
@@ -319,9 +319,9 @@ export default function Defiscalisation() {
                       <span className={`font-bold ${row.color}`}>{row.value}</span>
                     </div>
                   ))}
-                  <div className="flex justify-between py-3 bg-[#1E3A5F]/5 rounded-lg px-3 mt-2 font-bold">
-                    <span className="text-[#1E3A5F]">{t.lmnp.resultLabel}</span>
-                    <span className="text-[#1E3A5F]">{t.lmnp.resultValue}</span>
+                  <div className="flex justify-between py-3 bg-foreground/5 rounded-lg px-3 mt-2 font-bold">
+                    <span className="text-foreground">{t.lmnp.resultLabel}</span>
+                    <span className="text-foreground">{t.lmnp.resultValue}</span>
                   </div>
                 </div>
                 <div className="bg-emerald-50 border border-emerald-200/50 rounded-xl p-5 text-center">
@@ -336,36 +336,36 @@ export default function Defiscalisation() {
       </section>
 
       {/* Tableau comparatif */}
-      <section className="py-12 md:py-20 bg-[#f8f9fb] border-t border-gray-100">
+      <section className="py-12 md:py-20 bg-muted border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.table.eyebrow}</p>
-            <h2 className="text-2xl font-black text-[#1E3A5F]">{t.table.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.table.eyebrow}</p>
+            <h2 className="text-2xl font-black text-foreground">{t.table.title}</h2>
           </div>
           <div className="bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-100">
             <div className="overflow-x-auto">
               <div className="min-w-[460px]">
-                <div className="grid grid-cols-3 bg-[#1E3A5F]">
+                <div className="grid grid-cols-3 bg-foreground">
                   <div className="p-3 sm:p-4 text-xs font-semibold text-white/60 uppercase tracking-widest">{t.table.headers.critere}</div>
                   <div className="p-3 sm:p-4 text-xs font-semibold text-white text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.jeanbrun}</div>
-                  <div className="p-3 sm:p-4 text-xs font-semibold text-[#C9A84C] text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.lmnp}</div>
+                  <div className="p-3 sm:p-4 text-xs font-semibold text-sea text-center border-l border-white/10 uppercase tracking-widest">{t.table.headers.lmnp}</div>
                 </div>
                 {t.table.rows.map((row, i) => (
                   <div key={row.critere} className={`grid grid-cols-3 ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
-                    <div className="p-3 sm:p-4 text-sm font-medium text-[#1E3A5F] border-r border-gray-100">{row.critere}</div>
+                    <div className="p-3 sm:p-4 text-sm font-medium text-foreground border-r border-gray-100">{row.critere}</div>
                     <div className="p-3 sm:p-4 text-sm text-center text-gray-600 border-r border-gray-100">{row.jeanbrun}</div>
-                    <div className="p-3 sm:p-4 text-sm text-center font-semibold text-[#C9A84C]">{row.lmnp}</div>
+                    <div className="p-3 sm:p-4 text-sm text-center font-semibold text-sea">{row.lmnp}</div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="mt-6 bg-[#1E3A5F]/5 border border-[#1E3A5F]/10 rounded-2xl p-6">
-            <h3 className="font-bold text-[#1E3A5F] mb-3 flex items-center gap-2 text-sm">
-              <Info className="w-4 h-4 text-[#C9A84C]" /> {t.table.formulaTitle}
+          <div className="mt-6 bg-foreground/5 border border-foreground/10 rounded-2xl p-6">
+            <h3 className="font-bold text-foreground mb-3 flex items-center gap-2 text-sm">
+              <Info className="w-4 h-4 text-sea" /> {t.table.formulaTitle}
             </h3>
-            <p className="font-mono text-sm text-gray-600">{t.table.formulaPrefix}<strong className="text-[#1E3A5F]">{t.table.formulaResult}</strong>{t.table.formulaMid}<strong className="text-[#C9A84C]">{t.table.formulaGain}</strong></p>
+            <p className="font-mono text-sm text-gray-600">{t.table.formulaPrefix}<strong className="text-foreground">{t.table.formulaResult}</strong>{t.table.formulaMid}<strong className="text-sea">{t.table.formulaGain}</strong></p>
           </div>
         </div>
       </section>

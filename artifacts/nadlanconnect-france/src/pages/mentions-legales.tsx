@@ -108,7 +108,7 @@ const content = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
-      <h2 className="text-xl font-bold text-[#1E3A5F] mb-4 pb-2 border-b border-gray-100">{title}</h2>
+      <h2 className="text-xl font-bold text-foreground mb-4 pb-2 border-b border-gray-100">{title}</h2>
       <div className="text-gray-600 text-sm leading-relaxed space-y-3">{children}</div>
     </div>
   );
@@ -132,15 +132,15 @@ export default function MentionsLegales() {
       <div className="container mx-auto px-4 py-14 max-w-3xl">
         <Section title={t.editor.title}>
           <p><strong>{t.editor.introBold}</strong>{t.editor.introText}</p>
-          <p>{t.editor.websiteLabel}<a href="https://nadlan-connect-france.replit.app" className="text-[#C9A84C] hover:underline">nadlan-connect-france.replit.app</a></p>
-          <p>{t.editor.contactLabel}<a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-[#C9A84C] hover:underline">nadlanconnect.com</a></p>
+          <p>{t.editor.websiteLabel}<a href="https://nadlan-connect-france.replit.app" className="text-sea hover:underline">nadlan-connect-france.replit.app</a></p>
+          <p>{t.editor.contactLabel}<a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-sea hover:underline">nadlanconnect.com</a></p>
         </Section>
 
         <Section title={t.hosting.title}>
           <p>
             {t.hosting.hostedByBefore}<strong>{t.hosting.hostName}</strong><br />
             {t.hosting.location}<br />
-            <a href="https://replit.com" target="_blank" rel="noopener noreferrer" className="text-[#C9A84C] hover:underline">replit.com</a>
+            <a href="https://replit.com" target="_blank" rel="noopener noreferrer" className="text-sea hover:underline">replit.com</a>
           </p>
         </Section>
 
@@ -151,7 +151,7 @@ export default function MentionsLegales() {
         <Section title={t.data.title}>
           <p>
             {t.data.before}
-            <a href="/politique-confidentialite" className="text-[#C9A84C] hover:underline">
+            <a href="/politique-confidentialite" className="text-sea hover:underline">
               {t.data.link}
             </a>{t.data.after}
           </p>
@@ -177,7 +177,7 @@ export default function MentionsLegales() {
         <Section title={t.contact.title}>
           <p>
             {t.contact.before}
-            <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-[#C9A84C] hover:underline">
+            <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-sea hover:underline">
               nadlanconnect.com
             </a>{t.contact.after}
           </p>

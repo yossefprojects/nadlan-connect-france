@@ -179,11 +179,11 @@ function StatCard({ value, label }: { value: string; label: string }) {
 
 function FeatureCard({ icon, title, desc }: { icon: React.ReactNode; title: string; desc: string }) {
   return (
-    <div className="bg-white border border-gray-100 rounded-2xl p-7 hover:border-[#C9A84C]/30 hover:shadow-xl transition-all duration-300 group">
-      <div className="w-12 h-12 bg-[#1E3A5F] rounded-xl flex items-center justify-center text-[#C9A84C] mb-5 group-hover:scale-105 transition-transform">
+    <div className="bg-white border border-gray-100 rounded-2xl p-7 hover:border-sea/30 hover:shadow-xl transition-all duration-300 group">
+      <div className="w-12 h-12 bg-foreground rounded-xl flex items-center justify-center text-sea mb-5 group-hover:scale-105 transition-transform">
         {icon}
       </div>
-      <h3 className="font-bold text-[#1E3A5F] text-base mb-2">{title}</h3>
+      <h3 className="font-bold text-foreground text-base mb-2">{title}</h3>
       <p className="text-sm text-gray-400 leading-relaxed">{desc}</p>
     </div>
   );
@@ -193,21 +193,21 @@ function PricingCard({ plan, price, desc, features, cta, highlight }: {
   plan: string; price: string; desc: string; features: string[]; cta: string; highlight?: boolean;
 }) {
   return (
-    <div className={`rounded-2xl p-8 border ${highlight ? "bg-[#1E3A5F] border-[#C9A84C]/30 shadow-2xl shadow-[#1E3A5F]/20" : "bg-white border-gray-100"}`}>
+    <div className={`rounded-2xl p-8 border ${highlight ? "bg-foreground border-sea/30 shadow-2xl shadow-foreground/20" : "bg-white border-gray-100"}`}>
       <div className="mb-6">
-        <p className={`text-xs font-semibold uppercase tracking-widest mb-2 ${highlight ? "text-[#C9A84C]" : "text-gray-400"}`}>{plan}</p>
-        <div className={`text-4xl font-black mb-1 ${highlight ? "text-white" : "text-[#1E3A5F]"}`}>{price}</div>
+        <p className={`text-xs font-semibold uppercase tracking-widest mb-2 ${highlight ? "text-sea" : "text-gray-400"}`}>{plan}</p>
+        <div className={`text-4xl font-black mb-1 ${highlight ? "text-white" : "text-foreground"}`}>{price}</div>
         <p className={`text-sm ${highlight ? "text-white/50" : "text-gray-400"}`}>{desc}</p>
       </div>
       <ul className="space-y-3 mb-8">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-2.5">
-            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${highlight ? "text-[#C9A84C]" : "text-[#C9A84C]"}`} />
+            <CheckCircle2 className={`w-4 h-4 shrink-0 mt-0.5 ${highlight ? "text-sea" : "text-sea"}`} />
             <span className={`text-sm ${highlight ? "text-white/80" : "text-gray-600"}`}>{f}</span>
           </li>
         ))}
       </ul>
-      <button className={`w-full py-3 rounded-full font-semibold text-sm transition-colors ${highlight ? "bg-[#C9A84C] text-white hover:bg-[#b8963e]" : "border-2 border-[#1E3A5F] text-[#1E3A5F] hover:bg-[#1E3A5F] hover:text-white"}`}>
+      <button className={`w-full py-3 rounded-full font-semibold text-sm transition-colors ${highlight ? "bg-sea text-white hover:bg-sea" : "border-2 border-foreground text-foreground hover:bg-foreground hover:text-white"}`}>
         {cta}
       </button>
     </div>
@@ -226,11 +226,11 @@ export default function Promoteurs() {
           alt=""
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/85 via-[#0d1117]/75 to-[#0d1117]/95" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0E1B2A]/85 via-[#0E1B2A]/75 to-[#0E1B2A]/95" />
 
         <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/15 bg-white/5 text-white/70 text-[10px] md:text-xs font-medium tracking-wide mb-6 md:mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] shrink-0" />
+            <span className="w-1.5 h-1.5 rounded-full bg-sea shrink-0" />
             <span className="sm:hidden">{t.hero.eyebrowShort}</span>
             <span className="hidden sm:inline">{t.hero.eyebrowLong}</span>
           </div>
@@ -239,7 +239,7 @@ export default function Promoteurs() {
             {t.hero.title1a}<br />{t.hero.title1b}
           </h1>
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] sm:leading-[1.05] mb-6 md:mb-8">
-            <span className="text-[#C9A84C]">{t.hero.title2}</span>
+            <span className="text-sea">{t.hero.title2}</span>
           </h2>
 
           <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mx-auto mb-8 md:mb-10 leading-relaxed px-2">
@@ -247,7 +247,7 @@ export default function Promoteurs() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center w-full sm:w-auto mx-auto">
-            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-colors shadow-lg">
+            <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-sea text-white font-bold text-sm md:text-[15px] hover:bg-sea transition-colors shadow-lg">
               {t.hero.ctaPartner} <ArrowRight className="w-4 h-4" />
             </button>
             <button className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full border border-white/20 text-white font-semibold text-sm md:text-[15px] hover:bg-white/10 transition-colors">
@@ -268,8 +268,8 @@ export default function Promoteurs() {
       <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.features.eyebrow}</p>
-            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">{t.features.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.features.eyebrow}</p>
+            <h2 className="text-2xl md:text-4xl font-black text-foreground">{t.features.title}</h2>
             <p className="text-gray-400 mt-3 max-w-xl mx-auto text-sm">{t.features.subtitle}</p>
           </div>
 
@@ -309,18 +309,18 @@ export default function Promoteurs() {
       </section>
 
       {/* Comment ça marche */}
-      <section className="py-14 md:py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-muted">
         <div className="container mx-auto px-4 max-w-4xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.steps.eyebrow}</p>
-            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">{t.steps.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.steps.eyebrow}</p>
+            <h2 className="text-2xl md:text-4xl font-black text-foreground">{t.steps.title}</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {t.steps.items.map((item) => (
               <div key={item.step} className="relative">
-                <div className="text-7xl font-black text-[#1E3A5F]/8 mb-2 leading-none">{item.step}</div>
-                <h3 className="font-bold text-[#1E3A5F] mb-2">{item.title}</h3>
+                <div className="text-7xl font-black text-foreground/8 mb-2 leading-none">{item.step}</div>
+                <h3 className="font-bold text-foreground mb-2">{item.title}</h3>
                 <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -332,8 +332,8 @@ export default function Promoteurs() {
       <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.pricing.eyebrow}</p>
-            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">{t.pricing.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.pricing.eyebrow}</p>
+            <h2 className="text-2xl md:text-4xl font-black text-foreground">{t.pricing.title}</h2>
           </div>
 
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
@@ -364,10 +364,10 @@ export default function Promoteurs() {
       </section>
 
       {/* Témoignages */}
-      <section className="py-14 md:py-24 bg-[#1E3A5F]">
+      <section className="py-14 md:py-24 bg-foreground">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.testimonials.eyebrow}</p>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.testimonials.eyebrow}</p>
             <h2 className="text-2xl md:text-3xl font-black text-white">{t.testimonials.title}</h2>
           </div>
 
@@ -375,7 +375,7 @@ export default function Promoteurs() {
             {t.testimonials.items.map((item) => (
               <div key={item.name} className="bg-white/5 border border-white/10 rounded-2xl p-6">
                 <div className="flex gap-0.5 mb-4">
-                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 text-[#C9A84C] fill-[#C9A84C]" />)}
+                  {[1,2,3,4,5].map((s) => <Star key={s} className="w-4 h-4 text-sea fill-sea" />)}
                 </div>
                 <p className="text-white/70 text-sm leading-relaxed mb-5 italic">"{item.quote}"</p>
                 <div>
@@ -391,18 +391,18 @@ export default function Promoteurs() {
       {/* CTA final */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 text-center max-w-2xl">
-          <div className="w-14 h-14 bg-[#1E3A5F] rounded-2xl flex items-center justify-center mx-auto mb-6">
-            <TrendingUp className="w-7 h-7 text-[#C9A84C]" />
+          <div className="w-14 h-14 bg-foreground rounded-2xl flex items-center justify-center mx-auto mb-6">
+            <TrendingUp className="w-7 h-7 text-sea" />
           </div>
-          <h2 className="text-3xl font-black text-[#1E3A5F] mb-4">{t.cta.title}</h2>
+          <h2 className="text-3xl font-black text-foreground mb-4">{t.cta.title}</h2>
           <p className="text-gray-400 mb-8 text-sm leading-relaxed">
             {t.cta.desc}
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <button className="px-8 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold hover:bg-[#b8963e] transition-colors">
+            <button className="px-8 py-3.5 rounded-full bg-sea text-white font-bold hover:bg-sea transition-colors">
               {t.cta.ctaCreate} <ArrowRight className="inline w-4 h-4 ml-1" />
             </button>
-            <button className="px-8 py-3.5 rounded-full border-2 border-[#1E3A5F] text-[#1E3A5F] font-semibold hover:bg-[#1E3A5F] hover:text-white transition-colors">
+            <button className="px-8 py-3.5 rounded-full border-2 border-foreground text-foreground font-semibold hover:bg-foreground hover:text-white transition-colors">
               {t.cta.ctaAdvisor}
             </button>
           </div>

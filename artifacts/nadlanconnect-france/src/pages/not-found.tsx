@@ -36,31 +36,31 @@ export default function NotFound() {
   const t = content[lang];
 
   return (
-    <div className="min-h-screen bg-[#0d1117] flex flex-col items-center justify-center px-4 text-center">
-      <div className="w-16 h-16 bg-[#1E3A5F] rounded-2xl flex items-center justify-center mb-8">
-        <span className="text-[#C9A84C] text-xl font-black leading-none">NC</span>
+    <div className="min-h-screen bg-background flex flex-col items-center justify-center px-4 text-center">
+      <div className="w-16 h-16 bg-foreground rounded-2xl flex items-center justify-center mb-8">
+        <span className="text-sea-bright text-xl font-black leading-none">NC</span>
       </div>
 
-      <p className="text-[#C9A84C] text-sm font-semibold uppercase tracking-widest mb-4">{t.eyebrow}</p>
-      <h1 className="text-4xl md:text-7xl font-black text-white mb-4">{t.title}</h1>
-      <p className="text-white/40 text-lg max-w-md mb-10 leading-relaxed">
+      <p className="text-sea text-sm font-semibold uppercase tracking-widest mb-4">{t.eyebrow}</p>
+      <h1 className="text-4xl md:text-7xl font-black text-foreground mb-4">{t.title}</h1>
+      <p className="text-muted-foreground text-lg max-w-md mb-10 leading-relaxed">
         {t.description}
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4">
         <Link href="/"
-          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold hover:bg-[#b8963e] transition-colors">
+          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-sea text-white font-bold hover:opacity-90 transition-colors">
           <Home className="w-4 h-4" /> {t.backHome}
         </Link>
         <button onClick={() => window.history.back()}
-          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-white/15 text-white/70 font-semibold hover:bg-white/10 transition-colors">
+          className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-border text-foreground/70 font-semibold hover:bg-muted transition-colors">
           <ArrowLeft className="w-4 h-4" /> {t.previous}
         </button>
       </div>
 
       <div className="mt-16 grid grid-cols-3 gap-6 md:gap-12 text-center opacity-40">
         {t.links.map((l) => (
-          <Link key={l.href} href={l.href} className="text-sm text-white/60 hover:text-white transition-colors">
+          <Link key={l.href} href={l.href} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {l.label}
           </Link>
         ))}

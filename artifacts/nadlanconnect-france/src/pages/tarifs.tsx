@@ -165,27 +165,27 @@ export default function Tarifs() {
   return (
     <Layout>
       {/* Hero */}
-      <section className="relative flex min-h-[42vh] items-end overflow-hidden bg-gradient-to-br from-[#0A1628] via-[#0d1f3a] to-[#1A3A5C]">
-        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-[#C9A84C]/20 blur-[120px]" />
+      <section className="relative flex min-h-[42vh] items-end overflow-hidden border-b border-border bg-card">
+        <div className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full bg-sea/10 blur-[120px]" />
         <div className="container relative z-10 mx-auto px-4 pb-12 pt-24">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-medium tracking-wide text-white/70">
-            <span className="h-1.5 w-1.5 rounded-full bg-[#C9A84C]" />
+          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-sea/30 bg-sea-soft px-3 py-1 text-xs font-medium tracking-wide text-sea">
+            <span className="h-1.5 w-1.5 rounded-full bg-sea" />
             {t.hero.badge}
           </div>
-          <h1 className="mb-3 max-w-3xl font-serif text-3xl font-black text-white md:text-5xl">
+          <h1 className="mb-3 max-w-3xl font-serif text-3xl font-black text-foreground md:text-5xl">
             {t.hero.title}
           </h1>
-          <p className="max-w-2xl text-white/55">{t.hero.sub}</p>
+          <p className="max-w-2xl text-muted-foreground">{t.hero.sub}</p>
         </div>
       </section>
 
-      <div className="bg-[#F8F7F4]">
+      <div className="bg-background">
         {/* Model intro */}
         <section className="container mx-auto px-4 py-16 text-center">
-          <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b8963e]">
+          <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-sea">
             {t.model.eyebrow}
           </p>
-          <h2 className="mx-auto mb-4 max-w-3xl text-2xl font-bold text-[#1E3A5F] md:text-3xl">
+          <h2 className="mx-auto mb-4 max-w-3xl text-2xl font-bold text-foreground md:text-3xl">
             {t.model.title}
           </h2>
           <p className="mx-auto max-w-2xl leading-relaxed text-gray-500">{t.model.desc}</p>
@@ -193,19 +193,19 @@ export default function Tarifs() {
 
         {/* Particuliers — free highlight */}
         <section className="container mx-auto px-4 pb-8">
-          <div className="mx-auto max-w-3xl rounded-3xl border border-[#C9A84C]/40 bg-white p-8 shadow-xl shadow-amber-50 md:p-10">
+          <div className="mx-auto max-w-3xl rounded-3xl border border-sea/40 bg-white p-8 shadow-xl shadow-amber-50 md:p-10">
             <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
               <div>
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#1E3A5F] px-3 py-1 text-xs font-semibold text-[#C9A84C]">
+                <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-foreground px-3 py-1 text-xs font-semibold text-sea-bright">
                   <Users className="h-3.5 w-3.5" />
                   {t.particuliers.eyebrow}
                 </div>
-                <h3 className="text-xl font-bold text-[#1E3A5F] md:text-2xl">
+                <h3 className="text-xl font-bold text-foreground md:text-2xl">
                   {t.particuliers.title}
                 </h3>
               </div>
               <div className="text-end">
-                <div className="font-serif text-4xl font-black text-[#1E3A5F]">
+                <div className="font-serif text-4xl font-black text-foreground">
                   {t.particuliers.price}
                 </div>
                 <div className="text-xs text-gray-400">{t.particuliers.priceNote}</div>
@@ -214,7 +214,7 @@ export default function Tarifs() {
             <ul className="mt-6 grid gap-3 border-t border-gray-100 pt-6 sm:grid-cols-2">
               {t.particuliers.features.map((f) => (
                 <li key={f} className="flex items-start gap-2.5 text-sm text-gray-600">
-                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#C9A84C]" />
+                  <Check className="mt-0.5 h-4 w-4 shrink-0 text-sea" />
                   <span>{f}</span>
                 </li>
               ))}
@@ -225,10 +225,10 @@ export default function Tarifs() {
         {/* Professionnels — offers */}
         <section className="container mx-auto px-4 py-12">
           <div className="mb-8 text-center">
-            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-[#b8963e]">
+            <p className="mb-2 text-xs font-bold uppercase tracking-[0.18em] text-sea">
               {t.pros.eyebrow}
             </p>
-            <h2 className="mb-3 text-2xl font-bold text-[#1E3A5F] md:text-3xl">{t.pros.title}</h2>
+            <h2 className="mb-3 text-2xl font-bold text-foreground md:text-3xl">{t.pros.title}</h2>
             <p className="mx-auto max-w-2xl text-gray-500">{t.pros.subtitle}</p>
           </div>
 
@@ -238,19 +238,19 @@ export default function Tarifs() {
               return (
                 <div
                   key={offer.name}
-                  className="flex flex-col rounded-2xl border border-gray-100 bg-white p-7 transition-all duration-300 hover:border-[#C9A84C]/40 hover:shadow-xl hover:shadow-amber-50"
+                  className="flex flex-col rounded-2xl border border-gray-100 bg-white p-7 transition-all duration-300 hover:border-sea/40 hover:shadow-xl hover:shadow-amber-50"
                 >
-                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-[#1E3A5F] text-[#C9A84C]">
+                  <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-foreground text-sea-bright">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-bold text-[#1E3A5F]">{offer.name}</h3>
-                  <span className="mt-1 inline-block w-fit rounded-full border border-[#C9A84C]/30 bg-amber-50 px-2.5 py-0.5 text-[11px] font-semibold text-[#b8963e]">
+                  <h3 className="text-lg font-bold text-foreground">{offer.name}</h3>
+                  <span className="mt-1 inline-block w-fit rounded-full border border-sea/30 bg-amber-50 px-2.5 py-0.5 text-[11px] font-semibold text-sea">
                     {offer.tag}
                   </span>
                   <p className="mt-4 flex-1 text-sm leading-relaxed text-gray-500">{offer.desc}</p>
                   <div className="mt-5 border-t border-gray-100 pt-4">
                     <div className="flex items-baseline gap-1.5">
-                      <span className="text-2xl font-black text-[#1E3A5F]">{offer.price}</span>
+                      <span className="text-2xl font-black text-foreground">{offer.price}</span>
                       <span className="text-xs text-gray-400">{offer.unit}</span>
                     </div>
                     <p className="mt-1.5 text-xs leading-relaxed text-gray-400">{offer.note}</p>
@@ -263,12 +263,12 @@ export default function Tarifs() {
 
         {/* Key takeaways */}
         <section className="container mx-auto px-4 py-12">
-          <h2 className="mb-8 text-center text-2xl font-bold text-[#1E3A5F]">{t.keys.title}</h2>
+          <h2 className="mb-8 text-center text-2xl font-bold text-foreground">{t.keys.title}</h2>
           <div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
             {[t.keys.particulier, t.keys.pro].map((k) => (
               <div key={k.title} className="rounded-2xl border border-gray-100 bg-white p-7">
-                <div className="mb-3 flex items-center gap-2 font-bold text-[#1E3A5F]">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#C9A84C]" />
+                <div className="mb-3 flex items-center gap-2 font-bold text-foreground">
+                  <span className="h-1.5 w-1.5 rounded-full bg-sea" />
                   {k.title}
                 </div>
                 <p className="text-sm leading-relaxed text-gray-500">{k.desc}</p>
@@ -279,8 +279,8 @@ export default function Tarifs() {
 
         {/* CTA */}
         <section className="container mx-auto px-4 pb-20 pt-8">
-          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0A1628] to-[#1A3A5C] p-10 text-center md:p-14">
-            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#C9A84C]/20 blur-[100px]" />
+          <div className="relative overflow-hidden rounded-3xl bg-foreground p-10 text-center md:p-14">
+            <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-sea-bright/15 blur-[100px]" />
             <h2 className="relative mb-3 font-serif text-2xl font-black text-white md:text-3xl">
               {t.cta.title}
             </h2>
@@ -288,7 +288,7 @@ export default function Tarifs() {
             <div className="relative flex flex-wrap justify-center gap-3">
               <Link
                 href="/promoteurs"
-                className="inline-flex items-center gap-2 rounded-full bg-[#C9A84C] px-6 py-3 text-sm font-bold text-[#0A1628] transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 text-sm font-bold text-foreground transition-transform hover:-translate-y-0.5"
               >
                 {t.cta.promoteurs}
                 <ArrowRight className="h-4 w-4" />

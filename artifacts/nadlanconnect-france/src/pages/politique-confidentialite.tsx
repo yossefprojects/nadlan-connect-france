@@ -174,7 +174,7 @@ const content = {
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className="mb-10">
-      <h2 className="text-xl font-bold text-[#1E3A5F] mb-4 pb-2 border-b border-gray-100">{title}</h2>
+      <h2 className="text-xl font-bold text-foreground mb-4 pb-2 border-b border-gray-100">{title}</h2>
       <div className="text-gray-600 text-sm leading-relaxed space-y-3">{children}</div>
     </div>
   );
@@ -185,7 +185,7 @@ export default function PolitiqueConfidentialite() {
   const t = content[lang];
   return (
     <Layout>
-      <section className="relative h-[28vh] min-h-[180px] flex items-end overflow-hidden bg-[#1E3A5F]">
+      <section className="relative h-[28vh] min-h-[180px] flex items-end overflow-hidden bg-foreground">
         <div className="relative z-10 container mx-auto px-4 pb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/70 text-xs font-medium mb-3">
             <Shield className="w-3 h-3" /> {t.hero.badge}
@@ -245,10 +245,10 @@ export default function PolitiqueConfidentialite() {
           </ul>
           <p className="mt-3">
             {t.s6.contactBefore}{" "}
-            <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-[#C9A84C] hover:underline">
+            <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer" className="text-sea hover:underline">
               {t.s6.contactLink}
             </a>{t.s6.contactMid}{" "}
-            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-[#C9A84C] hover:underline">{t.s6.cnilLink}</a>{t.s6.contactEnd}
+            <a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer" className="text-sea hover:underline">{t.s6.cnilLink}</a>{t.s6.contactEnd}
           </p>
         </Section>
 

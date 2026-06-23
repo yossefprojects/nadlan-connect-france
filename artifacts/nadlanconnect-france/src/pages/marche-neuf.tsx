@@ -35,8 +35,8 @@ const content = {
         { n: "1", label: "Réservation", pct: "5%", color: "bg-white/20" },
         { n: "2", label: "Fondations", pct: "35%", color: "bg-white/30" },
         { n: "3", label: "Hors d'eau", pct: "70%", color: "bg-white/40" },
-        { n: "4", label: "Achèvement", pct: "95%", color: "bg-[#C9A84C]/60" },
-        { n: "5", label: "Livraison", pct: "100%", color: "bg-[#C9A84C]" },
+        { n: "4", label: "Achèvement", pct: "95%", color: "bg-sea/60" },
+        { n: "5", label: "Livraison", pct: "100%", color: "bg-sea" },
       ],
     },
     re2020: {
@@ -97,8 +97,8 @@ const content = {
         { n: "1", label: "Reservation", pct: "5%", color: "bg-white/20" },
         { n: "2", label: "Foundations", pct: "35%", color: "bg-white/30" },
         { n: "3", label: "Weathertight", pct: "70%", color: "bg-white/40" },
-        { n: "4", label: "Completion", pct: "95%", color: "bg-[#C9A84C]/60" },
-        { n: "5", label: "Handover", pct: "100%", color: "bg-[#C9A84C]" },
+        { n: "4", label: "Completion", pct: "95%", color: "bg-sea/60" },
+        { n: "5", label: "Handover", pct: "100%", color: "bg-sea" },
       ],
     },
     re2020: {
@@ -133,10 +133,10 @@ function PageHero({ badge, title, sub, img }: { badge: string; title: string; su
   return (
     <section className="relative h-[38vh] min-h-[260px] flex items-end overflow-hidden">
       <img src={img} alt="" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1117] via-[#0d1117]/70 to-[#0d1117]/30" />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0E1B2A] via-[#0E1B2A]/70 to-[#0E1B2A]/30" />
       <div className="relative z-10 container mx-auto px-4 pb-10">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/70 text-xs font-medium tracking-wide mb-4">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-sea" />
           {badge}
         </div>
         <h1 className="text-3xl md:text-4xl font-black text-white mb-2">{title}</h1>
@@ -163,42 +163,42 @@ export default function MarcheNeuf() {
       <section className="py-12 md:py-20 bg-white">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-11 h-11 bg-[#1E3A5F] rounded-xl flex items-center justify-center shrink-0">
-              <HardHat className="w-5 h-5 text-[#C9A84C]" />
+            <div className="w-11 h-11 bg-foreground rounded-xl flex items-center justify-center shrink-0">
+              <HardHat className="w-5 h-5 text-sea" />
             </div>
             <div>
               <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">{t.vefa.eyebrow}</p>
-              <h2 className="text-2xl font-black text-[#1E3A5F]">{t.vefa.title}</h2>
+              <h2 className="text-2xl font-black text-foreground">{t.vefa.title}</h2>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-10 mb-12">
             <div>
               <p className="text-gray-500 leading-relaxed mb-6">
-                {t.vefa.intro1}<strong className="text-[#1E3A5F]">{t.vefa.introStrong}</strong>{t.vefa.intro2}
+                {t.vefa.intro1}<strong className="text-foreground">{t.vefa.introStrong}</strong>{t.vefa.intro2}
               </p>
               <div className="space-y-3">
                 {t.vefa.guarantees.map((item) => (
                   <div key={item} className="flex items-start gap-3">
-                    <CheckCircle2 className="w-4 h-4 text-[#C9A84C] shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-sea shrink-0 mt-0.5" />
                     <span className="text-sm text-gray-600">{item}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-[#f8f9fb] rounded-2xl p-6 border border-gray-100">
-              <h3 className="font-bold text-[#1E3A5F] mb-4 flex items-center gap-2 text-sm">
-                <Receipt className="w-4 h-4 text-[#C9A84C]" /> {t.vefa.appelsTitle}
+            <div className="bg-muted rounded-2xl p-6 border border-gray-100">
+              <h3 className="font-bold text-foreground mb-4 flex items-center gap-2 text-sm">
+                <Receipt className="w-4 h-4 text-sea" /> {t.vefa.appelsTitle}
               </h3>
               <div className="space-y-0">
                 {t.vefa.appels.map((item, i, arr) => (
                   <div key={item.phase} className={`flex items-center justify-between py-3 ${i < arr.length - 1 ? "border-b border-gray-200" : ""}`}>
                     <div>
-                      <span className="text-sm font-semibold text-[#1E3A5F]">{item.phase}</span>
+                      <span className="text-sm font-semibold text-foreground">{item.phase}</span>
                       <span className="text-xs text-gray-400 ml-2">{item.desc}</span>
                     </div>
-                    <span className="text-sm font-black text-[#C9A84C]">{item.pct}</span>
+                    <span className="text-sm font-black text-sea">{item.pct}</span>
                   </div>
                 ))}
               </div>
@@ -206,7 +206,7 @@ export default function MarcheNeuf() {
           </div>
 
           {/* Timeline visuelle */}
-          <div className="bg-[#1E3A5F] rounded-2xl p-5 md:p-8">
+          <div className="bg-foreground rounded-2xl p-5 md:p-8">
             <h3 className="font-bold text-white text-center mb-8 text-sm uppercase tracking-widest">{t.vefa.timelineTitle}</h3>
             <div className="flex items-start gap-0 overflow-x-auto pb-2">
               {t.vefa.timeline.map((step, i, arr) => (
@@ -214,7 +214,7 @@ export default function MarcheNeuf() {
                   <div className="flex flex-col items-center flex-1 gap-2 text-center">
                     <div className={`w-12 h-12 rounded-full ${step.color} flex items-center justify-center text-white font-black text-lg border-2 border-white/20`}>{step.n}</div>
                     <div className="text-white/70 text-[10px] font-medium">{step.label}</div>
-                    <div className="text-[#C9A84C] text-xs font-bold">{step.pct}</div>
+                    <div className="text-sea text-xs font-bold">{step.pct}</div>
                   </div>
                   {i < arr.length - 1 && <div className="h-px w-full bg-white/15 mb-8 shrink-0" />}
                 </div>
@@ -225,7 +225,7 @@ export default function MarcheNeuf() {
       </section>
 
       {/* RE2020 */}
-      <section className="py-12 md:py-20 bg-[#f8f9fb] border-t border-gray-100">
+      <section className="py-12 md:py-20 bg-muted border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex items-center gap-3 mb-10">
             <div className="w-11 h-11 bg-emerald-600 rounded-xl flex items-center justify-center shrink-0">
@@ -233,7 +233,7 @@ export default function MarcheNeuf() {
             </div>
             <div>
               <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">{t.re2020.eyebrow}</p>
-              <h2 className="text-2xl font-black text-[#1E3A5F]">{t.re2020.title}</h2>
+              <h2 className="text-2xl font-black text-foreground">{t.re2020.title}</h2>
             </div>
           </div>
 
@@ -245,7 +245,7 @@ export default function MarcheNeuf() {
             ].map((item) => (
               <div key={item.title} className="bg-white rounded-2xl p-6 border border-gray-100">
                 <div className="w-10 h-10 bg-emerald-50 rounded-xl flex items-center justify-center mb-4">{item.icon}</div>
-                <h3 className="font-bold text-[#1E3A5F] mb-2 text-sm">{item.title}</h3>
+                <h3 className="font-bold text-foreground mb-2 text-sm">{item.title}</h3>
                 <p className="text-xs text-gray-400 leading-relaxed">{item.desc}</p>
               </div>
             ))}
@@ -267,19 +267,19 @@ export default function MarcheNeuf() {
       <section className="py-12 md:py-20 bg-white border-t border-gray-100">
         <div className="container mx-auto px-4 max-w-5xl">
           <div className="flex items-center gap-3 mb-10">
-            <div className="w-11 h-11 bg-[#C9A84C] rounded-xl flex items-center justify-center shrink-0">
+            <div className="w-11 h-11 bg-sea rounded-xl flex items-center justify-center shrink-0">
               <Building2 className="w-5 h-5 text-white" />
             </div>
             <div>
               <p className="text-xs text-gray-400 uppercase tracking-widest mb-0.5">{t.notaire.eyebrow}</p>
-              <h2 className="text-2xl font-black text-[#1E3A5F]">{t.notaire.title}</h2>
+              <h2 className="text-2xl font-black text-foreground">{t.notaire.title}</h2>
             </div>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6 mb-8">
-            <div className="bg-[#1E3A5F] rounded-2xl p-8 md:p-10 text-center">
+            <div className="bg-foreground rounded-2xl p-8 md:p-10 text-center">
               <div className="text-xs text-white/40 uppercase tracking-widest mb-2">{t.notaire.neufLabel}</div>
-              <div className="text-6xl md:text-8xl font-black text-[#C9A84C] leading-none mb-2">2–3<span className="text-3xl md:text-4xl">%</span></div>
+              <div className="text-6xl md:text-8xl font-black text-sea leading-none mb-2">2–3<span className="text-3xl md:text-4xl">%</span></div>
               <div className="text-white/50 text-sm">{t.notaire.neufSub}</div>
             </div>
             <div className="bg-gray-50 rounded-2xl p-8 md:p-10 text-center border border-gray-100">
@@ -290,14 +290,14 @@ export default function MarcheNeuf() {
           </div>
 
           <div className="bg-amber-50 border border-amber-200/50 rounded-2xl p-5 md:p-8">
-            <h3 className="font-bold text-[#1E3A5F] mb-5">{t.notaire.exampleTitle}</h3>
+            <h3 className="font-bold text-foreground mb-5">{t.notaire.exampleTitle}</h3>
             <div className="grid md:grid-cols-3 gap-6 mb-5">
               <div className="text-center">
                 <div className="text-xs text-gray-400 mb-1">{t.notaire.fraisNeufLabel}</div>
-                <div className="text-3xl font-black text-[#1E3A5F]">5 000€</div>
+                <div className="text-3xl font-black text-foreground">5 000€</div>
               </div>
               <div className="flex items-center justify-center">
-                <span className="text-2xl font-black text-[#C9A84C]">{t.notaire.vs}</span>
+                <span className="text-2xl font-black text-sea">{t.notaire.vs}</span>
               </div>
               <div className="text-center">
                 <div className="text-xs text-gray-400 mb-1">{t.notaire.fraisAncienLabel}</div>
@@ -306,7 +306,7 @@ export default function MarcheNeuf() {
             </div>
             <div className="text-center border-t border-amber-200/50 pt-5">
               <div className="text-xs text-gray-400 mb-1">{t.notaire.economieLabel}</div>
-              <div className="text-4xl font-black text-[#C9A84C]">8 000 – 10 000€</div>
+              <div className="text-4xl font-black text-sea">8 000 – 10 000€</div>
               <div className="text-xs text-gray-400 mt-1">{t.notaire.economieSub}</div>
             </div>
           </div>

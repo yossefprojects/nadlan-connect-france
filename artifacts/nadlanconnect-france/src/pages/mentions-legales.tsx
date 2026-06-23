@@ -119,7 +119,7 @@ export default function MentionsLegales() {
   const t = content[lang];
   return (
     <Layout>
-      <section className="relative h-[28vh] min-h-[180px] flex items-end overflow-hidden bg-[#0d1117]">
+      <section className="relative h-[28vh] min-h-[180px] flex items-end overflow-hidden bg-foreground">
         <div className="relative z-10 container mx-auto px-4 pb-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/15 bg-white/5 text-white/70 text-xs font-medium mb-3">
             <FileText className="w-3 h-3" /> {t.hero.badge}

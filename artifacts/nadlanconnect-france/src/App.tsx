@@ -24,7 +24,7 @@ function PageLoader() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-white">
       <div className="flex flex-col items-center gap-3">
-        <div className="w-8 h-8 border-2 border-[#C9A84C] border-t-transparent rounded-full animate-spin" />
+        <div className="w-8 h-8 border-2 border-sea border-t-transparent rounded-full animate-spin" />
         <span className="text-sm text-gray-400">{lang === "en" ? "Loading…" : "Chargement…"}</span>
       </div>
     </div>

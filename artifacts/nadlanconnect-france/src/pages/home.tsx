@@ -210,8 +210,8 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         className="w-full flex items-center justify-between gap-4 px-6 py-5 text-left bg-white hover:bg-gray-50 transition-colors min-h-[44px]"
         aria-expanded={open}
       >
-        <span className="font-semibold text-[#1E3A5F] text-sm md:text-base">{q}</span>
-        {open ? <ChevronUp className="w-4 h-4 text-[#C9A84C] shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-300 shrink-0" />}
+        <span className="font-semibold text-foreground text-sm md:text-base">{q}</span>
+        {open ? <ChevronUp className="w-4 h-4 text-sea shrink-0" /> : <ChevronDown className="w-4 h-4 text-gray-300 shrink-0" />}
       </button>
       {open && (
         <div className="px-6 pb-5 pt-2 bg-white border-t border-gray-50">
@@ -245,7 +245,7 @@ export default function Home() {
             loading="eager"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0d1117]/80 via-[#0d1117]/70 to-[#0d1117]/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0E1B2A]/80 via-[#0E1B2A]/70 to-[#0E1B2A]/90" />
         </div>
 
         <div className="relative z-10 container mx-auto px-4 py-12 md:py-24 flex flex-col items-center text-center">
@@ -260,7 +260,7 @@ export default function Home() {
             {t.hero.titleLine2}
           </h1>
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.1] sm:leading-[1.05] max-w-4xl mb-4 md:mb-6">
-            <span className="text-[#C9A84C]">{t.hero.titleAccent}</span>
+            <span className="text-sea-bright">{t.hero.titleAccent}</span>
           </h2>
 
           <p className="text-white/60 text-base md:text-lg max-w-md md:max-w-xl mb-8 md:mb-10 leading-relaxed px-2">
@@ -269,7 +269,7 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
             <Link href="/simulateur"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm md:text-[15px] hover:bg-[#b8963e] transition-all duration-200 shadow-lg shadow-amber-900/30">
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-sea text-white font-bold text-sm md:text-[15px] hover:opacity-90 transition-all duration-200 shadow-lg">
               {t.hero.ctaPrimary} <ArrowRight className="w-4 h-4" />
             </Link>
             <Link href="/defiscalisation"
@@ -294,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* ── BANDEAU RÉASSURANCE ───────────────────────────────────── */}
-      <section className="bg-[#1E3A5F] py-0 border-b border-white/5 overflow-hidden">
+      <section className="bg-foreground py-0 border-b border-white/5 overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between overflow-x-auto scrollbar-none">
             {t.reassurance.map((item, i, arr) => (
@@ -316,18 +316,18 @@ export default function Home() {
       <section className="py-14 md:py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.advantages.eyebrow}</p>
-            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">{t.advantages.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.advantages.eyebrow}</p>
+            <h2 className="text-2xl md:text-4xl font-black text-foreground">{t.advantages.title}</h2>
           </div>
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
             {t.advantages.cards.map((card, i) => (
-              <div key={card.title} className="group relative bg-white border border-gray-100 rounded-2xl p-8 hover:border-[#C9A84C]/40 hover:shadow-xl hover:shadow-amber-50 transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-[#1E3A5F] flex items-center justify-center text-[#C9A84C] mb-6">
+              <div key={card.title} className="group relative bg-white border border-gray-100 rounded-2xl p-8 hover:border-sea/40 hover:shadow-xl hover:shadow-amber-50 transition-all duration-300">
+                <div className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center text-sea-bright mb-6">
                   {advantageIcons[i]}
                 </div>
-                <h3 className="text-lg font-bold text-[#1E3A5F] mb-3">{card.title}</h3>
+                <h3 className="text-lg font-bold text-foreground mb-3">{card.title}</h3>
                 <p className="text-gray-500 text-sm leading-relaxed mb-5">{card.desc}</p>
-                <span className="inline-block px-3 py-1 rounded-full border border-[#C9A84C]/30 text-[#b8963e] text-xs font-semibold bg-amber-50">
+                <span className="inline-block px-3 py-1 rounded-full border border-sea/30 text-sea text-xs font-semibold bg-sea-soft">
                   {card.tag}
                 </span>
               </div>
@@ -337,20 +337,20 @@ export default function Home() {
       </section>
 
       {/* ── PAGES RAPIDES ───────────────────────────────────────────── */}
-      <section className="py-14 md:py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-muted">
         <div className="container mx-auto px-4">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.quickPages.eyebrow}</p>
-            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">{t.quickPages.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.quickPages.eyebrow}</p>
+            <h2 className="text-2xl md:text-4xl font-black text-foreground">{t.quickPages.title}</h2>
           </div>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5">
             {t.quickPages.items.map((item) => (
               <Link key={item.href} href={item.href}>
-                <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-[#1E3A5F]/20 hover:shadow-lg transition-all duration-300 cursor-pointer h-full group">
+                <div className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-foreground/20 hover:shadow-lg transition-all duration-300 cursor-pointer h-full group">
                   <div className="text-3xl mb-4" aria-hidden="true">{item.emoji}</div>
-                  <h3 className="font-bold text-[#1E3A5F] mb-2 group-hover:text-[#C9A84C] transition-colors">{item.title}</h3>
+                  <h3 className="font-bold text-foreground mb-2 group-hover:text-sea transition-colors">{item.title}</h3>
                   <p className="text-sm text-gray-400 leading-relaxed">{item.desc}</p>
-                  <div className="mt-4 flex items-center gap-1 text-xs text-[#C9A84C] font-semibold opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+                  <div className="mt-4 flex items-center gap-1 text-xs text-sea font-semibold opacity-0 group-hover:opacity-100 transition-opacity" aria-hidden="true">
                     {t.quickPages.discover} <ArrowRight className="w-3 h-3" />
                   </div>
                 </div>
@@ -361,12 +361,12 @@ export default function Home() {
       </section>
 
       {/* ── ABOUT ───────────────────────────────────────────────────── */}
-      <section className="py-14 md:py-24 bg-[#1E3A5F]">
+      <section className="py-14 md:py-24 bg-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-4">{t.about.eyebrow}</p>
+            <p className="text-xs font-semibold text-sea-bright uppercase tracking-widest mb-4">{t.about.eyebrow}</p>
             <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
-              {t.about.titleBefore}<span className="text-[#C9A84C]">{t.about.titleBrand}</span>{t.about.titleAfter}
+              {t.about.titleBefore}<span className="text-sea-bright">{t.about.titleBrand}</span>{t.about.titleAfter}
             </h2>
             <p className="text-white/55 text-lg leading-relaxed mb-10">
               {t.about.descBefore}<strong className="text-white">{t.about.descBrand}</strong>{t.about.descAfter}
@@ -374,13 +374,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row justify-center gap-6 mb-10">
               {t.about.features.map((item) => (
                 <div key={item} className="flex items-center gap-2 text-sm text-white/60">
-                  <CheckCircle2 className="w-4 h-4 text-[#C9A84C] shrink-0" aria-hidden="true" />
+                  <CheckCircle2 className="w-4 h-4 text-sea-bright shrink-0" aria-hidden="true" />
                   <span>{item}</span>
                 </div>
               ))}
             </div>
             <a href="https://nadlanconnect.com" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#C9A84C] hover:text-white font-semibold transition-colors text-sm">
+              className="inline-flex items-center gap-2 text-sea-bright hover:text-white font-semibold transition-colors text-sm">
               {t.about.visit} <ExternalLink className="w-4 h-4" aria-hidden="true" />
             </a>
           </div>
@@ -388,11 +388,11 @@ export default function Home() {
       </section>
 
       {/* ── FAQ ─────────────────────────────────────────────────────── */}
-      <section className="py-14 md:py-24 bg-[#f8f9fb]">
+      <section className="py-14 md:py-24 bg-muted">
         <div className="container mx-auto px-4 max-w-3xl">
           <div className="text-center mb-10 md:mb-14">
-            <p className="text-xs font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">{t.faqSection.eyebrow}</p>
-            <h2 className="text-2xl md:text-4xl font-black text-[#1E3A5F]">{t.faqSection.title}</h2>
+            <p className="text-xs font-semibold text-sea uppercase tracking-widest mb-3">{t.faqSection.eyebrow}</p>
+            <h2 className="text-2xl md:text-4xl font-black text-foreground">{t.faqSection.title}</h2>
             <p className="text-gray-400 mt-3 text-sm max-w-xl mx-auto">{t.faqSection.subtitle}</p>
           </div>
 
@@ -405,7 +405,7 @@ export default function Home() {
           <div className="mt-10 text-center">
             <p className="text-gray-400 text-sm mb-4">{t.faqSection.moreQuestions}</p>
             <Link href="/simulateur"
-              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-[#C9A84C] text-white font-bold text-sm hover:bg-[#b8963e] transition-all duration-200 shadow-lg shadow-amber-900/20">
+              className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-sea text-white font-bold text-sm hover:opacity-90 transition-all duration-200 shadow-lg">
               {t.faqSection.cta} <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

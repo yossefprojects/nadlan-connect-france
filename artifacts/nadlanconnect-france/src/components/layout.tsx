@@ -421,9 +421,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="container flex h-16 items-center justify-between gap-4">
             <div className="flex items-center gap-6">
               <Link href="/" className="flex items-center space-x-2.5 group shrink-0" aria-label={t.logoAria}>
-                <div className="h-8 w-8 rounded-lg overflow-hidden relative">
-                  <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                </div>
+                <svg viewBox="0 0 56 56" className="h-8 w-8 shrink-0" aria-hidden="true">
+                  <rect width="56" height="56" rx="14" fill="#F7F5F0" stroke="#0E1B2A" strokeOpacity="0.14" />
+                  <rect x="16" y="18" width="13" height="26" rx="2" fill="#0E1B2A" />
+                  <rect x="28" y="24" width="13" height="20" rx="2" fill="#0F7B6C" />
+                  <g fill="#F7F5F0"><circle cx="22.5" cy="24" r="1.4" /><circle cx="22.5" cy="30" r="1.4" /><circle cx="22.5" cy="36" r="1.4" /></g>
+                  <g fill="#fff"><circle cx="34.5" cy="31" r="1.4" /><circle cx="34.5" cy="37" r="1.4" /></g>
+                </svg>
                 <span className={`inline-flex items-center gap-2 font-serif text-xl tracking-tight transition-opacity group-hover:opacity-90 ${onDark ? "text-white" : "text-foreground"}`}>
                   <span>Nadlan<span className={onDark ? "text-sea-bright" : "text-sea"}>Connect</span></span>
                   <FranceFlag className="h-[15px] w-[22px] shrink-0 rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.25)] ring-1 ring-black/10" />
@@ -575,7 +579,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <div className="container grid max-w-6xl grid-cols-1 gap-12 py-14 md:grid-cols-[2fr_1fr_1fr]">
           <div>
             <div className="mb-4 flex items-center gap-2.5">
-              <img src={`${import.meta.env.BASE_URL}logo.png`} alt="NadlanConnect" className="h-8 w-8 rounded-lg" />
+              <svg viewBox="0 0 56 56" className="h-8 w-8 shrink-0" aria-hidden="true">
+                <rect width="56" height="56" rx="14" fill="#F7F5F0" stroke="#0E1B2A" strokeOpacity="0.14" />
+                <rect x="16" y="18" width="13" height="26" rx="2" fill="#0E1B2A" />
+                <rect x="28" y="24" width="13" height="20" rx="2" fill="#0F7B6C" />
+                <g fill="#F7F5F0"><circle cx="22.5" cy="24" r="1.4" /><circle cx="22.5" cy="30" r="1.4" /><circle cx="22.5" cy="36" r="1.4" /></g>
+                <g fill="#fff"><circle cx="34.5" cy="31" r="1.4" /><circle cx="34.5" cy="37" r="1.4" /></g>
+              </svg>
               <span className="inline-flex items-center gap-2 font-serif text-xl text-foreground">
                 <span>Nadlan<span className="text-sea">Connect</span></span>
                 <FranceFlag className="h-[15px] w-[22px] shrink-0 rounded-[2px] overflow-hidden shadow-[0_1px_2px_rgba(0,0,0,0.25)] ring-1 ring-black/10" />
